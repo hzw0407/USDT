@@ -19,6 +19,14 @@
 		7CF6EA48239F4B300077DB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA40239F4B300077DB90 /* Assets.xcassets */; };
 		7CF6EA62239F4C570077DB90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA5E239F4C570077DB90 /* LaunchScreen.storyboard */; };
 		7CF6EA63239F4C570077DB90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA60239F4C570077DB90 /* Main.storyboard */; };
+		7CF6EA7B239F6E730077DB90 /* FYTabbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA7A239F6E730077DB90 /* FYTabbarVC.swift */; };
+		7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA7C239F6F050077DB90 /* FYHomeVC.swift */; };
+		7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA7E239F6F690077DB90 /* FYRushOrderVC.swift */; };
+		7CF6EA81239F6F7D0077DB90 /* FYOrderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA80239F6F7D0077DB90 /* FYOrderVC.swift */; };
+		7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA82239F6FAA0077DB90 /* FYMyVC.swift */; };
+		7CF6EAC5239F7A410077DB90 /* FYUrlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EAC4239F7A410077DB90 /* FYUrlManager.swift */; };
+		7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EAC6239F7C050077DB90 /* FYRequestManager.swift */; };
+		7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EAC8239F8A970077DB90 /* tsetModel.swift */; };
 		BDD6C1C7950A4F1B78C8E68D /* Pods_FYUSDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +69,14 @@
 		7CF6EA5F239F4C570077DB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CF6EA61239F4C570077DB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CF6EA64239F4C900077DB90 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CF6EA7A239F6E730077DB90 /* FYTabbarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYTabbarVC.swift; sourceTree = "<group>"; };
+		7CF6EA7C239F6F050077DB90 /* FYHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYHomeVC.swift; sourceTree = "<group>"; };
+		7CF6EA7E239F6F690077DB90 /* FYRushOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderVC.swift; sourceTree = "<group>"; };
+		7CF6EA80239F6F7D0077DB90 /* FYOrderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYOrderVC.swift; sourceTree = "<group>"; };
+		7CF6EA82239F6FAA0077DB90 /* FYMyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYMyVC.swift; sourceTree = "<group>"; };
+		7CF6EAC4239F7A410077DB90 /* FYUrlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUrlManager.swift; sourceTree = "<group>"; };
+		7CF6EAC6239F7C050077DB90 /* FYRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRequestManager.swift; sourceTree = "<group>"; };
+		7CF6EAC8239F8A970077DB90 /* tsetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tsetModel.swift; sourceTree = "<group>"; };
 		A873B45E6FEE4BF7F7C0C130 /* Pods-FYUSDT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYUSDT.debug.xcconfig"; path = "Target Support Files/Pods-FYUSDT/Pods-FYUSDT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,12 +140,16 @@
 		7CF6E9F6239F31DF0077DB90 /* FYUSDT */ = {
 			isa = PBXGroup;
 			children = (
+				7CF6EA75239F6BE20077DB90 /* Home */,
+				7CF6EA70239F6BCD0077DB90 /* RushOrder */,
+				7CF6EA6B239F6B7F0077DB90 /* Order */,
+				7CF6EA66239F6B660077DB90 /* My */,
+				7CF6EA27239F420C0077DB90 /* Tool */,
+				7CF6EA35239F488F0077DB90 /* Category */,
+				7CF6EA3E239F4AAB0077DB90 /* Resource */,
 				7CF6EA64239F4C900077DB90 /* Info.plist */,
 				7CF6EA5E239F4C570077DB90 /* LaunchScreen.storyboard */,
 				7CF6EA60239F4C570077DB90 /* Main.storyboard */,
-				7CF6EA3E239F4AAB0077DB90 /* Resource */,
-				7CF6EA35239F488F0077DB90 /* Category */,
-				7CF6EA27239F420C0077DB90 /* Tool */,
 			);
 			path = FYUSDT;
 			sourceTree = "<group>";
@@ -160,6 +180,8 @@
 				7CF6EA2B239F444E0077DB90 /* FYTool.swift */,
 				7CF6EA31239F46820077DB90 /* FYConfig.swift */,
 				7CF6EA33239F47AE0077DB90 /* FYColor.swift */,
+				7CF6EAC4239F7A410077DB90 /* FYUrlManager.swift */,
+				7CF6EAC6239F7C050077DB90 /* FYRequestManager.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -178,8 +200,138 @@
 			children = (
 				7CF6EA3F239F4B300077DB90 /* AppDelegate.swift */,
 				7CF6EA40239F4B300077DB90 /* Assets.xcassets */,
+				7CF6EA7A239F6E730077DB90 /* FYTabbarVC.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		7CF6EA66239F6B660077DB90 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA67239F6B660077DB90 /* Controller */,
+				7CF6EA69239F6B660077DB90 /* Model */,
+				7CF6EA6A239F6B660077DB90 /* View */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		7CF6EA67239F6B660077DB90 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA82239F6FAA0077DB90 /* FYMyVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CF6EA69239F6B660077DB90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CF6EA6A239F6B660077DB90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7CF6EA6B239F6B7F0077DB90 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA6C239F6B7F0077DB90 /* Controller */,
+				7CF6EA6E239F6B7F0077DB90 /* Model */,
+				7CF6EA6F239F6B7F0077DB90 /* View */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		7CF6EA6C239F6B7F0077DB90 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA80239F6F7D0077DB90 /* FYOrderVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CF6EA6E239F6B7F0077DB90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CF6EA6F239F6B7F0077DB90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7CF6EA70239F6BCD0077DB90 /* RushOrder */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA71239F6BCD0077DB90 /* Controller */,
+				7CF6EA73239F6BCD0077DB90 /* Model */,
+				7CF6EA74239F6BCD0077DB90 /* View */,
+			);
+			path = RushOrder;
+			sourceTree = "<group>";
+		};
+		7CF6EA71239F6BCD0077DB90 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA7E239F6F690077DB90 /* FYRushOrderVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CF6EA73239F6BCD0077DB90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CF6EA74239F6BCD0077DB90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7CF6EA75239F6BE20077DB90 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA76239F6BE20077DB90 /* Controller */,
+				7CF6EA78239F6BE20077DB90 /* Model */,
+				7CF6EA79239F6BE20077DB90 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		7CF6EA76239F6BE20077DB90 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA7C239F6F050077DB90 /* FYHomeVC.swift */,
+				7CF6EAC8239F8A970077DB90 /* tsetModel.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CF6EA78239F6BE20077DB90 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CF6EA79239F6BE20077DB90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C377C83B7894F817E8952E1C /* Frameworks */ = {
@@ -366,12 +518,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CF6EA47239F4B300077DB90 /* AppDelegate.swift in Sources */,
+				7CF6EAC5239F7A410077DB90 /* FYUrlManager.swift in Sources */,
+				7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */,
 				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
+				7CF6EA81239F6F7D0077DB90 /* FYOrderVC.swift in Sources */,
 				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
 				7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */,
 				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
+				7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */,
 				7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */,
+				7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */,
+				7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */,
+				7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */,
+				7CF6EA7B239F6E730077DB90 /* FYTabbarVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

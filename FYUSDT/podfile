@@ -11,5 +11,6 @@ pod 'SnapKit'
 pod 'SwiftyFitsize'
 pod 'MBProgressHUD'
 pod 'MJRefresh'
+pod 'HandyJSON'
 
 end

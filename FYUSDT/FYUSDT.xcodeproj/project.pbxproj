@@ -3,17 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7CF6E9F8239F31DF0077DB90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6E9F7239F31DF0077DB90 /* AppDelegate.swift */; };
-		7CF6E9FC239F31DF0077DB90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6E9FB239F31DF0077DB90 /* ViewController.swift */; };
-		7CF6E9FF239F31DF0077DB90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6E9FD239F31DF0077DB90 /* Main.storyboard */; };
-		7CF6EA01239F31E00077DB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA00239F31E00077DB90 /* Assets.xcassets */; };
-		7CF6EA04239F31E00077DB90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA02239F31E00077DB90 /* LaunchScreen.storyboard */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
+		7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */; };
+		7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA2B239F444E0077DB90 /* FYTool.swift */; };
+		7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA31239F46820077DB90 /* FYConfig.swift */; };
+		7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA33239F47AE0077DB90 /* FYColor.swift */; };
+		7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA3A239F49B30077DB90 /* FYUITextField.swift */; };
+		7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA3C239F49D30077DB90 /* FYButtonLayout.swift */; };
+		7CF6EA47239F4B300077DB90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA3F239F4B300077DB90 /* AppDelegate.swift */; };
+		7CF6EA48239F4B300077DB90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA40239F4B300077DB90 /* Assets.xcassets */; };
+		7CF6EA62239F4C570077DB90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA5E239F4C570077DB90 /* LaunchScreen.storyboard */; };
+		7CF6EA63239F4C570077DB90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6EA60239F4C570077DB90 /* Main.storyboard */; };
+		BDD6C1C7950A4F1B78C8E68D /* Pods_FYUSDT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,19 +40,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYUSDT.release.xcconfig"; path = "Target Support Files/Pods-FYUSDT/Pods-FYUSDT.release.xcconfig"; sourceTree = "<group>"; };
+		539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FYUSDT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CF6E9F7239F31DF0077DB90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7CF6E9FB239F31DF0077DB90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7CF6E9FE239F31DF0077DB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7CF6EA00239F31E00077DB90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7CF6EA03239F31E00077DB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7CF6EA05239F31E00077DB90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
 		7CF6EA10239F31E10077DB90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CF6EA15239F31E10077DB90 /* FYUSDTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTUITests.swift; sourceTree = "<group>"; };
 		7CF6EA1B239F31E10077DB90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CF6EA28239F426F0077DB90 /* FYUSDT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FYUSDT-Bridging-Header.h"; sourceTree = "<group>"; };
+		7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Swift.swift"; sourceTree = "<group>"; };
+		7CF6EA2B239F444E0077DB90 /* FYTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYTool.swift; sourceTree = "<group>"; };
+		7CF6EA31239F46820077DB90 /* FYConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYConfig.swift; sourceTree = "<group>"; };
+		7CF6EA33239F47AE0077DB90 /* FYColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYColor.swift; sourceTree = "<group>"; };
+		7CF6EA3A239F49B30077DB90 /* FYUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUITextField.swift; sourceTree = "<group>"; };
+		7CF6EA3C239F49D30077DB90 /* FYButtonLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYButtonLayout.swift; sourceTree = "<group>"; };
+		7CF6EA3F239F4B300077DB90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7CF6EA40239F4B300077DB90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7CF6EA5F239F4C570077DB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7CF6EA61239F4C570077DB90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7CF6EA64239F4C900077DB90 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A873B45E6FEE4BF7F7C0C130 /* Pods-FYUSDT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYUSDT.debug.xcconfig"; path = "Target Support Files/Pods-FYUSDT/Pods-FYUSDT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDD6C1C7950A4F1B78C8E68D /* Pods_FYUSDT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01F3DAABE865DC18A10CE99D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A873B45E6FEE4BF7F7C0C130 /* Pods-FYUSDT.debug.xcconfig */,
+				2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7CF6E9EB239F31DF0077DB90 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +106,8 @@
 				7CF6EA0D239F31E10077DB90 /* FYUSDTTests */,
 				7CF6EA18239F31E10077DB90 /* FYUSDTUITests */,
 				7CF6E9F5239F31DF0077DB90 /* Products */,
+				01F3DAABE865DC18A10CE99D /* Pods */,
+				C377C83B7894F817E8952E1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +124,12 @@
 		7CF6E9F6239F31DF0077DB90 /* FYUSDT */ = {
 			isa = PBXGroup;
 			children = (
-				7CF6E9F7239F31DF0077DB90 /* AppDelegate.swift */,
-				7CF6E9FB239F31DF0077DB90 /* ViewController.swift */,
-				7CF6E9FD239F31DF0077DB90 /* Main.storyboard */,
-				7CF6EA00239F31E00077DB90 /* Assets.xcassets */,
-				7CF6EA02239F31E00077DB90 /* LaunchScreen.storyboard */,
-				7CF6EA05239F31E00077DB90 /* Info.plist */,
+				7CF6EA64239F4C900077DB90 /* Info.plist */,
+				7CF6EA5E239F4C570077DB90 /* LaunchScreen.storyboard */,
+				7CF6EA60239F4C570077DB90 /* Main.storyboard */,
+				7CF6EA3E239F4AAB0077DB90 /* Resource */,
+				7CF6EA35239F488F0077DB90 /* Category */,
+				7CF6EA27239F420C0077DB90 /* Tool */,
 			);
 			path = FYUSDT;
 			sourceTree = "<group>";
@@ -125,6 +152,44 @@
 			path = FYUSDTUITests;
 			sourceTree = "<group>";
 		};
+		7CF6EA27239F420C0077DB90 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */,
+				7CF6EA28239F426F0077DB90 /* FYUSDT-Bridging-Header.h */,
+				7CF6EA2B239F444E0077DB90 /* FYTool.swift */,
+				7CF6EA31239F46820077DB90 /* FYConfig.swift */,
+				7CF6EA33239F47AE0077DB90 /* FYColor.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		7CF6EA35239F488F0077DB90 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA3A239F49B30077DB90 /* FYUITextField.swift */,
+				7CF6EA3C239F49D30077DB90 /* FYButtonLayout.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		7CF6EA3E239F4AAB0077DB90 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7CF6EA3F239F4B300077DB90 /* AppDelegate.swift */,
+				7CF6EA40239F4B300077DB90 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C377C83B7894F817E8952E1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +197,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CF6EA1E239F31E10077DB90 /* Build configuration list for PBXNativeTarget "FYUSDT" */;
 			buildPhases = (
+				389712C7A41CBD8E69A60C69 /* [CP] Check Pods Manifest.lock */,
 				7CF6E9F0239F31DF0077DB90 /* Sources */,
 				7CF6E9F1239F31DF0077DB90 /* Frameworks */,
 				7CF6E9F2239F31DF0077DB90 /* Resources */,
+				2F3679F507E62D94CE09B38B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,9 +296,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CF6EA04239F31E00077DB90 /* LaunchScreen.storyboard in Resources */,
-				7CF6EA01239F31E00077DB90 /* Assets.xcassets in Resources */,
-				7CF6E9FF239F31DF0077DB90 /* Main.storyboard in Resources */,
+				7CF6EA62239F4C570077DB90 /* LaunchScreen.storyboard in Resources */,
+				7CF6EA48239F4B300077DB90 /* Assets.xcassets in Resources */,
+				7CF6EA63239F4C570077DB90 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +318,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F3679F507E62D94CE09B38B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FYUSDT/Pods-FYUSDT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FYUSDT/Pods-FYUSDT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FYUSDT/Pods-FYUSDT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		389712C7A41CBD8E69A60C69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FYUSDT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7CF6E9F0239F31DF0077DB90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CF6E9FC239F31DF0077DB90 /* ViewController.swift in Sources */,
-				7CF6E9F8239F31DF0077DB90 /* AppDelegate.swift in Sources */,
+				7CF6EA47239F4B300077DB90 /* AppDelegate.swift in Sources */,
+				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
+				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,
+				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
+				7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */,
+				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
+				7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,20 +407,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7CF6E9FD239F31DF0077DB90 /* Main.storyboard */ = {
+		7CF6EA5E239F4C570077DB90 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				7CF6E9FE239F31DF0077DB90 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7CF6EA02239F31E00077DB90 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7CF6EA03239F31E00077DB90 /* Base */,
+				7CF6EA5F239F4C570077DB90 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7CF6EA60239F4C570077DB90 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7CF6EA61239F4C570077DB90 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -428,6 +542,7 @@
 		};
 		7CF6EA1F239F31E10077DB90 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A873B45E6FEE4BF7F7C0C130 /* Pods-FYUSDT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -440,6 +555,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -447,6 +563,7 @@
 		};
 		7CF6EA20239F31E10077DB90 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +576,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

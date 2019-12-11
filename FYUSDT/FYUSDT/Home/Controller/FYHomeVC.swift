@@ -37,7 +37,7 @@ class FYHomeVC: UIViewController {
         requestManager.request(type: .post, url: test2, successCompletion: { (dict) in
             if dict["code"]?.intValue == 200 {
                 self.modelArray = JSONDeserializer<testModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as! [testModel]
-                print(self.modelArray!.toJSONString(prettyPrint: true)!)
+//                print(self.modelArray!.toJSONString(prettyPrint: true)!)
             }
         }) { (errMessage) in
             

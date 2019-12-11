@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  FYUSDT
+
+  Created by 何志武 on 2019/12/11.
+  Copyright © 2019 何志武. All rights reserved.
+*/
+
+
+"Register" = "注册";
+"Welcome back" = "欢迎回来";
+"Log in to order grabbing Hall" = "登录抢单大厅";
+"input_email" = "请输入邮箱地址";
+"input_password" = "请输入登录密码";
+"Login" = "登录";
+"Forget password" = "忘记密码?";
+"Creat" = "创建新账户";
+"input_code" = "请输入验证码";
+"get_code" = "获取验证码";
+"set_password" = "请设置密码";
+"sure_password" = "请确认密码";
+"invateCode" = "邀请码（必填）";
+"Next step" = "下一步";
+"Agreement" = "我已阅读并同意《服务协议》";
+"Empty Email" = "邮箱地址不能为空";
+"Empty Code" = "验证码不能为空";
+"Empty Password" = "密码不能为空";
+"Password Inconsistent" = "两次输入的密码不一致";
+"Empty Invate" = "邀请码不能为空";
+"Agreement Service" = "请先同意协议";
+"Password back" = "密码找回";

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C942E9923A08FB60064816A /* FYLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942E9823A08FB60064816A /* FYLoginVC.swift */; };
+		7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942E9A23A093F80064816A /* LanguageHelper.swift */; };
+		7C942E9E23A0954C0064816A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C942EA023A0954C0064816A /* Localizable.strings */; };
+		7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */; };
+		7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
 		7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */; };
@@ -50,6 +55,12 @@
 /* Begin PBXFileReference section */
 		2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYUSDT.release.xcconfig"; path = "Target Support Files/Pods-FYUSDT/Pods-FYUSDT.release.xcconfig"; sourceTree = "<group>"; };
 		539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FYUSDT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C942E9823A08FB60064816A /* FYLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYLoginVC.swift; sourceTree = "<group>"; };
+		7C942E9A23A093F80064816A /* LanguageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageHelper.swift; sourceTree = "<group>"; };
+		7C942E9F23A0954C0064816A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7C942EA123A0957E0064816A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRegisterVC.swift; sourceTree = "<group>"; };
+		7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYFindPasswordVC.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
@@ -115,6 +126,32 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7C942E9523A08BF00064816A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7C942E9623A08BF00064816A /* Controller */,
+				7C942E9723A08BF00064816A /* Model */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7C942E9623A08BF00064816A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7C942E9823A08FB60064816A /* FYLoginVC.swift */,
+				7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */,
+				7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7C942E9723A08BF00064816A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7CF6E9EB239F31DF0077DB90 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +177,7 @@
 		7CF6E9F6239F31DF0077DB90 /* FYUSDT */ = {
 			isa = PBXGroup;
 			children = (
+				7C942E9523A08BF00064816A /* Login */,
 				7CF6EA75239F6BE20077DB90 /* Home */,
 				7CF6EA70239F6BCD0077DB90 /* RushOrder */,
 				7CF6EA6B239F6B7F0077DB90 /* Order */,
@@ -198,9 +236,11 @@
 		7CF6EA3E239F4AAB0077DB90 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				7C942E9A23A093F80064816A /* LanguageHelper.swift */,
 				7CF6EA3F239F4B300077DB90 /* AppDelegate.swift */,
 				7CF6EA40239F4B300077DB90 /* Assets.xcassets */,
 				7CF6EA7A239F6E730077DB90 /* FYTabbarVC.swift */,
+				7C942EA023A0954C0064816A /* Localizable.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -430,6 +470,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 7CF6E9EB239F31DF0077DB90;
 			productRefGroup = 7CF6E9F5239F31DF0077DB90 /* Products */;
@@ -449,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CF6EA62239F4C570077DB90 /* LaunchScreen.storyboard in Resources */,
+				7C942E9E23A0954C0064816A /* Localizable.strings in Resources */,
 				7CF6EA48239F4B300077DB90 /* Assets.xcassets in Resources */,
 				7CF6EA63239F4C570077DB90 /* Main.storyboard in Resources */,
 			);
@@ -521,13 +563,17 @@
 				7CF6EAC5239F7A410077DB90 /* FYUrlManager.swift in Sources */,
 				7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */,
 				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
+				7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */,
 				7CF6EA81239F6F7D0077DB90 /* FYOrderVC.swift in Sources */,
 				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
+				7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */,
 				7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */,
 				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
+				7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */,
 				7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */,
 				7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */,
+				7C942E9923A08FB60064816A /* FYLoginVC.swift in Sources */,
 				7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */,
 				7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */,
 				7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */,
@@ -567,6 +613,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		7C942EA023A0954C0064816A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C942E9F23A0954C0064816A /* en */,
+				7C942EA123A0957E0064816A /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		7CF6EA5E239F4C570077DB90 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -590,6 +645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -650,6 +706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -705,7 +762,8 @@
 			baseConfigurationReference = A873B45E6FEE4BF7F7C0C130 /* Pods-FYUSDT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: jianming zhou (AH5V23JU4G)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DX354Z32QS;
 				INFOPLIST_FILE = FYUSDT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -715,6 +773,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = USDT_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -726,7 +785,8 @@
 			baseConfigurationReference = 2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: jianming zhou (DX354Z32QS)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = DX354Z32QS;
 				INFOPLIST_FILE = FYUSDT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -736,6 +796,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "USDT_Ad Hoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

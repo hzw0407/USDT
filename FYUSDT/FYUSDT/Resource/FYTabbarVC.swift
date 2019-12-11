@@ -17,7 +17,7 @@ class FYTabbarVC: UITabBarController {
     }
     
     func addChidVC() {
-        let homeVC = FYHomeVC()
+        let homeVC = FYLoginVC()
         homeVC.title = "首页"
 //        homeVc.title = LanguageHelper.getString(key: "home_pager")
 //        var normalIMageOne = UIImage(named: "icon_tab1")

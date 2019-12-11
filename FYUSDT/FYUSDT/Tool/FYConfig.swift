@@ -21,6 +21,6 @@ let topSafeAreaHeight = (statusBarHeight - 20)
 //底部的安全距离
 let bottomSafeAreaHeight = (tabBarHeight - 49)
 //屏幕宽度
-let OTScreenWidth = UIScreen.main.bounds.size.width
+let FYScreenWidth = UIScreen.main.bounds.size.width
 //屏幕高度
-let OTScreenHeight = UIScreen.main.bounds.size.height
+let FYScreenHeight = UIScreen.main.bounds.size.height

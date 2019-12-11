@@ -12,5 +12,6 @@ pod 'SwiftyFitsize'
 pod 'MBProgressHUD'
 pod 'MJRefresh'
 pod 'HandyJSON'
+pod 'YYText'
 
 end

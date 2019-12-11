@@ -20,13 +20,13 @@ class FYRequestManager: NSObject {
     static let shared = FYRequestManager()
     
     //0测试环境 1正式环境
-    let environment = 0
+    let InterfaceBaseDebug = 0
     var baseUrl = ""
     //参数字典
     var parametersDic:[String : AnyObject] = [:]
     
     private func judgeNetwork() {
-        if environment == 0 {
+        if InterfaceBaseDebug == 0 {
             baseUrl = "http://202.60.254.13:8088"
         }else {
             baseUrl = "http://202.60.254.13:8088"

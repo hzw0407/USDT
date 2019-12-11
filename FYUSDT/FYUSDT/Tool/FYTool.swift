@@ -11,8 +11,6 @@ import LocalAuthentication
 
 class FYTool: NSObject {
         /// 获取字符串高度
-        ///
-        /// - Parameters:
         ///   - textStr: 需要计算的字符串
         ///   - font: 字体大小
         ///   - width: 宽度
@@ -25,8 +23,6 @@ class FYTool: NSObject {
         }
         
         /// 获取字符串宽度
-        ///
-        /// - Parameters:
         ///   - textStr: 需要计算的字符串
         ///   - font: 字体大小
         ///   - height: 高度
@@ -121,34 +117,6 @@ class FYTool: NSObject {
             formatter.dateFormat = dateFormat
             let date = formatter.string(from: date)
             return date.components(separatedBy: " ").first!
-        }
-        
-        static var hasTouchId: Bool {
-            if #available(iOS 8.0, OSX 10.12, *) {
-                let context = LAContext()
-                var error: NSError? = nil
-                if(context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: &error)) {
-                    return true
-                }
-            }
-            return false
-        }
-        
-        static var haFaceId:Bool {
-            let context = LAContext()
-            if #available(iOS 11.0, *) {
-                switch (context.biometryType) {
-                case .none:
-                    return false
-                case .touchID:
-                    return false
-                case .faceID:
-                    return true
-                default:
-                    break;
-                }
-            }
-            return false
         }
 
         //十六进制颜色转UIColor

@@ -6,6 +6,7 @@ PODS:
   - MJRefresh (3.2.2)
   - SnapKit (4.2.0)
   - SwiftyFitsize (1.0.1)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
   - Alamofire
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - MJRefresh
   - SnapKit
   - SwiftyFitsize
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -25,6 +27,7 @@ SPEC REPOS:
     - MJRefresh
     - SnapKit
     - SwiftyFitsize
+    - YYText
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -34,7 +37,8 @@ SPEC CHECKSUMS:
   MJRefresh: 72a46ecaa2a0feaf48fc5198dff95f25f8bb27c6
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyFitsize: ea06788e0c57b818112e238070bdfa9800aedc21
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: a985cf01a6e63c933c014ca69c07bd39e57fd2ac
+PODFILE CHECKSUM: e95ddc602810d3cc74e87067cd27a482a69699cc
 
 COCOAPODS: 1.7.5

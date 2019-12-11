@@ -11,5 +11,6 @@
 
 #import <MBProgressHUD.h>
 #import <MJRefresh.h>
+#import <YYText.h>
 
 #endif /* FYUSDT_Bridging_Header_h */

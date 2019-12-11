@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //初始化语言
+        LanguageHelper.shareInstance.initUserLanguage()
         //初始化默认适配尺寸
         SwiftyFitsize.reference(width: 414, iPadFitMultiple: 0.5)
         
@@ -34,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func  setupGlobalUIStyle() -> Void {
+    func setupGlobalUIStyle() -> Void {
         let appearanceBar = UINavigationBar.appearance()
         appearanceBar.tintColor = UIColor.black
         appearanceBar.isTranslucent = false

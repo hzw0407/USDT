@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  FYUSDT
+
+  Created by 何志武 on 2019/12/11.
+  Copyright © 2019 何志武. All rights reserved.
+*/
+
+"Register" = "Register";
+"Welcome back" = "Welcome back";
+"Log in to order grabbing Hall" = "Log in to order grabbing Hall";
+"input_email" = "Please enter email address";
+"input_password" = "Please enter the login password";
+"Login" = "Login";
+"Forget password" = "Forget password?";
+"Creat" = "Create a new account";
+"input_code" = "Please enter the verification code";
+"get_code" = "Get verification code";
+"set_password" = "Please set password";
+"sure_password" = "Please confirm the password";
+"invateCode" = "Invitation code (required)";
+"Next step" = "Next step";
+"Agreement" = "I have read and agree to the 《service agreement》";
+"Empty Email" = "Email address cannot be empty";
+"Empty Code" = "Verification code cannot be empty";
+"Empty Password" = "Password cannot be empty";
+"Password Inconsistent" = "The two passwords are inconsistent";
+"Empty Invate" = "Invitation code cannot be empty";
+"Agreement Service" = "Please agree to the agreement first";
+"Password back" = "Password back";

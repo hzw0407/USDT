@@ -15,6 +15,7 @@
 		7C942E9E23A0954C0064816A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C942EA023A0954C0064816A /* Localizable.strings */; };
 		7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */; };
 		7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */; };
+		7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
 		7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */; };
@@ -67,6 +68,7 @@
 		7C942EA123A0957E0064816A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRegisterVC.swift; sourceTree = "<group>"; };
 		7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYFindPasswordVC.swift; sourceTree = "<group>"; };
+		7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJMarqueeView.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		7CF6EA27239F420C0077DB90 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */,
 				7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */,
 				7CF6EA28239F426F0077DB90 /* FYUSDT-Bridging-Header.h */,
 				7CF6EA2B239F444E0077DB90 /* FYTool.swift */,
@@ -606,6 +609,7 @@
 				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
 				7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */,
 				7C7D216723A1DBD90083587F /* FYAdvertisementCell.swift in Sources */,
+				7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */,
 				7CF6EA81239F6F7D0077DB90 /* FYOrderVC.swift in Sources */,
 				7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */,
 				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,

@@ -32,4 +32,14 @@ class FYColor: NSObject {
     static func lineColor() -> UIColor {
         return FYTool.hexStringToUIColor(hexString: "#EEEEEE")
     }
+    
+    //提币充币颜色
+    static func operationColor() -> UIColor {
+        return self.rgb(26, 26, 26, 1.0)
+    }
+    
+    //立即抢单颜色
+    static func rushColor() -> UIColor {
+        return FYTool.hexStringToUIColor(hexString: "#4F230C")
+    }
 }

@@ -36,3 +36,10 @@
 "My" = "我的";
 "Selected information" = "精选资讯";
 "All" = "全部";
+"Assets" = "资产";
+"Asset details" = "资产明细";
+"Total Assets" = "总资产(USDT)";
+"Accumulated income" = "累计收益 %@ USDT";
+"Withdraw money" = "提币";
+"Coin charging" = "充币";
+"Grab the order immediately" = "立即抢单";

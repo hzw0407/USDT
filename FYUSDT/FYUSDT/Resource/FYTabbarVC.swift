@@ -28,7 +28,7 @@ class FYTabbarVC: UITabBarController {
         selectImageOne = selectImageOne!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         assetsVC.tabBarItem.selectedImage = selectImageOne
         assetsVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.gray], for: UIControl.State.normal)
-        assetsVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.selected)
+        assetsVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:FYColor.goldColor()], for: UIControl.State.selected)
         addChild(UINavigationController.init(rootViewController: assetsVC))
              
              
@@ -43,7 +43,7 @@ class FYTabbarVC: UITabBarController {
         selectImageTwo = selectImageTwo!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         rushOrderVC.tabBarItem.selectedImage = selectImageTwo
         rushOrderVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.gray], for: UIControl.State.normal)
-        rushOrderVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.selected)
+        rushOrderVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:FYColor.goldColor()], for: UIControl.State.selected)
         addChild(UINavigationController.init(rootViewController: rushOrderVC))
              
         let orderVC = FYOrderVC()
@@ -57,7 +57,7 @@ class FYTabbarVC: UITabBarController {
         selectImageThree = selectImageThree!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         orderVC.tabBarItem.selectedImage = selectImageThree
         orderVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.gray], for: UIControl.State.normal)
-        orderVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.selected)
+        orderVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:FYColor.goldColor()], for: UIControl.State.selected)
         addChild(UINavigationController.init(rootViewController: orderVC))
              
         let myVC = FYMyVC()
@@ -71,7 +71,7 @@ class FYTabbarVC: UITabBarController {
         selectImageFour = selectImageFour!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         myVC.tabBarItem.selectedImage = selectImageFour
         myVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.gray], for: UIControl.State.normal)
-        myVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: UIControl.State.selected)
+        myVC.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:FYColor.goldColor()], for: UIControl.State.selected)
         addChild(UINavigationController.init(rootViewController: myVC))
     }
     

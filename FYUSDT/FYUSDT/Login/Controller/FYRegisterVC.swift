@@ -28,9 +28,9 @@ class FYRegisterVC: UIViewController {
         
         self.scrollView.addSubview(self.closeButton)
         self.closeButton.snp.makeConstraints { (make) in
-            make.left.equalTo(self.view).offset(30)
+            make.left.equalTo(self.scrollView).offset(30)
             make.width.equalTo(20.5)
-            make.top.equalTo(self.view).offset(64)
+            make.top.equalTo(self.scrollView).offset(64)
             make.height.equalTo(20.5)
         }
         
@@ -38,14 +38,15 @@ class FYRegisterVC: UIViewController {
         self.loginButton.snp.makeConstraints { (make) in
             make.right.equalTo(self.view).offset(-30)
             make.width.equalTo(40)
-            make.top.equalTo(self.view).offset(66.5)
+            make.top.equalTo(self.scrollView).offset(66.5)
             make.height.equalTo(15)
         }
         
         self.scrollView.addSubview(self.creatLabel)
         self.creatLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(30)
-            make.right.equalTo(self.view).offset(-30)
+//            make.right.equalTo(self.view).offset(-30)
+            make.right.equalTo(self.loginButton.snp_right)
             make.top.equalTo(self.closeButton.snp_bottom).offset(80)
             make.height.equalTo(28.5)
         }
@@ -150,7 +151,7 @@ class FYRegisterVC: UIViewController {
         self.agreementLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.checklistButton.snp_right).offset(5)
 //            make.right.equalTo(self.lineViewFive.snp_right)
-            make.right.equalTo(self.view)
+            make.right.equalTo(self.scrollView)
             make.top.equalTo(self.checklistButton.snp_top)
             make.height.equalTo(20)
         }

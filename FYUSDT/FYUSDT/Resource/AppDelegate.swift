@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         self.setupGlobalUIStyle()
-        window?.rootViewController = FYTabbarVC()
+//        window?.rootViewController = FYTabbarVC()
+        window?.rootViewController = UINavigationController.init(rootViewController: FYHomeVC())
         window?.makeKeyAndVisible()
         
         return true

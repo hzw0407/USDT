@@ -120,6 +120,7 @@ class FYLoginVC: UIViewController {
     @objc func btnClick(btn:UIButton) {
         if btn.tag == 100 {
             //关闭
+            self.navigationController?.popViewController(animated: true)
         }else if btn.tag == 101 {
             //注册
             let vc = FYRegisterVC()

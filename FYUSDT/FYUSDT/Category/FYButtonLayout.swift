@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FYButtonLayout: UIButton {
+extension UIButton {
 
     enum ImagePosition {
         case left   //image is left, label is right (图片在左，文字在右)

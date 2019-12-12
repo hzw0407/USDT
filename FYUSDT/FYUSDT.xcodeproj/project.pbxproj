@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C7D216523A1D8760083587F /* FYAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216423A1D8760083587F /* FYAssetsVC.swift */; };
+		7C7D216723A1DBD90083587F /* FYAdvertisementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */; };
+		7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216823A1DBFC0083587F /* FYInformationCell.swift */; };
 		7C942E9923A08FB60064816A /* FYLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942E9823A08FB60064816A /* FYLoginVC.swift */; };
 		7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942E9A23A093F80064816A /* LanguageHelper.swift */; };
 		7C942E9E23A0954C0064816A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C942EA023A0954C0064816A /* Localizable.strings */; };
@@ -55,6 +58,9 @@
 /* Begin PBXFileReference section */
 		2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYUSDT.release.xcconfig"; path = "Target Support Files/Pods-FYUSDT/Pods-FYUSDT.release.xcconfig"; sourceTree = "<group>"; };
 		539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FYUSDT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C7D216423A1D8760083587F /* FYAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYAssetsVC.swift; sourceTree = "<group>"; };
+		7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYAdvertisementCell.swift; sourceTree = "<group>"; };
+		7C7D216823A1DBFC0083587F /* FYInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYInformationCell.swift; sourceTree = "<group>"; };
 		7C942E9823A08FB60064816A /* FYLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYLoginVC.swift; sourceTree = "<group>"; };
 		7C942E9A23A093F80064816A /* LanguageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageHelper.swift; sourceTree = "<group>"; };
 		7C942E9F23A0954C0064816A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -126,6 +132,38 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7C7D216023A1D84D0083587F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7C7D216123A1D84D0083587F /* Controller */,
+				7C7D216223A1D84D0083587F /* Model */,
+				7C7D216323A1D84D0083587F /* View */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		7C7D216123A1D84D0083587F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7C7D216423A1D8760083587F /* FYAssetsVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7C7D216223A1D84D0083587F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7C7D216323A1D84D0083587F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7C942E9523A08BF00064816A /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +217,7 @@
 			children = (
 				7C942E9523A08BF00064816A /* Login */,
 				7CF6EA75239F6BE20077DB90 /* Home */,
+				7C7D216023A1D84D0083587F /* Assets */,
 				7CF6EA70239F6BCD0077DB90 /* RushOrder */,
 				7CF6EA6B239F6B7F0077DB90 /* Order */,
 				7CF6EA66239F6B660077DB90 /* My */,
@@ -370,6 +409,8 @@
 		7CF6EA79239F6BE20077DB90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */,
+				7C7D216823A1DBFC0083587F /* FYInformationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -564,7 +605,9 @@
 				7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */,
 				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
 				7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */,
+				7C7D216723A1DBD90083587F /* FYAdvertisementCell.swift in Sources */,
 				7CF6EA81239F6F7D0077DB90 /* FYOrderVC.swift in Sources */,
+				7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */,
 				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
 				7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */,
@@ -577,6 +620,7 @@
 				7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */,
 				7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */,
 				7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */,
+				7C7D216523A1D8760083587F /* FYAssetsVC.swift in Sources */,
 				7CF6EA7B239F6E730077DB90 /* FYTabbarVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

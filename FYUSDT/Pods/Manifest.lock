@@ -1,7 +1,9 @@
 PODS:
   - Alamofire (4.9.1)
+  - FSPagerView (0.8.3)
   - HandyJSON (5.0.1)
   - IQKeyboardManagerSwift (6.5.4)
+  - Kingfisher (4.10.1)
   - MBProgressHUD (1.1.0)
   - MJRefresh (3.2.2)
   - SnapKit (4.2.0)
@@ -10,8 +12,10 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FSPagerView
   - HandyJSON
   - IQKeyboardManagerSwift
+  - Kingfisher
   - MBProgressHUD
   - MJRefresh
   - SnapKit
@@ -21,8 +25,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - FSPagerView
     - HandyJSON
     - IQKeyboardManagerSwift
+    - Kingfisher
     - MBProgressHUD
     - MJRefresh
     - SnapKit
@@ -31,14 +37,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
   IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJRefresh: 72a46ecaa2a0feaf48fc5198dff95f25f8bb27c6
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyFitsize: ea06788e0c57b818112e238070bdfa9800aedc21
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: e95ddc602810d3cc74e87067cd27a482a69699cc
+PODFILE CHECKSUM: 10cd814633e677aa84345cae3c8a4e06b0a88d9b
 
 COCOAPODS: 1.7.5

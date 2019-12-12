@@ -13,5 +13,7 @@ pod 'MBProgressHUD'
 pod 'MJRefresh'
 pod 'HandyJSON'
 pod 'YYText'
+pod 'FSPagerView'
+pod 'Kingfisher'
 
 end

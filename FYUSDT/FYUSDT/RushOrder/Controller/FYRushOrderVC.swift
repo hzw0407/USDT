@@ -30,7 +30,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view).offset(0)
-            make.top.equalTo(self.titleLabel.snp_bottom).offset(10)
+            make.top.equalTo(self.titleLabel.snp_bottom).offset(40)
             make.bottom.equalTo(self.view).offset(-bottomSafeAreaHeight)
         }
         
@@ -85,6 +85,10 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 
     //pragma mark - CustomDelegate
 
@@ -92,7 +96,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     lazy var titleLabel:UILabel = {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Rush Order")
-        label.textColor = UIColor.white
+        label.textColor = FYColor.goldColor()
         label.font = UIFont.systemFont(ofSize: 35)
         return label
     }()

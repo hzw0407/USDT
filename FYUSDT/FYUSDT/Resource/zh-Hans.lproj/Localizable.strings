@@ -49,3 +49,10 @@
 "Surplus amount" = "剩余额度(USDT)";
 "Payment days" = "用款天数 %zd 天";
 "Remaining time" = "剩余时间 %@";
+"Order management" = "订单管理";
+"Order amount" = "下单金额(USDT)";
+"Estimated revenue" = "预计收益(USDT)";
+"Payment days (days)" = "用款天数(天)";
+"Close time" = "结算时间";
+"Order time" = "下单时间 %@";
+"people have participated" = "已有 %@ 人参与";

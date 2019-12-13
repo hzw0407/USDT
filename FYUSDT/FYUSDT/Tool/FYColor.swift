@@ -42,4 +42,9 @@ class FYColor: NSObject {
     static func rushColor() -> UIColor {
         return FYTool.hexStringToUIColor(hexString: "#4F230C")
     }
+    
+    //灰色文字颜色
+    static func grayColor() -> UIColor {
+        return FYTool.hexStringToUIColor(hexString: "#979797")
+    }
 }

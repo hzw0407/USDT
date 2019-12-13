@@ -129,7 +129,7 @@ class FYAssetsVC: UIViewController {
     lazy var titleLabel:UILabel = {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Assets")
-        label.textColor = UIColor.white
+        label.textColor = FYColor.goldColor()
         label.font = UIFont.systemFont(ofSize: 35)
         return label
     }()

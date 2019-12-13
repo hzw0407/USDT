@@ -48,3 +48,10 @@
 "Surplus amount" = "Surplus amount(USDT)";
 "Payment days" = "Payment days %zd day";
 "Remaining time" = "Remaining time %@";
+"Order management" = "Order management";
+"Order amount" = "Order amount(USDT)";
+"Estimated revenue" = "Estimated revenue(USDT)";
+"Payment days (days)" = "Payment days (days)";
+"Close time" = "Close time";
+"Order time" = "Order time %@";
+"people have participated" = "%@ people have participated";

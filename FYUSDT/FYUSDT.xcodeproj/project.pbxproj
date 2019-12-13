@@ -15,6 +15,7 @@
 		7C942E9E23A0954C0064816A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C942EA023A0954C0064816A /* Localizable.strings */; };
 		7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */; };
 		7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */; };
+		7C9C0D2123A388D500BFE14F /* FYOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C0D2023A388D500BFE14F /* FYOrderCell.swift */; };
 		7CB7FBC323A35DD200A5804B /* FYRushOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */; };
 		7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
@@ -69,6 +70,7 @@
 		7C942EA123A0957E0064816A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRegisterVC.swift; sourceTree = "<group>"; };
 		7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYFindPasswordVC.swift; sourceTree = "<group>"; };
+		7C9C0D2023A388D500BFE14F /* FYOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYOrderCell.swift; sourceTree = "<group>"; };
 		7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderCell.swift; sourceTree = "<group>"; };
 		7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJMarqueeView.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -349,6 +351,7 @@
 		7CF6EA6F239F6B7F0077DB90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C9C0D2023A388D500BFE14F /* FYOrderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				7CF6EAC5239F7A410077DB90 /* FYUrlManager.swift in Sources */,
 				7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */,
 				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
+				7C9C0D2123A388D500BFE14F /* FYOrderCell.swift in Sources */,
 				7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */,
 				7C7D216723A1DBD90083587F /* FYAdvertisementCell.swift in Sources */,
 				7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */,

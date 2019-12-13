@@ -15,6 +15,7 @@
 		7C942E9E23A0954C0064816A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C942EA023A0954C0064816A /* Localizable.strings */; };
 		7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */; };
 		7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */; };
+		7CB7FBC323A35DD200A5804B /* FYRushOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */; };
 		7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
@@ -68,6 +69,7 @@
 		7C942EA123A0957E0064816A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRegisterVC.swift; sourceTree = "<group>"; };
 		7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYFindPasswordVC.swift; sourceTree = "<group>"; };
+		7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderCell.swift; sourceTree = "<group>"; };
 		7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJMarqueeView.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,6 +381,7 @@
 		7CF6EA74239F6BCD0077DB90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
 				7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */,
 				7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */,
+				7CB7FBC323A35DD200A5804B /* FYRushOrderCell.swift in Sources */,
 				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
 				7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */,
 				7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */,
@@ -810,8 +814,8 @@
 			baseConfigurationReference = A873B45E6FEE4BF7F7C0C130 /* Pods-FYUSDT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: jianming zhou (AH5V23JU4G)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DX354Z32QS;
 				INFOPLIST_FILE = FYUSDT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -821,7 +825,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = USDT_Development;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -833,8 +837,8 @@
 			baseConfigurationReference = 2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: jianming zhou (DX354Z32QS)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DX354Z32QS;
 				INFOPLIST_FILE = FYUSDT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -844,7 +848,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "USDT_Ad Hoc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

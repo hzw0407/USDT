@@ -12,6 +12,7 @@ class FYAssetsVC: UIViewController {
     
     //跑马灯
     let hourseView = JJMarqueeView.init(frame: CGRect.init(x: 0, y: 612, width: FYScreenWidth, height: 20))
+    var strArray:[String] = ["这是第一段文字","这是第二段文字","这是第三段文字"]
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -25,6 +26,14 @@ class FYAssetsVC: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = true
+        
+        self.hourseView.reload()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.hourseView.cancelTimer()
     }
 
     //pragma mark - CustomMethod
@@ -32,7 +41,7 @@ class FYAssetsVC: UIViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(self.view).offset(0)
-            make.bottom.equalTo(self.view).offset(-tabBarHeight)
+            make.bottom.equalTo(self.view).offset(-bottomSafeAreaHeight)
         }
         
         self.scrollView.addSubview(self.titleLabel)
@@ -79,7 +88,6 @@ class FYAssetsVC: UIViewController {
         self.hourseView.delegate = self
         self.hourseView.dataSource = self
         self.scrollView.addSubview(self.hourseView)
-        self.hourseView.reload()
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 1640 > FYScreenHeight ? 1640 : FYScreenHeight)
     }
 
@@ -97,6 +105,10 @@ class FYAssetsVC: UIViewController {
             //充币
         }else if tap.view!.tag == 400 {
             //立即抢单
+            let tabbarVC = FYTabbarVC()
+            tabbarVC.selectedIndex = 1
+            let AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            AppDelegate.window?.rootViewController = tabbarVC
         }
     }
 
@@ -335,35 +347,18 @@ class FYAssetsVC: UIViewController {
 }
 
 extension FYAssetsVC:JJMarqueeViewDelegate,JJMarqueeViewDataSource {
+    //多少条数据
     func numberOfItems(_ marqueeView: JJMarqueeView) -> Int {
-        return 3
+        return self.strArray.count
     }
+    
+    //每条数据的内容
     func marqueeView(_ marqueeView: JJMarqueeView, cellForItemAt index: Int) -> NSAttributedString {
-        
-        if index == 0 {
-            let str = "这是第一段文字"
-            let tempStr = str as NSString
-            let r = tempStr.range(of: str)
-            let att = NSMutableAttributedString.init(string: tempStr as String)
-            att.addAttribute(NSAttributedString.Key.foregroundColor, value: FYColor.goldColor(), range: r)
-            return att
-            
-        }else if index == 1{
-            
-            let str = "这是第二段文字"
-            let tempStr = str as NSString
-            let r = tempStr.range(of: str)
-            let att = NSMutableAttributedString.init(string: tempStr as String)
-            att.addAttribute(NSAttributedString.Key.foregroundColor, value: FYColor.goldColor(), range: r)
-            return att
-        }else{
-            
-            let str = "这是第三段文字"
-            let tempStr = str as NSString
-            let r = tempStr.range(of: str)
-            let att = NSMutableAttributedString.init(string: tempStr as String)
-            att.addAttribute(NSAttributedString.Key.foregroundColor, value: FYColor.goldColor(), range: r)
-            return att
-        }
+        let str = self.strArray[index]
+        let tempStr = str as NSString
+        let r = tempStr.range(of: str)
+        let att = NSMutableAttributedString.init(string: tempStr as String)
+        att.addAttribute(NSAttributedString.Key.foregroundColor, value: FYColor.goldColor(), range: r)
+        return att
     }
 }

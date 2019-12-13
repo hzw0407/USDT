@@ -13,6 +13,8 @@ class FYTabbarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        UITabBar.appearance().barTintColor = FYColor.mainColor()
+        UITabBar.appearance().isTranslucent = false
         self.addChidVC()
     }
     

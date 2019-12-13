@@ -5,15 +5,27 @@ inhibit_all_warnings!
 
 target 'FYUSDT' do
 
+#网络请求框架
 pod 'Alamofire'
+#键盘管理
 pod 'IQKeyboardManagerSwift'
+#自动布局
 pod 'SnapKit'
+#适配
 pod 'SwiftyFitsize'
+#若提示
 pod 'MBProgressHUD'
+#上下拉刷新
 pod 'MJRefresh'
+#数据转模型
 pod 'HandyJSON'
+#富文本
 pod 'YYText'
+#循环滚动器
 pod 'FSPagerView'
+#加载网络图片
 pod 'Kingfisher'
+#进度圈
+pod 'UICircularProgressRing'
 
 end

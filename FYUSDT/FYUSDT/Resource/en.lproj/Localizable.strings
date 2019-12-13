@@ -42,3 +42,9 @@
 "Withdraw money" = "Withdraw money";
 "Coin charging" = "Coin charging";
 "Grab the order immediately" = "Grab the order immediately";
+"Demand amount" = "Demand amount(USDT)";
+"Annual interest rate" = "Annual interest rate";
+"Rush1" = "Rush Order";
+"Surplus amount" = "Surplus amount(USDT)";
+"Payment days" = "Payment days %zd day";
+"Remaining time" = "Remaining time %@";

@@ -8,6 +8,7 @@ PODS:
   - MJRefresh (3.2.2)
   - SnapKit (4.2.0)
   - SwiftyFitsize (1.0.1)
+  - UICircularProgressRing (6.4.0)
   - YYText (1.0.7)
 
 DEPENDENCIES:
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - MJRefresh
   - SnapKit
   - SwiftyFitsize
+  - UICircularProgressRing
   - YYText
 
 SPEC REPOS:
@@ -33,6 +35,7 @@ SPEC REPOS:
     - MJRefresh
     - SnapKit
     - SwiftyFitsize
+    - UICircularProgressRing
     - YYText
 
 SPEC CHECKSUMS:
@@ -45,8 +48,9 @@ SPEC CHECKSUMS:
   MJRefresh: 72a46ecaa2a0feaf48fc5198dff95f25f8bb27c6
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftyFitsize: ea06788e0c57b818112e238070bdfa9800aedc21
+  UICircularProgressRing: 907613633e76e561b972a3868c95517d14c71006
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 10cd814633e677aa84345cae3c8a4e06b0a88d9b
+PODFILE CHECKSUM: f8348f206615a0e916233b58b7eefd9c5e45744d
 
 COCOAPODS: 1.7.5

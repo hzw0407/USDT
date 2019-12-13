@@ -194,13 +194,13 @@ extension JJMarqueeView{
             rectOne.origin.y = rectOne.size.height
             l!.frame = rectOne
             
-            if (self.curtIdx + 1 < self.dataSource!.numberOfItems(self)){
+            if (self.curtIdx + 1 < self.dataSource?.numberOfItems(self) ?? 0){
                 
                 l!.attributedText = self.dataSource?.marqueeView(self, cellForItemAt: self.curtIdx + 1)
                 
                 self.curtIdx = self.curtIdx + 1
                 
-            }else if (self.curtIdx + 1 == self.dataSource!.numberOfItems(self)){
+            }else if (self.curtIdx + 1 == self.dataSource?.numberOfItems(self)){
                 
                 l!.attributedText = self.dataSource?.marqueeView(self, cellForItemAt: 0)
                 self.curtIdx = 0

@@ -43,3 +43,9 @@
 "Withdraw money" = "提币";
 "Coin charging" = "充币";
 "Grab the order immediately" = "立即抢单";
+"Demand amount" = "需求金额(USDT)";
+"Annual interest rate" = "预计年利化率";
+"Rush1" = "抢单";
+"Surplus amount" = "剩余额度(USDT)";
+"Payment days" = "用款天数 %zd 天";
+"Remaining time" = "剩余时间 %@";

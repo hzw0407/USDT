@@ -89,3 +89,8 @@
 "Amount of money raised" = "   Amount of money raised";
 "Miner cost" = "Miner cost %@";
 "Confirmation of withdrawals" = "Confirmation of withdrawals";
+"Grab details" = "Grab details";
+"Available balance" = "Available balance(USDT)";
+"Please enter the order amount" = "   Please enter the order amount";
+"Expected return" = "Expected return %@";
+"Place an order" = "Place an order";

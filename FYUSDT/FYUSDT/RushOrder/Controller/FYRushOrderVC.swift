@@ -87,7 +87,9 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let vc = FYRushOrderDetailVC()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     //pragma mark - CustomDelegate

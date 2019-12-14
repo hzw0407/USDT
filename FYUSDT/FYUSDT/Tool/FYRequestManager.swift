@@ -27,9 +27,9 @@ class FYRequestManager: NSObject {
     
     private func judgeNetwork() {
         if InterfaceBaseDebug == 0 {
-            baseUrl = "http://202.60.254.13:8088"
+            baseUrl = "http://192.168.0.112:8088"
         }else {
-            baseUrl = "http://202.60.254.13:8088"
+            baseUrl = "http://192.168.0.112:8088"
         }
     }
     

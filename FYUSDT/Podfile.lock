@@ -1,5 +1,13 @@
 PODS:
   - Alamofire (4.9.1)
+  - EFFoundation (1.1.1):
+    - EFFoundation/Core (= 1.1.1)
+  - EFFoundation/Core (1.1.1)
+  - EFQRCode (5.1.3):
+    - EFFoundation (>= 1.1.1)
+    - EFQRCode/Core (= 5.1.3)
+  - EFQRCode/Core (5.1.3):
+    - EFFoundation (>= 1.1.1)
   - FSPagerView (0.8.3)
   - HandyJSON (5.0.1)
   - IQKeyboardManagerSwift (6.5.4)
@@ -13,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - EFQRCode
   - FSPagerView
   - HandyJSON
   - IQKeyboardManagerSwift
@@ -27,6 +36,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - EFFoundation
+    - EFQRCode
     - FSPagerView
     - HandyJSON
     - IQKeyboardManagerSwift
@@ -40,6 +51,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  EFFoundation: 26a2731ace3e22cf5f7bb45d28c6afbc945959dd
+  EFQRCode: 0979a5c181864085ca7f317b5b5c7b5bf496ad0e
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
   IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
@@ -51,6 +64,6 @@ SPEC CHECKSUMS:
   UICircularProgressRing: 907613633e76e561b972a3868c95517d14c71006
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: f8348f206615a0e916233b58b7eefd9c5e45744d
+PODFILE CHECKSUM: c34e84b3387124e4fc427f2f5ee579626b1ac6eb
 
 COCOAPODS: 1.7.5

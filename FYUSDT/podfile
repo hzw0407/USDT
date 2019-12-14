@@ -27,5 +27,6 @@ pod 'FSPagerView'
 pod 'Kingfisher'
 #进度圈
 pod 'UICircularProgressRing'
-
+#生成二维码
+pod 'EFQRCode'
 end

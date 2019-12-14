@@ -21,6 +21,11 @@
 		7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */; };
 		7CE2CCB823A476B3008EB9AB /* FYBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CCB723A476B3008EB9AB /* FYBillVC.swift */; };
 		7CE2CCBA23A47AFB008EB9AB /* FYBillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CCB923A47AFB008EB9AB /* FYBillCell.swift */; };
+		7CE2CCBC23A4AD73008EB9AB /* FYRechargeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CCBB23A4AD73008EB9AB /* FYRechargeVC.swift */; };
+		7CE2CCCC23A4D99D008EB9AB /* FYWithdrawVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CCCB23A4D99C008EB9AB /* FYWithdrawVC.swift */; };
+		7CE2CD0B23A4FA30008EB9AB /* GScanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD0823A4FA2F008EB9AB /* GScanManager.swift */; };
+		7CE2CD0C23A4FA30008EB9AB /* ScanProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD0923A4FA2F008EB9AB /* ScanProtocol.swift */; };
+		7CE2CD0D23A4FA30008EB9AB /* GQScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD0A23A4FA2F008EB9AB /* GQScanViewController.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
 		7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */; };
@@ -79,6 +84,11 @@
 		7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJMarqueeView.swift; sourceTree = "<group>"; };
 		7CE2CCB723A476B3008EB9AB /* FYBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYBillVC.swift; sourceTree = "<group>"; };
 		7CE2CCB923A47AFB008EB9AB /* FYBillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYBillCell.swift; sourceTree = "<group>"; };
+		7CE2CCBB23A4AD73008EB9AB /* FYRechargeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRechargeVC.swift; sourceTree = "<group>"; };
+		7CE2CCCB23A4D99C008EB9AB /* FYWithdrawVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYWithdrawVC.swift; sourceTree = "<group>"; };
+		7CE2CD0823A4FA2F008EB9AB /* GScanManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GScanManager.swift; sourceTree = "<group>"; };
+		7CE2CD0923A4FA2F008EB9AB /* ScanProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanProtocol.swift; sourceTree = "<group>"; };
+		7CE2CD0A23A4FA2F008EB9AB /* GQScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GQScanViewController.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
@@ -158,6 +168,8 @@
 			isa = PBXGroup;
 			children = (
 				7C7D216423A1D8760083587F /* FYAssetsVC.swift */,
+				7CE2CCBB23A4AD73008EB9AB /* FYRechargeVC.swift */,
+				7CE2CCCB23A4D99C008EB9AB /* FYWithdrawVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,6 +247,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7CE2CD0723A4FA2F008EB9AB /* ScanCode */ = {
+			isa = PBXGroup;
+			children = (
+				7CE2CD0823A4FA2F008EB9AB /* GScanManager.swift */,
+				7CE2CD0923A4FA2F008EB9AB /* ScanProtocol.swift */,
+				7CE2CD0A23A4FA2F008EB9AB /* GQScanViewController.swift */,
+			);
+			path = ScanCode;
+			sourceTree = "<group>";
+		};
 		7CF6E9EB239F31DF0077DB90 = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +320,7 @@
 		7CF6EA27239F420C0077DB90 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				7CE2CD0723A4FA2F008EB9AB /* ScanCode */,
 				7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */,
 				7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */,
 				7CF6EA28239F426F0077DB90 /* FYUSDT-Bridging-Header.h */,
@@ -654,6 +677,7 @@
 				7CF6EA47239F4B300077DB90 /* AppDelegate.swift in Sources */,
 				7CF6EAC5239F7A410077DB90 /* FYUrlManager.swift in Sources */,
 				7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */,
+				7CE2CD0C23A4FA30008EB9AB /* ScanProtocol.swift in Sources */,
 				7CF6EA3D239F49D30077DB90 /* FYButtonLayout.swift in Sources */,
 				7C9C0D2123A388D500BFE14F /* FYOrderCell.swift in Sources */,
 				7C942E9B23A093F80064816A /* LanguageHelper.swift in Sources */,
@@ -663,16 +687,20 @@
 				7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */,
 				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
+				7CE2CCCC23A4D99D008EB9AB /* FYWithdrawVC.swift in Sources */,
 				7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */,
 				7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */,
 				7C9C0D2323A3AAA300BFE14F /* FYMyCell.swift in Sources */,
 				7CB7FBC323A35DD200A5804B /* FYRushOrderCell.swift in Sources */,
 				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
+				7CE2CCBC23A4AD73008EB9AB /* FYRechargeVC.swift in Sources */,
 				7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */,
 				7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */,
 				7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */,
 				7C942E9923A08FB60064816A /* FYLoginVC.swift in Sources */,
 				7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */,
+				7CE2CD0B23A4FA30008EB9AB /* GScanManager.swift in Sources */,
+				7CE2CD0D23A4FA30008EB9AB /* GQScanViewController.swift in Sources */,
 				7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */,
 				7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */,
 				7CE2CCBA23A47AFB008EB9AB /* FYBillCell.swift in Sources */,
@@ -792,7 +820,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -847,7 +875,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -865,6 +893,24 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DX354Z32QS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/EFFoundation/EFFoundation.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/EFQRCode/EFQRCode.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FSPagerView/FSPagerView.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/HandyJSON/HandyJSON.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.framework/Headers\"",
+					"\"$(SRCROOT)/Pods/LBXScan/LBXScan/UI/LBXScanViewController.h\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD/MBProgressHUD.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh/MJRefresh.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyFitsize/SwiftyFitsize.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICircularProgressRing/UICircularProgressRing.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYText/YYText.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZBarSDK/ZBarSDK.framework/Headers\"",
+				);
 				INFOPLIST_FILE = FYUSDT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -888,6 +934,24 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DX354Z32QS;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/EFFoundation/EFFoundation.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/EFQRCode/EFQRCode.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FSPagerView/FSPagerView.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/HandyJSON/HandyJSON.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Kingfisher/Kingfisher.framework/Headers\"",
+					"\"$(SRCROOT)/Pods/LBXScan/LBXScan/UI/LBXScanViewController.h\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD/MBProgressHUD.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/MJRefresh/MJRefresh.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyFitsize/SwiftyFitsize.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/UICircularProgressRing/UICircularProgressRing.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/YYText/YYText.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZBarSDK/ZBarSDK.framework/Headers\"",
+				);
 				INFOPLIST_FILE = FYUSDT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

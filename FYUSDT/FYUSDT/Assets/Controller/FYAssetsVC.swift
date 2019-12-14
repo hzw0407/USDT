@@ -105,8 +105,14 @@ class FYAssetsVC: UIViewController {
     @objc func tapClick(tap:UITapGestureRecognizer) {
         if tap.view!.tag == 300 {
             //提币
+            let vc = FYWithdrawVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if tap.view!.tag == 301 {
             //充币
+            let vc = FYRechargeVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if tap.view!.tag == 400 {
             //立即抢单
             let tabbarVC = FYTabbarVC()

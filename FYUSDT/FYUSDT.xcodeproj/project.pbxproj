@@ -27,6 +27,8 @@
 		7CE2CD0C23A4FA30008EB9AB /* ScanProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD0923A4FA2F008EB9AB /* ScanProtocol.swift */; };
 		7CE2CD0D23A4FA30008EB9AB /* GQScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD0A23A4FA2F008EB9AB /* GQScanViewController.swift */; };
 		7CE2CD0F23A4FEA8008EB9AB /* FYRushOrderDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD0E23A4FEA8008EB9AB /* FYRushOrderDetailVC.swift */; };
+		7CE2CD1123A51811008EB9AB /* FYApplicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD1023A51811008EB9AB /* FYApplicationVC.swift */; };
+		7CE2CD1323A5190D008EB9AB /* FYApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CD1223A5190D008EB9AB /* FYApplicationCell.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
 		7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */; };
@@ -91,6 +93,8 @@
 		7CE2CD0923A4FA2F008EB9AB /* ScanProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanProtocol.swift; sourceTree = "<group>"; };
 		7CE2CD0A23A4FA2F008EB9AB /* GQScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GQScanViewController.swift; sourceTree = "<group>"; };
 		7CE2CD0E23A4FEA8008EB9AB /* FYRushOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderDetailVC.swift; sourceTree = "<group>"; };
+		7CE2CD1023A51811008EB9AB /* FYApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYApplicationVC.swift; sourceTree = "<group>"; };
+		7CE2CD1223A5190D008EB9AB /* FYApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYApplicationCell.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
@@ -370,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				7CF6EA82239F6FAA0077DB90 /* FYMyVC.swift */,
+				7CE2CD1023A51811008EB9AB /* FYApplicationVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				7C9C0D2223A3AAA300BFE14F /* FYMyCell.swift */,
+				7CE2CD1223A5190D008EB9AB /* FYApplicationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -705,6 +711,8 @@
 				7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */,
 				7CE2CD0B23A4FA30008EB9AB /* GScanManager.swift in Sources */,
 				7CE2CD0D23A4FA30008EB9AB /* GQScanViewController.swift in Sources */,
+				7CE2CD1323A5190D008EB9AB /* FYApplicationCell.swift in Sources */,
+				7CE2CD1123A51811008EB9AB /* FYApplicationVC.swift in Sources */,
 				7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */,
 				7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */,
 				7CE2CCBA23A47AFB008EB9AB /* FYBillCell.swift in Sources */,

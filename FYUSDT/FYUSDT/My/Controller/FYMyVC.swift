@@ -82,6 +82,9 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 1 {
             //申请邀请码
+            let vc = FYApplicationVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if indexPath.row == 2 {
             //切换语言
             if UserDefaults.standard.value(forKey: "languageStr") == nil {

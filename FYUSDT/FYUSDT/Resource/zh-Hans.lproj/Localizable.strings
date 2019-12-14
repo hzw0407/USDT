@@ -95,3 +95,13 @@
 "Please enter the order amount" = "   请输入下单金额";
 "Expected return" = "预期收益 %@";
 "Place an order" = "立即下单";
+"Congratulations" = "恭喜，抢单成功啦！";
+"Grab again" = "再抢一笔";
+"Review Order" = "查看订单";
+"Application invitation code" = "申请邀请码";
+"Your account number" = "您的账号";
+"Latest" = "最新邀请码(点击二维码完成复制)";
+"Immediate application" = "立即申请";
+"Application record" = "申请记录";
+"Invitation code" = "邀请码";
+"Application time" = "申请时间 %@";

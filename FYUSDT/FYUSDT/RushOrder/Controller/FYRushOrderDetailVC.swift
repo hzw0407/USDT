@@ -47,6 +47,13 @@ class FYRushOrderDetailVC: UIViewController {
         }
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 770 > FYScreenHeight ? 770 : FYScreenHeight)
         
+        self.view.addSubview(self.successView)
+        self.successView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self.view).offset(0)
+            make.bottom.equalTo(self.view).offset(0)
+            make.height.equalTo(320)
+        }
+        
     }
     
     @objc func countDown() {
@@ -70,6 +77,13 @@ class FYRushOrderDetailVC: UIViewController {
             //输入全部余额
         }else if btn.tag == 306 {
             //下单
+        }else if btn.tag == 400 {
+            //关闭成功提示
+            self.successView.isHidden = true
+        }else if btn.tag == 401 {
+            //再抢一笔
+        }else if btn.tag == 402 {
+            //查看订单
         }
     }
 
@@ -383,6 +397,88 @@ class FYRushOrderDetailVC: UIViewController {
         }
         
         return scrollView
+    }()
+    
+    lazy var successView:UIView = {
+        let view = UIView.init()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 5.0
+        view.clipsToBounds = true
+        
+        //关闭按钮
+        let closeButton = UIButton.init()
+        closeButton.setImage(UIImage(named: "close"), for: .normal)
+        closeButton.tag = 400
+        closeButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        view.addSubview(closeButton)
+        closeButton.snp.makeConstraints { (make) in
+            make.left.equalTo(view).offset(15)
+            make.width.equalTo(20)
+            make.top.equalTo(view).offset(15)
+            make.height.equalTo(20)
+        }
+        
+        //图片
+        let iconImageView = UIImageView.init()
+        iconImageView.image = UIImage(named: "success_ok")
+        view.addSubview(iconImageView)
+        iconImageView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view.snp_centerX)
+            make.width.equalTo(80)
+            make.top.equalTo(view).offset(60)
+            make.height.equalTo(80)
+        }
+        
+        //提示
+        let tipLabel = UILabel.init()
+        tipLabel.text = LanguageHelper.getString(key: "Congratulations")
+        tipLabel.textColor = UIColor.black
+        tipLabel.font = UIFont.systemFont(ofSize: 25)
+        tipLabel.textAlignment = .center
+        view.addSubview(tipLabel)
+        tipLabel.snp.makeConstraints { (make) in
+            make.left.right.equalTo(view).offset(0)
+            make.top.equalTo(iconImageView.snp_bottom).offset(15)
+            make.height.equalTo(25)
+        }
+        
+        //再抢一笔
+        let againButton = UIButton.init()
+        againButton.backgroundColor = FYColor.goldColor()
+        againButton.layer.cornerRadius = 5.0
+        againButton.clipsToBounds = true
+        againButton.setTitle(LanguageHelper.getString(key: "Grab again"), for: .normal)
+        againButton.setTitleColor(UIColor.white, for: .normal)
+        againButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        againButton.tag = 401
+        againButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        view.addSubview(againButton)
+        againButton.snp.makeConstraints { (make) in
+            make.left.equalTo(view).offset(30)
+            make.width.equalTo((FYScreenWidth - 75) / 2)
+            make.bottom.equalTo(view).offset(-25)
+            make.height.equalTo(45)
+        }
+        
+        //查看订单
+        let reviewButton = UIButton.init()
+        reviewButton.backgroundColor = FYTool.hexStringToUIColor(hexString: "#F2F2F2")
+        reviewButton.layer.cornerRadius = 5.0
+        reviewButton.clipsToBounds = true
+        reviewButton.setTitle(LanguageHelper.getString(key: "Review Order"), for: .normal)
+        reviewButton.setTitleColor(UIColor.black, for: .normal)
+        reviewButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        reviewButton.tag = 402
+        reviewButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        view.addSubview(reviewButton)
+        reviewButton.snp.makeConstraints { (make) in
+            make.right.equalTo(view).offset(-30)
+            make.width.equalTo(againButton.snp_width)
+            make.bottom.equalTo(againButton.snp_bottom)
+            make.height.equalTo(againButton.snp_height)
+        }
+        
+        return view
     }()
 
 }

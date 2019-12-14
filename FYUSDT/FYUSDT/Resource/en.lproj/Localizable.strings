@@ -94,3 +94,13 @@
 "Please enter the order amount" = "   Please enter the order amount";
 "Expected return" = "Expected return %@";
 "Place an order" = "Place an order";
+"Congratulations" = "Congratulations, it's a success!";
+"Grab again" = "Grab again";
+"Review Order" = "Review Order";
+"Application invitation code" = "Application invitation code";
+"Your account number" = "Your account number";
+"Latest" = "Latest invitation code (click QR code to finish copying)";
+"Immediate application" = "Immediate application";
+"Application record" = "Application record";
+"Invitation code" = "Invitation code";
+"Application time" = "Application time %@";

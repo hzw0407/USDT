@@ -22,18 +22,18 @@ class LanguageHelper: NSObject {
     //初始化app内语言
     func initUserLanguage() {
         var path = ""
-//        if UserDefaults.standard.value(forKey: "languageStr") == nil {
-//            //用户没在app里面设置过语言 默认跟随手机系统语言
-//            if OTTool.getLanguageType() == "en-CN" {
-//                path = Bundle.main.path(forResource:"en" , ofType: "lproj")!
-//            }else {
+        if UserDefaults.standard.value(forKey: "languageStr") == nil {
+            //用户没在app里面设置过语言 默认跟随手机系统语言
+            if FYTool.getLanguageType() == "en-CN" {
+                path = Bundle.main.path(forResource:"en" , ofType: "lproj")!
+            }else {
                 path = Bundle.main.path(forResource:"zh-Hans" , ofType: "lproj")!
-//            }
-//        }else {
-//            //用户在app里面设置过语言
-//            let language = UserDefaults.standard.value(forKey: "languageStr") as! String
-//            path = Bundle.main.path(forResource:language , ofType: "lproj")!
-//        }
+            }
+        }else {
+            //用户在app里面设置过语言
+            let language = UserDefaults.standard.value(forKey: "languageStr") as! String
+            path = Bundle.main.path(forResource:language , ofType: "lproj")!
+        }
         bundle = Bundle(path: path)
     }
     

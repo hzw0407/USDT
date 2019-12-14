@@ -8,6 +8,7 @@
 
 import UIKit
 import UICircularProgressRing
+import SwiftyFitsize
 
 class FYRushOrderCell: UITableViewCell {
     
@@ -23,7 +24,7 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Demand amount")
         label.textColor = UIColor.gray
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 13~)
         return label
     }()
     
@@ -32,8 +33,8 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         let str = NSMutableAttributedString(string: "10000.00")
         str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
+        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 3))
+        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 3, length: 3))
         label.attributedText = str
         return label
     }()
@@ -43,7 +44,7 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Annual interest rate")
         label.textColor = UIColor.gray
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 13~)
         return label
     }()
     
@@ -52,8 +53,8 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         let str = NSMutableAttributedString(string: "6.0%")
         str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 1))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 1, length: 1))
+        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 1))
+        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 1, length: 1))
         label.attributedText = str
         return label
     }()
@@ -64,7 +65,7 @@ class FYRushOrderCell: UITableViewCell {
         button.backgroundColor = FYColor.goldColor()
         button.setTitle(LanguageHelper.getString(key: "Rush1"), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15~)
         button.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
         return button
     }()
@@ -78,7 +79,7 @@ class FYRushOrderCell: UITableViewCell {
         //进度值颜色
         view.fontColor = FYColor.goldColor()
         //进度值大小
-        view.font = UIFont.systemFont(ofSize: 10)
+        view.font = UIFont.systemFont(ofSize: 10~)
         //外环
         view.outerRingWidth = 5.0
         //剩余的进度颜色
@@ -93,7 +94,7 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Surplus amount")
         label.textColor = UIColor.gray
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 13~)
         return label
     }()
     
@@ -102,7 +103,7 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = "12345.00"
         label.textColor = UIColor.gray
-        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont.systemFont(ofSize: 15~)
         return label
     }()
     
@@ -111,7 +112,7 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = String(format: LanguageHelper.getString(key: "Payment days"), 1)
         label.textColor = UIColor.gray
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 13~)
         return label
     }()
     
@@ -120,7 +121,7 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = String(format: LanguageHelper.getString(key: "Remaining time"), "01:20:30")
         label.textColor = UIColor.gray
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 13~)
         return label
     }()
     
@@ -146,34 +147,34 @@ class FYRushOrderCell: UITableViewCell {
         
         self.addSubview(self.lineView)
         self.lineView.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(15)
+            make.left.equalTo(self).offset(15~)
             make.right.equalTo(self).offset(0)
             make.top.equalTo(self).offset(0)
             make.height.equalTo(0.5)
         }
         
-        let amountTitleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Demand amount"), font: UIFont.systemFont(ofSize: 13), height: 20)
+        let amountTitleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Demand amount"), font: UIFont.systemFont(ofSize: 13~), height: 20~)
         self.addSubview(self.amountTitleLabel)
         self.amountTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.lineView.snp_left)
-            make.width.equalTo(amountTitleWidth + 30)
-            make.top.equalTo(self.lineView.snp_bottom).offset(20)
-            make.height.equalTo(20)
+            make.width.equalTo(amountTitleWidth~ + 30~)
+            make.top.equalTo(self.lineView.snp_bottom).offset(20~)
+            make.height.equalTo(20~)
         }
         
         self.addSubview(self.amountLabel)
         self.amountLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.amountTitleLabel.snp_left)
             make.width.equalTo(self.amountTitleLabel.snp_width)
-            make.top.equalTo(self.amountTitleLabel.snp_bottom).offset(15)
+            make.top.equalTo(self.amountTitleLabel.snp_bottom).offset(15~)
             make.height.equalTo(self.amountTitleLabel.snp_height)
         }
         
-        let rateTitleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Annual interest rate"), font: UIFont.systemFont(ofSize: 13), height: 20)
+        let rateTitleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Annual interest rate"), font: UIFont.systemFont(ofSize: 13~), height: 20~)
         self.addSubview(self.rateTitleLabel)
         self.rateTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.amountTitleLabel.snp_right)
-            make.width.equalTo(rateTitleWidth + 5)
+            make.width.equalTo(rateTitleWidth~ + 5~)
             make.top.equalTo(self.amountTitleLabel.snp_top)
             make.height.equalTo(self.amountTitleLabel.snp_height)
         }
@@ -186,31 +187,31 @@ class FYRushOrderCell: UITableViewCell {
             make.height.equalTo(self.rateTitleLabel.snp_height)
         }
         
-        let rushWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Rush1"), font: UIFont.systemFont(ofSize: 15), height: 45)
+        let rushWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Rush1"), font: UIFont.systemFont(ofSize: 15~), height: 45~)
         self.addSubview(self.rushButton)
         self.rushButton.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-15)
-            make.width.equalTo(rushWidth + 5 > 80 ? rushWidth + 5 : 80)
+            make.right.equalTo(self).offset(-15~)
+            make.width.equalTo(rushWidth~ + 5~ > 80~ ? rushWidth~ + 5~ : 80~)
             make.top.equalTo(self.rateTitleLabel.snp_top)
-            make.height.equalTo(45)
+            make.height.equalTo(45~)
         }
         self.rushButton.layoutIfNeeded()
-        self.rushButton.layer.cornerRadius = 45 / 2.0
+        self.rushButton.layer.cornerRadius = 45~ / 2.0
         
         self.addSubview(self.cirleView)
         self.cirleView.snp.makeConstraints { (make) in
             make.left.equalTo(self.amountLabel.snp_left)
-            make.width.equalTo(35)
-            make.top.equalTo(self.amountLabel.snp_bottom).offset(20)
-            make.height.equalTo(35)
+            make.width.equalTo(35~)
+            make.top.equalTo(self.amountLabel.snp_bottom).offset(20~)
+            make.height.equalTo(35~)
         }
         //设置进度
         self.cirleView.startProgress(to: 30, duration: 0.1)
         
         self.addSubview(self.surplusTitleLabel)
         self.surplusTitleLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(self.cirleView.snp_right).offset(10)
-            make.width.equalTo(150)
+            make.left.equalTo(self.cirleView.snp_right).offset(10~)
+            make.width.equalTo(150~)
             make.top.equalTo(self.cirleView.snp_top)
             make.height.equalTo(20)
         }
@@ -223,10 +224,11 @@ class FYRushOrderCell: UITableViewCell {
             make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
         
+        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
         self.addSubview(self.dayLabel)
         self.dayLabel.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-15)
-            make.width.equalTo(120)
+            make.right.equalTo(self).offset(-15~)
+            make.width.equalTo(timeWidth~ + 10~)
             make.top.equalTo(self.surplusTitleLabel.snp_top)
             make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
@@ -256,6 +258,13 @@ class FYRushOrderCell: UITableViewCell {
     @objc func countDown() {
         self.countTime -= 1
         self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: Int(self.countTime)))
+        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
+        self.dayLabel.snp.updateConstraints { (make) in
+            make.width.equalTo(timeWidth~ + 10~)
+        }
+        self.timeLabel.snp.updateConstraints { (make) in
+            make.width.equalTo(self.dayLabel.snp_width)
+        }
         if self.countTime <= 0 {
             self.timer?.invalidate()
             self.timer = nil

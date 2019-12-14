@@ -16,8 +16,11 @@
 		7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */; };
 		7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */; };
 		7C9C0D2123A388D500BFE14F /* FYOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C0D2023A388D500BFE14F /* FYOrderCell.swift */; };
+		7C9C0D2323A3AAA300BFE14F /* FYMyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C9C0D2223A3AAA300BFE14F /* FYMyCell.swift */; };
 		7CB7FBC323A35DD200A5804B /* FYRushOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */; };
 		7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */; };
+		7CE2CCB823A476B3008EB9AB /* FYBillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CCB723A476B3008EB9AB /* FYBillVC.swift */; };
+		7CE2CCBA23A47AFB008EB9AB /* FYBillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE2CCB923A47AFB008EB9AB /* FYBillCell.swift */; };
 		7CF6EA0F239F31E10077DB90 /* FYUSDTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */; };
 		7CF6EA1A239F31E10077DB90 /* FYUSDTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA19239F31E10077DB90 /* FYUSDTUITests.swift */; };
 		7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6EA29239F44050077DB90 /* MBProgressHUD+Swift.swift */; };
@@ -71,8 +74,11 @@
 		7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRegisterVC.swift; sourceTree = "<group>"; };
 		7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYFindPasswordVC.swift; sourceTree = "<group>"; };
 		7C9C0D2023A388D500BFE14F /* FYOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYOrderCell.swift; sourceTree = "<group>"; };
+		7C9C0D2223A3AAA300BFE14F /* FYMyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYMyCell.swift; sourceTree = "<group>"; };
 		7CB7FBC223A35DD200A5804B /* FYRushOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderCell.swift; sourceTree = "<group>"; };
 		7CCAD22B23A25C6400EF5A11 /* JJMarqueeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JJMarqueeView.swift; sourceTree = "<group>"; };
+		7CE2CCB723A476B3008EB9AB /* FYBillVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYBillVC.swift; sourceTree = "<group>"; };
+		7CE2CCB923A47AFB008EB9AB /* FYBillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYBillCell.swift; sourceTree = "<group>"; };
 		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
@@ -196,6 +202,39 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7CE2CCB323A4769E008EB9AB /* Bill */ = {
+			isa = PBXGroup;
+			children = (
+				7CE2CCB423A4769E008EB9AB /* Controller */,
+				7CE2CCB523A4769E008EB9AB /* Model */,
+				7CE2CCB623A4769E008EB9AB /* View */,
+			);
+			path = Bill;
+			sourceTree = "<group>";
+		};
+		7CE2CCB423A4769E008EB9AB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CE2CCB723A476B3008EB9AB /* FYBillVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7CE2CCB523A4769E008EB9AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7CE2CCB623A4769E008EB9AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CE2CCB923A47AFB008EB9AB /* FYBillCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		7CF6E9EB239F31DF0077DB90 = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +260,7 @@
 		7CF6E9F6239F31DF0077DB90 /* FYUSDT */ = {
 			isa = PBXGroup;
 			children = (
+				7CE2CCB323A4769E008EB9AB /* Bill */,
 				7C942E9523A08BF00064816A /* Login */,
 				7CF6EA75239F6BE20077DB90 /* Home */,
 				7C7D216023A1D84D0083587F /* Assets */,
@@ -319,6 +359,7 @@
 		7CF6EA6A239F6B660077DB90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C9C0D2223A3AAA300BFE14F /* FYMyCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -609,6 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE2CCB823A476B3008EB9AB /* FYBillVC.swift in Sources */,
 				7CF6EA47239F4B300077DB90 /* AppDelegate.swift in Sources */,
 				7CF6EAC5239F7A410077DB90 /* FYUrlManager.swift in Sources */,
 				7CF6EAC9239F8A970077DB90 /* tsetModel.swift in Sources */,
@@ -623,6 +665,7 @@
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
 				7C942EA523A0F21F0064816A /* FYFindPasswordVC.swift in Sources */,
 				7CF6EA3B239F49B30077DB90 /* FYUITextField.swift in Sources */,
+				7C9C0D2323A3AAA300BFE14F /* FYMyCell.swift in Sources */,
 				7CB7FBC323A35DD200A5804B /* FYRushOrderCell.swift in Sources */,
 				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
 				7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */,
@@ -632,6 +675,7 @@
 				7CF6EAC7239F7C050077DB90 /* FYRequestManager.swift in Sources */,
 				7CF6EA83239F6FAA0077DB90 /* FYMyVC.swift in Sources */,
 				7CF6EA7F239F6F690077DB90 /* FYRushOrderVC.swift in Sources */,
+				7CE2CCBA23A47AFB008EB9AB /* FYBillCell.swift in Sources */,
 				7C7D216523A1D8760083587F /* FYAssetsVC.swift in Sources */,
 				7CF6EA7B239F6E730077DB90 /* FYTabbarVC.swift in Sources */,
 			);

@@ -39,7 +39,7 @@ class FYRequestManager: NSObject {
     
     func request(type:requestType,
                  url:String,
-                 successCompletion:@escaping(_ dict:[String : AnyObject])->(),
+                 successCompletion:@escaping(_ dict:[String : AnyObject],_ message:String)->(),
                  failureCompletion:@escaping(_ message:String)->()) -> Void {
         self.judgeNetwork()
         let tempUrl = baseUrl + url
@@ -48,7 +48,7 @@ class FYRequestManager: NSObject {
             Alamofire.request(tempUrl, method: .get, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
                 if response.result.isSuccess {
                     if let jsonString = response.result.value {
-                        successCompletion(jsonString as! [String : AnyObject])
+                        successCompletion(jsonString as! [String : AnyObject],"")
                     }
                 }else {
                     failureCompletion("请求失败")
@@ -59,7 +59,7 @@ class FYRequestManager: NSObject {
             Alamofire.request(tempUrl, method: .post, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
                 if response.result.isSuccess {
                     if let jsonString = response.result.value {
-                        successCompletion(jsonString as! [String : AnyObject])
+                        successCompletion(jsonString as! [String : AnyObject],"")
                     }
                 }else {
                     failureCompletion("请求失败")

@@ -47,4 +47,19 @@ class FYColor: NSObject {
     static func grayColor() -> UIColor {
         return FYTool.hexStringToUIColor(hexString: "#979797")
     }
+    
+    //绿色
+    static func greenColor() -> UIColor {
+        return FYTool.hexStringToUIColor(hexString: "#219761")
+    }
+    
+    //红色
+    static func redColor() -> UIColor {
+        return FYTool.hexStringToUIColor(hexString: "#ED4D67")
+    }
+    
+    //蓝色
+    static func blueColor() -> UIColor {
+        return FYTool.hexStringToUIColor(hexString: "#ED4D67")
+    }
 }

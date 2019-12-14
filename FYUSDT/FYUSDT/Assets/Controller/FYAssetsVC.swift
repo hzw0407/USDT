@@ -45,9 +45,10 @@ class FYAssetsVC: UIViewController {
         }
         
         self.scrollView.addSubview(self.titleLabel)
+        let titleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Assets"), font: UIFont.systemFont(ofSize: 35), height: 35)
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
-            make.width.equalTo(100)
+            make.width.equalTo(titleWidth + 5)
             make.top.equalTo(self.scrollView).offset(100)
             make.height.equalTo(35)
         }
@@ -95,6 +96,9 @@ class FYAssetsVC: UIViewController {
     @objc func btnClick(btn:UIButton) {
         if btn.tag == 100 {
             //资产明细
+            let vc = FYBillVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -232,7 +236,7 @@ class FYAssetsVC: UIViewController {
         withdrawTitleLabel.snp.makeConstraints { (make) in
             make.left.right.equalTo(withdrawView).offset(0)
             make.bottom.equalTo(withdrawView).offset(-20)
-            make.height.equalTo(15)
+            make.height.equalTo(20)
         }
         
         //充币

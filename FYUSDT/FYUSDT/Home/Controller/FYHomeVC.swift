@@ -45,7 +45,7 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     //        }) { (errMessage) in
     //
     //        }
-            requestManager.request(type: .post, url: test2, successCompletion: { (dict) in
+            requestManager.request(type: .post, url: test2, successCompletion: { (dict,message) in
                 if dict["code"]?.intValue == 200 {
                     self.modelArray = JSONDeserializer<testModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as! [testModel]
     //                print(self.modelArray!.toJSONString(prettyPrint: true)!)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C0AEA4423A72C2E00CF5A87 /* FYSetNewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AEA4323A72C2E00CF5A87 /* FYSetNewPasswordVC.swift */; };
+		7C0AEA4623A77CF600CF5A87 /* FYUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0AEA4523A77CF600CF5A87 /* FYUserModel.swift */; };
 		7C7D216523A1D8760083587F /* FYAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216423A1D8760083587F /* FYAssetsVC.swift */; };
 		7C7D216723A1DBD90083587F /* FYAdvertisementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */; };
 		7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216823A1DBFC0083587F /* FYInformationCell.swift */; };
@@ -72,6 +74,8 @@
 /* Begin PBXFileReference section */
 		2EF533C0DE6E826A069FCF18 /* Pods-FYUSDT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FYUSDT.release.xcconfig"; path = "Target Support Files/Pods-FYUSDT/Pods-FYUSDT.release.xcconfig"; sourceTree = "<group>"; };
 		539760C1DB9B81D77A945F6E /* Pods_FYUSDT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FYUSDT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C0AEA4323A72C2E00CF5A87 /* FYSetNewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYSetNewPasswordVC.swift; sourceTree = "<group>"; };
+		7C0AEA4523A77CF600CF5A87 /* FYUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUserModel.swift; sourceTree = "<group>"; };
 		7C7D216423A1D8760083587F /* FYAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYAssetsVC.swift; sourceTree = "<group>"; };
 		7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYAdvertisementCell.swift; sourceTree = "<group>"; };
 		7C7D216823A1DBFC0083587F /* FYInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYInformationCell.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				7C942E9823A08FB60064816A /* FYLoginVC.swift */,
 				7C942EA223A0C0BA0064816A /* FYRegisterVC.swift */,
 				7C942EA423A0F21F0064816A /* FYFindPasswordVC.swift */,
+				7C0AEA4323A72C2E00CF5A87 /* FYSetNewPasswordVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 		7C942E9723A08BF00064816A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C0AEA4523A77CF600CF5A87 /* FYUserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -694,6 +700,7 @@
 				7CCAD22C23A25C6400EF5A11 /* JJMarqueeView.swift in Sources */,
 				7CF6EA81239F6F7D0077DB90 /* FYOrderVC.swift in Sources */,
 				7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */,
+				7C0AEA4423A72C2E00CF5A87 /* FYSetNewPasswordVC.swift in Sources */,
 				7CF6EA34239F47AE0077DB90 /* FYColor.swift in Sources */,
 				7CF6EA2C239F444E0077DB90 /* FYTool.swift in Sources */,
 				7CE2CCCC23A4D99D008EB9AB /* FYWithdrawVC.swift in Sources */,
@@ -704,6 +711,7 @@
 				7CF6EA2A239F44050077DB90 /* MBProgressHUD+Swift.swift in Sources */,
 				7CE2CCBC23A4AD73008EB9AB /* FYRechargeVC.swift in Sources */,
 				7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */,
+				7C0AEA4623A77CF600CF5A87 /* FYUserModel.swift in Sources */,
 				7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */,
 				7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */,
 				7C942E9923A08FB60064816A /* FYLoginVC.swift in Sources */,

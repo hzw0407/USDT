@@ -48,24 +48,85 @@ class FYRequestManager: NSObject {
             Alamofire.request(tempUrl, method: .get, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
                 if response.result.isSuccess {
                     if let jsonString = response.result.value {
-                        successCompletion(jsonString as! [String : AnyObject],"")
+                        let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
+                        let message = (jsonString as! [String : AnyObject])["message"] as! NSString
+                        if UserDefaults.standard.value(forKey: "languageStr") == nil {
+                            if FYTool.getLanguageType() == "en-CN" {
+                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                            }else {
+                                successCompletion(jsonString as! [String : AnyObject],message as String)
+                            }
+                        }else {
+                            if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
+                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                            }else {
+                                successCompletion(jsonString as! [String : AnyObject],message as String)
+                            }
+                        }
                     }
                 }else {
-                    failureCompletion("请求失败")
+                    failureCompletion(LanguageHelper.getString(key: "Access failed"))
                 }
             }
         }else {
             //post请求
-            Alamofire.request(tempUrl, method: .post, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            let url = URL(string: baseUrl + url)!
+            let data = try? JSONSerialization.data(withJSONObject: self.parametersDic, options: [])
+            let jsonStr = String(data: data!, encoding: String.Encoding.utf8)
+            let jsonData = jsonStr!.data(using: .utf8, allowLossyConversion: false)!
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            request.httpMethod = "POST"
+            Alamofire.request(request).responseJSON { (response) in
                 if response.result.isSuccess {
-                    if let jsonString = response.result.value {
-                        successCompletion(jsonString as! [String : AnyObject],"")
+                        if let jsonString = response.result.value {
+                            let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
+                            let message = (jsonString as! [String : AnyObject])["message"] as! NSString
+                            if UserDefaults.standard.value(forKey: "languageStr") == nil {
+                                if FYTool.getLanguageType() == "en-CN" {
+                                    successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                                }else {
+                                    successCompletion(jsonString as! [String : AnyObject],message as String)
+                                }
+                            }else {
+                                if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
+                                    successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                                }else {
+                                    successCompletion(jsonString as! [String : AnyObject],message as String)
+                                }
+                            }
+                        }
+                    }else {
+                        failureCompletion(LanguageHelper.getString(key: "Access failed"))
                     }
-                }else {
-                    failureCompletion("请求失败")
                 }
             }
-        }
+//            Alamofire.request(tempUrl, method: .post, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+//                if response.result.isSuccess {
+//                    if let jsonString = response.result.value {
+//                        let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
+//                        let message = (jsonString as! [String : AnyObject])["message"] as! NSString
+//                        if UserDefaults.standard.value(forKey: "languageStr") == nil {
+//                            if FYTool.getLanguageType() == "en-CN" {
+//                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+//                            }else {
+//                                successCompletion(jsonString as! [String : AnyObject],message as String)
+//                            }
+//                        }else {
+//                            if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
+//                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+//                            }else {
+//                                successCompletion(jsonString as! [String : AnyObject],message as String)
+//                            }
+//                        }
+//                    }
+//                }else {
+//                    failureCompletion(LanguageHelper.getString(key: "Access failed"))
+//                }
+//            }
+//        }
     }
     
 }

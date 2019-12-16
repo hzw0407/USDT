@@ -12,8 +12,13 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     let dataArray:[[String: String]] = [
         ["image" : "bill", "name" : LanguageHelper.getString(key: "Bill management")],
-        ["image" : "invite_code", "name" : LanguageHelper.getString(key: "Application invitation code")],
+        ["image" : "invite_code", "name" : LanguageHelper.getString(key: "Invite friends")],
         ["image" : "language", "name" : LanguageHelper.getString(key: "Language")],
+        ["image" : "", "name" : LanguageHelper.getString(key: "My team")],
+        ["image" : "", "name" : LanguageHelper.getString(key: "Safety Center")],
+        ["image" : "", "name" : LanguageHelper.getString(key: "Game")],
+        ["image" : "", "name" : LanguageHelper.getString(key: "Social contact")],
+        ["image" : "", "name" : LanguageHelper.getString(key: "Entertainment")],
         ["image" : "quit", "name" : LanguageHelper.getString(key: "Cancellation account")]
     ]
     

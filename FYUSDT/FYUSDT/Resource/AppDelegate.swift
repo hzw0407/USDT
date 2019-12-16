@@ -30,9 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow.init(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         self.setupGlobalUIStyle()
-        window?.rootViewController = FYTabbarVC()
-//        window?.rootViewController = UINavigationController.init(rootViewController: FYHomeVC())
+//        self.setRootViewController()
+        window?.rootViewController = UINavigationController.init(rootViewController: FYHomeVC())
         window?.makeKeyAndVisible()
+        
+        //接收登录成功通知
+        NotificationCenter.default.addObserver(self, selector: #selector(setRootViewController), name: NSNotification.Name.init(rawValue: "FYLoginVC"), object: nil)
+        //接收修改密码成功通知
+        NotificationCenter.default.addObserver(self, selector: #selector(setRootViewController), name: NSNotification.Name.init("FYSetNewPasswordVC"), object: nil)
         
         return true
     }
@@ -44,6 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearanceBar.barTintColor = UIColor.white
         appearanceBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor :UIColor.black]
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset.init(horizontal: -200, vertical: 0), for: UIBarMetrics.default)
+    }
+    
+    @objc func setRootViewController() {
+        if UserDefaults.standard.string(forKey: FYToken)!.count > 0 {
+            //已登录
+            window?.rootViewController = FYTabbarVC()
+        }else {
+            //未登录
+            window?.rootViewController = UINavigationController.init(rootViewController: FYHomeVC())
+        }
     }
 
 

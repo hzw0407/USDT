@@ -9,12 +9,25 @@
 import UIKit
 
 class FYFindPasswordVC: UIViewController {
+    
+    var countDown = 60
+    var timer:Timer?
+    
     //pragma mark - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = FYColor.mainColor()
         self.creatUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.timer != nil) {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
     }
     
     //pragma mark - CustomMethod
@@ -75,12 +88,61 @@ class FYFindPasswordVC: UIViewController {
             make.height.equalTo(44)
         }
     }
+    
+    //发送验证码
+    func sendCode() {
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
+        manager.request(type: .post, url: findPassword_sendCode, successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Send Success"))
+                let button = self.codeTextfield.viewWithTag(102) as! UIButton
+                button.isEnabled = false
+                if self.timer == nil {
+                    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.refreshTime), userInfo: nil, repeats: true)
+                }
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //刷新倒计时
+    @objc func refreshTime() {
+        self.countDown -= 1
+        let button = self.codeTextfield.viewWithTag(102) as! UIButton
+        button.setTitle(String(format: "%zds", self.countDown), for: .normal)
+        if self.countDown <= 0 {
+            self.timer?.invalidate()
+            self.timer = nil
+            button.isEnabled = true
+            button.setTitle(LanguageHelper.getString(key: "get_code"), for: .normal)
+            self.countDown = 60
+        }
+    }
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
         if btn.tag == 100 {
             //返回
             self.navigationController?.popViewController(animated: true)
+        }else if btn.tag == 102 {
+            //发送验证码
+            self.sendCode()
+        }else if btn.tag == 104 {
+            //下一步
+            if self.emailTextfield.text!.count <= 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Empty Email"))
+            }else if self.codeTextfield.text!.count <= 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Empty Code"))
+            }else {
+                let vc = FYSetNewPasswordVC()
+                vc.email = self.emailTextfield.text
+                vc.code = self.codeTextfield.text
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 

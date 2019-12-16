@@ -41,6 +41,13 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             make.bottom.equalTo(self.view).offset(0)
         }
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 770 > FYScreenHeight ? 770 : FYScreenHeight)
+        
+        self.view.addSubview(self.successView)
+        self.successView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self.view).offset(0)
+            make.bottom.equalTo(self.view).offset(0)
+            make.height.equalTo(320)
+        }
     }
 
     //pragma mark - ClickMethod
@@ -52,6 +59,12 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             MBProgressHUD.showInfo(LanguageHelper.getString(key: "copy_success"))
         }else if btn.tag == 302 {
             //申请邀请码
+        }else if btn.tag == 400 {
+            //关闭申请成功view
+            self.successView.isHidden = true
+        }else if btn.tag == 401 {
+            //返回查看
+            self.successView.isHidden = true
         }
     }
 
@@ -248,6 +261,71 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
         
         return scrollView
+    }()
+    
+    //申请成功
+    lazy var successView:UIView = {
+        let view = UIView.init()
+        view.backgroundColor = UIColor.white
+        view.layer.cornerRadius = 5.0
+        view.clipsToBounds = true
+        
+        //关闭按钮
+        let closeButton = UIButton.init()
+        closeButton.setImage(UIImage(named: "close"), for: .normal)
+        closeButton.tag = 400
+        closeButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        view.addSubview(closeButton)
+        closeButton.snp.makeConstraints { (make) in
+            make.left.equalTo(view).offset(15)
+            make.width.equalTo(20)
+            make.top.equalTo(view).offset(15)
+            make.height.equalTo(20)
+        }
+        
+        //图片
+        let iconImageView = UIImageView.init()
+        iconImageView.image = UIImage(named: "apply_ok")
+        view.addSubview(iconImageView)
+        iconImageView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view.snp_centerX)
+            make.width.equalTo(80)
+            make.top.equalTo(view).offset(60)
+            make.height.equalTo(80)
+        }
+        
+        //提示
+        let tipLabel = UILabel.init()
+        tipLabel.text = LanguageHelper.getString(key: "Application succeeded")
+        tipLabel.textColor = UIColor.black
+        tipLabel.font = UIFont.systemFont(ofSize: 25)
+        tipLabel.textAlignment = .center
+        view.addSubview(tipLabel)
+        tipLabel.snp.makeConstraints { (make) in
+            make.left.right.equalTo(view).offset(0)
+            make.top.equalTo(iconImageView.snp_bottom).offset(15)
+            make.height.equalTo(25)
+        }
+        
+        //返回查看
+        let checkButton = UIButton.init()
+        checkButton.backgroundColor = FYTool.hexStringToUIColor(hexString: "#F2F2F2")
+        checkButton.layer.cornerRadius = 5.0
+        checkButton.clipsToBounds = true
+        checkButton.setTitle(LanguageHelper.getString(key: "Return to view"), for: .normal)
+        checkButton.setTitleColor(UIColor.black, for: .normal)
+        checkButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        checkButton.tag = 401
+        checkButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        view.addSubview(checkButton)
+        checkButton.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view.snp_centerX)
+            make.width.equalTo(150)
+            make.bottom.equalTo(view).offset(-25)
+            make.height.equalTo(45)
+        }
+        
+        return view
     }()
 
 }

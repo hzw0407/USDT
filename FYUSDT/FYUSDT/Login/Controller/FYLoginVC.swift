@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import HandyJSON
 
 class FYLoginVC: UIViewController {
     //pragma mark - lifecycle
@@ -115,6 +116,25 @@ class FYLoginVC: UIViewController {
             make.height.equalTo(15)
         }
     }
+    
+    //登录
+    func login() {
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "name", value: self.emailTextfield.text as AnyObject)
+        manager.addparameter(key: "password", value: self.passwordTextfield.text as AnyObject)
+        manager.request(type: .post, url: Login, successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                let userModel = JSONDeserializer<userModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
+                UserDefaults.standard.set(userModel?.token, forKey: FYToken)
+                UserDefaults.standard.synchronize()
+                NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "FYLoginVC"), object: nil)
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
@@ -128,6 +148,13 @@ class FYLoginVC: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 102 {
             //登录
+            if self.emailTextfield.text!.count <= 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Empty Email"))
+            }else if self.passwordTextfield.text!.count <= 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Empty Password"))
+            }else {
+                self.login()
+            }
         }else if btn.tag == 103 {
             //忘记密码
             let vc = FYFindPasswordVC()
@@ -214,6 +241,7 @@ class FYLoginVC: UIViewController {
         textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "input_password"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
+        textfield.isSecureTextEntry = true
         return textfield
     }()
     

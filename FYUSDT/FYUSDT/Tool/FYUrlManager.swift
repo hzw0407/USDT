@@ -10,3 +10,16 @@ import Foundation
 
 let testUrl = "/user/odtaWallet/permission/getUserWallet"
 let test2 = "/market/market/getAllToken"
+
+//验证邮箱
+let verificationEmail = "/user/odtaUser/checkEmail"
+//发送验证码
+let sendCode = "/user/odtaUser/sendCode"
+//注册
+let Register = "/user/odtaUser/signUp"
+//登录
+let Login = "/user/odtaUser/userLogin"
+//找回密码发送验证码
+let findPassword_sendCode = "/user/odtaUser/forgetPassCode"
+//充值密码
+let resetPassword = "/user/odtaUser/forgetPassword"

@@ -24,3 +24,6 @@ let bottomSafeAreaHeight = (tabBarHeight - 49)
 let FYScreenWidth = UIScreen.main.bounds.size.width
 //屏幕高度
 let FYScreenHeight = UIScreen.main.bounds.size.height
+
+//token
+let FYToken = "token"

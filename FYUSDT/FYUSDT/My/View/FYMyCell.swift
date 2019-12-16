@@ -154,14 +154,16 @@ class FYMyCell: UITableViewCell {
             make.width.equalTo(titleWidth + 5)
         }
         
-        if row == 3 {
+        if row == 8 {
             self.iconImageView.isHidden = true
             self.titleLabel.isHidden = true
             self.arrowImageView.isHidden = true
+            self.logoutButton.isHidden = false
         }else {
             self.iconImageView.isHidden = false
             self.titleLabel.isHidden = false
             self.arrowImageView.isHidden = false
+            self.logoutButton.isHidden = true
         }
         
         if row == 2 {
@@ -170,11 +172,6 @@ class FYMyCell: UITableViewCell {
             self.languageLabel.isHidden = true
         }
         
-        if row == 3 {
-            self.logoutButton.isHidden = false
-        }else {
-            self.logoutButton.isHidden = true
-        }
     }
 
 }

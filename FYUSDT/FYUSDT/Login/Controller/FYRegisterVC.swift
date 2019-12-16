@@ -9,14 +9,26 @@
 import UIKit
 import YYText
 
-class FYRegisterVC: UIViewController {
+class FYRegisterVC: UIViewController,UITextFieldDelegate {
 
+    var countDown = 60
+    var timer:Timer?
+    
     //pragma mark - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = FYColor.mainColor()
         self.creatUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.timer != nil) {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
     }
 
     //pragma mark - CustomMethod
@@ -167,6 +179,76 @@ class FYRegisterVC: UIViewController {
         self.scrollView.layoutIfNeeded()
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 670 > FYScreenHeight ? 670 : FYScreenHeight)
     }
+    
+    //验证邮箱
+    func checkEmail() {
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
+        manager.request(type: .get, url: verificationEmail, successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.correctImageView.isHidden = false
+            }else {
+                self.correctImageView.isHidden = true
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //获取验证码
+    func getCode() {
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
+        manager.request(type: .post, url: sendCode, successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Send Success"))
+                let button = self.codeTextfield.viewWithTag(102) as! UIButton
+                button.isEnabled = false
+                if self.timer == nil {
+                    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.refreshTime), userInfo: nil, repeats: true)
+                }
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //注册
+    func register() {
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
+        manager.addparameter(key: "ecode", value: self.codeTextfield.text as AnyObject)
+        manager.addparameter(key: "password", value: self.setPasswordTextfield.text as AnyObject)
+        manager.addparameter(key: "rePassword", value: self.surePasswordTextfield.text as AnyObject)
+        manager.addparameter(key: "inviteCode", value: self.invateCodeTextfield.text as AnyObject)
+        manager.request(type: .post, url: Register, successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Register Success"))
+                self.navigationController?.popViewController(animated: true)
+            }else {
+               MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //刷新倒计时
+    @objc func refreshTime() {
+        self.countDown -= 1
+        let button = self.codeTextfield.viewWithTag(102) as! UIButton
+        button.setTitle(String(format: "%zds", self.countDown), for: .normal)
+        if self.countDown <= 0 {
+            self.timer?.invalidate()
+            self.timer = nil
+            button.isEnabled = true
+            button.setTitle(LanguageHelper.getString(key: "get_code"), for: .normal)
+            self.countDown = 60
+        }
+    }
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
@@ -174,6 +256,7 @@ class FYRegisterVC: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }else if btn.tag == 102 {
             //获取验证码
+            self.getCode()
         }else if btn.tag == 103 {
             //勾选协议
             btn.isSelected = !btn.isSelected
@@ -191,11 +274,18 @@ class FYRegisterVC: UIViewController {
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "Empty Invate"))
             }else if !self.checklistButton.isSelected {
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "Agreement Service"))
+            }else {
+                self.register()
             }
         }
     }
 
     //pragma mark - SystemDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == self.emailTextfield {
+            self.checkEmail()
+        }
+    }
 
     //pragma mark - CustomDelegate
 
@@ -248,6 +338,7 @@ class FYRegisterVC: UIViewController {
         //修改清除按钮的背景颜色 不然看不到
         let clearButton = textfield.value(forKey: "_clearButton") as! UIButton
         clearButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        textfield.delegate = self
         return textfield;
     }()
     
@@ -272,11 +363,14 @@ class FYRegisterVC: UIViewController {
         textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "input_code"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
-        let rightButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 70, height: 20))
+        let rightButton = UIButton(type: .custom)
         rightButton.backgroundColor = FYColor.goldColor()
         rightButton.setTitle(LanguageHelper.getString(key: "get_code"), for: .normal)
         rightButton.setTitleColor(UIColor.white, for: .normal)
         rightButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        rightButton.layer.cornerRadius = 5.0
+        rightButton.clipsToBounds = true
+        rightButton.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
         rightButton.tag = 102
         rightButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         textfield.rightView = rightButton
@@ -297,6 +391,7 @@ class FYRegisterVC: UIViewController {
         textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "set_password"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
+        textfield.isSecureTextEntry = true
         return textfield
     }()
     
@@ -313,6 +408,7 @@ class FYRegisterVC: UIViewController {
         textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "sure_password"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
+        textfield.isSecureTextEntry = true
         return textfield
     }()
     

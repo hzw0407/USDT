@@ -30,8 +30,8 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var timeType:sortType = .down
     //全部按钮是否是选中状态
     var isSelectAll:Bool = false
-    //选中的类型 默认选中全部
-    var selectType:Int = 0
+    //选中的类型
+    var selectType:Int?
     //数据模型数组
     var infoArray:[FYBillModel]?
     
@@ -82,7 +82,7 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     //获取账单信息
     func getBill() {
         let manager = FYRequestManager.shared
-        manager.addparameter(key: "type", value: "\(self.selectType)" as AnyObject)
+        manager.addparameter(key: "type", value: "\(self.selectType ?? 0)" as AnyObject)
         if self.amountType != .nomal {
             manager.addparameter(key: "amountBy", value: (self.amountType == .up ? "2" : "1") as AnyObject)
         }

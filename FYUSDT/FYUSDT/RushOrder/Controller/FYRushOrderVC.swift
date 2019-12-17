@@ -7,11 +7,14 @@
 //  --抢单
 
 import UIKit
+import HandyJSON
 
-class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYRushOrderCellDelegate {
 
     //下拉刷新
     let header = MJRefreshNormalHeader()
+    //数据模型数组
+    var infoArray:[FYRushOrderModel]?
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -57,19 +60,40 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     //pragma mark - CustomMethod
     //下拉刷新
     @objc func headerRefresh() {
-        self.tableView.mj_header?.endRefreshing()
+        self.listInfo()
+    }
+    
+    //获取列表数据
+    func listInfo() {
+        let manager = FYRequestManager.shared
+        manager.request(type: .post, url: String(format: rushOrderList, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            self.tableView.mj_header?.endRefreshing()
+            if dict["code"]?.intValue == 200 {
+                self.infoArray?.removeAll()
+                self.infoArray = JSONDeserializer<FYRushOrderModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as? [FYRushOrderModel]
+                self.tableView.reloadData()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            self.tableView.mj_header?.endRefreshing()
+            MBProgressHUD.showInfo(errMessage)
+        }
     }
 
     //pragma mark - ClickMethod
 
     //pragma mark - SystemDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.infoArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FYRushOrderCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.delegate = self as FYRushOrderCellDelegate
+        let model = self.infoArray![indexPath.row]
+        cell.refreshWithModel(model: model,index:indexPath.row)
         return cell
     }
     
@@ -93,6 +117,15 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     }
 
     //pragma mark - CustomDelegate
+    //倒计时结束刷新列表
+    func countDownEnd() {
+        self.tableView.mj_header?.beginRefreshing()
+    }
+    
+    //点击抢单
+    func rushClick(index: Int) {
+        let model = self.infoArray![index]
+    }
 
     //pragma mark - GetterAndSetter
     lazy var titleLabel:UILabel = {

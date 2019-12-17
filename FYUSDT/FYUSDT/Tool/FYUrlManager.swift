@@ -35,3 +35,5 @@ let withdrawInfo = "/wallet/walletInfo/getOdtaCoin?token=%@"
 let withdrawApplication = "/user/odtaWallet/permission/transfer?token=%@"
 //账单
 let bill = "/user/exchange/list?token=%@"
+//抢单广场列表
+let rushOrderList = "/financial/product/getOrderList?token=%@"

@@ -84,6 +84,7 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         case 0:
             //账单管理
             let vc = FYBillVC()
+            vc.selectType = 0
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:

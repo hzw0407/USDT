@@ -10,7 +10,16 @@ import UIKit
 import UICircularProgressRing
 import SwiftyFitsize
 
+public protocol FYRushOrderCellDelegate:class {
+    //倒计时结束
+    func countDownEnd()
+    //点击抢单
+    func rushClick(index:Int)
+}
+
 class FYRushOrderCell: UITableViewCell {
+    
+    public weak var delegate:FYRushOrderCellDelegate?
     
     //线
     lazy var lineView:UIView = {
@@ -31,11 +40,11 @@ class FYRushOrderCell: UITableViewCell {
     //需求金额
     lazy var amountLabel:UILabel = {
         let label = UILabel.init()
-        let str = NSMutableAttributedString(string: "10000.00")
-        str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 3))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 3, length: 3))
-        label.attributedText = str
+//        let str = NSMutableAttributedString(string: "10000.00")
+//        str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 3))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 3, length: 3))
+//        label.attributedText = str
         return label
     }()
     
@@ -51,11 +60,11 @@ class FYRushOrderCell: UITableViewCell {
     //预计年利化率
     lazy var rateLabel:UILabel = {
         let label = UILabel.init()
-        let str = NSMutableAttributedString(string: "6.0%")
-        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 1))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 1, length: 1))
-        label.attributedText = str
+//        let str = NSMutableAttributedString(string: "6.0%")
+//        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 1))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 1, length: 1))
+//        label.attributedText = str
         return label
     }()
     
@@ -66,7 +75,7 @@ class FYRushOrderCell: UITableViewCell {
         button.setTitle(LanguageHelper.getString(key: "Rush1"), for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15~)
-        button.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
+        button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         return button
     }()
     
@@ -101,7 +110,7 @@ class FYRushOrderCell: UITableViewCell {
     //剩余额度
     lazy var surplusLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "12345.00"
+//        label.text = "12345.00"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 15~)
         return label
@@ -110,7 +119,7 @@ class FYRushOrderCell: UITableViewCell {
     //用款天数
     lazy var dayLabel:UILabel = {
         let label = UILabel.init()
-        label.text = String(format: LanguageHelper.getString(key: "Payment days"), 1)
+//        label.text = String(format: LanguageHelper.getString(key: "Payment days"), 1)
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13~)
         return label
@@ -119,7 +128,7 @@ class FYRushOrderCell: UITableViewCell {
     //剩余时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-        label.text = String(format: LanguageHelper.getString(key: "Remaining time"), "01:20:30")
+//        label.text = String(format: LanguageHelper.getString(key: "Remaining time"), "01:20:30")
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13~)
         return label
@@ -127,7 +136,8 @@ class FYRushOrderCell: UITableViewCell {
     
     //定时器
     var timer:Timer?
-    var countTime = arc4random() % 1000
+    //倒计时秒数
+    var countTime:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -205,8 +215,6 @@ class FYRushOrderCell: UITableViewCell {
             make.top.equalTo(self.amountLabel.snp_bottom).offset(20~)
             make.height.equalTo(35~)
         }
-        //设置进度
-        self.cirleView.startProgress(to: 30, duration: 0.1)
         
         self.addSubview(self.surplusTitleLabel)
         self.surplusTitleLabel.snp.makeConstraints { (make) in
@@ -224,11 +232,10 @@ class FYRushOrderCell: UITableViewCell {
             make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
         
-        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
         self.addSubview(self.dayLabel)
         self.dayLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-15~)
-            make.width.equalTo(timeWidth~ + 10~)
+            make.width.equalTo(0)
             make.top.equalTo(self.surplusTitleLabel.snp_top)
             make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
@@ -236,28 +243,25 @@ class FYRushOrderCell: UITableViewCell {
         self.addSubview(self.timeLabel)
         self.timeLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self.dayLabel.snp_right)
-            make.width.equalTo(self.dayLabel.snp_width)
+            make.width.equalTo(0)
             make.bottom.equalTo(self.surplusLabel.snp_bottom)
             make.height.equalTo(self.dayLabel.snp_height)
         }
         
-        if self.timer == nil {
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
-            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.common)
-        }
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    @objc func btnClick() {
-        
+    //点击抢单
+    @objc func btnClick(btn:UIButton) {
+        self.delegate?.rushClick(index: btn.tag)
     }
     
     @objc func countDown() {
-        self.countTime -= 1
-        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: Int(self.countTime)))
+        self.countTime! -= 1
+        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: self.countTime!))
         let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
         self.dayLabel.snp.updateConstraints { (make) in
             make.width.equalTo(timeWidth~ + 10~)
@@ -265,9 +269,50 @@ class FYRushOrderCell: UITableViewCell {
         self.timeLabel.snp.updateConstraints { (make) in
             make.width.equalTo(self.dayLabel.snp_width)
         }
-        if self.countTime <= 0 {
+        if self.countTime! <= 0 {
             self.timer?.invalidate()
             self.timer = nil
+            self.delegate?.countDownEnd()
+        }
+    }
+    
+    //刷新数据
+    public func refreshWithModel(model:FYRushOrderModel,index:Int) {
+        self.rushButton.tag = index
+        
+        let amountStr = NSMutableAttributedString(string: String(format: "%.2f", model.demandAmount ?? 0))
+        amountStr.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: amountStr.length))
+        amountStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: amountStr.length - 3))
+        amountStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: amountStr.length - 3, length: 3))
+        self.amountLabel.attributedText = amountStr
+        
+        let rateStr = NSMutableAttributedString(string: String(format: "%.1f%", model.rewardRate ?? 0))
+        rateStr.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: rateStr.length))
+        rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: rateStr.length - 1))
+        rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: rateStr.length - 1, length: 1))
+        self.rateLabel.attributedText = rateStr
+        
+        //设置进度
+        self.cirleView.startProgress(to: CGFloat(((model.getAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
+        
+        self.surplusLabel.text = String(format: "%.2f", model.surplusAmount ?? 0)
+        self.dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), model.day ?? 0)
+        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), "12:12:12")
+        
+        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
+        self.dayLabel.snp.updateConstraints { (make) in
+            make.width.equalTo(timeWidth + 10~)
+        }
+        self.timeLabel.snp.updateConstraints { (make) in
+            make.width.equalTo(self.dayLabel.snp_width)
+        }
+        
+        self.countTime = model.timeNum ?? 0
+        if model.timeNum ?? 0 > 0 {
+            if self.timer == nil {
+                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+                RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.common)
+            }
         }
     }
 

@@ -59,6 +59,7 @@ class FYRechargeVC: UIViewController {
         }else if btn.tag == 101 {
             //记录
             let vc = FYBillVC()
+            vc.selectType = 1
             self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 200 {
             //保存图片
@@ -69,7 +70,7 @@ class FYRechargeVC: UIViewController {
     
     //复制二维码
     @objc func tapClick() {
-        let codeAddressView = self.bottomView.viewWithTag(201) as! UIView
+        let codeAddressView = self.bottomView.viewWithTag(201)!
         let addressLabel = codeAddressView.viewWithTag(202) as! UILabel
         UIPasteboard.general.string = addressLabel.text
         MBProgressHUD.showInfo(LanguageHelper.getString(key: "copy_success"))

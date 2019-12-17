@@ -111,6 +111,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         }else if btn.tag == 101 {
             //记录
             let vc = FYBillVC()
+            vc.selectType = 2
             self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 204 {
             //确认提币

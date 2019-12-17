@@ -170,6 +170,7 @@ class FYAssetsVC: UIViewController {
         if btn.tag == 100 {
             //资产明细
             let vc = FYBillVC()
+            vc.selectType = 0
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 400 {

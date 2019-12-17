@@ -7,8 +7,13 @@
 //  --提币
 
 import UIKit
+import HandyJSON
 
-class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
+class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDelegate {
+    
+    //数据模型
+    var model:FYWithdrawModel?
+    
     //pragma mark - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +41,8 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
         
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: FYScreenHeight)
         
+        self.getInfo()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +52,57 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
     }
 
     //pragma mark - CustomMethod
+    //获取提币相关信息
+    func getInfo() {
+        let manager = FYRequestManager.shared
+        manager.request(type: .post, url: String(format: withdrawInfo, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.model = JSONDeserializer<FYWithdrawModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
+                self.refreshInfo()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //提币申请
+    func application() {
+        let addressTextfield = self.bottomView.viewWithTag(201) as! UITextField
+        let withdrawTextfield = self.bottomView.viewWithTag(202) as! UITextField
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "amount", value: "\(Double((withdrawTextfield.text! as NSString).doubleValue) - (self.model?.withdrawFee ?? 0))" as AnyObject)
+        manager.addparameter(key: "fee", value: "\(self.model?.withdrawFee ?? 0)" as AnyObject)
+        manager.addparameter(key: "desAddress", value: addressTextfield.text! as AnyObject)
+        manager.request(type: .post, url: String(format: withdrawApplication, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Successful application"))
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //刷新数据
+    func refreshInfo() {
+        let numberLabel = self.bottomView.viewWithTag(200) as! UILabel
+        numberLabel.text = String(format: "%.f", self.model?.availableAmount ?? 0)
+        let feeLabel = self.bottomView.viewWithTag(203) as! YYLabel
+        let str = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Miner cost"), self.model?.withdrawFee ?? 0))
+        str.yy_font = UIFont.systemFont(ofSize: 12)
+        if FYTool.getLanguageType() == "en-CN" {
+            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 10))
+            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 10, length: str.length - 10))
+        }else {
+            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
+            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: str.length - 4))
+        }
+        feeLabel.attributedText = str
+        feeLabel.textAlignment = .right
+    }
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
@@ -56,6 +114,17 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 204 {
             //确认提币
+            let addressTextfield = self.bottomView.viewWithTag(201) as! UITextField
+            let withdrawTextfield = self.bottomView.viewWithTag(202) as! UITextField
+            if addressTextfield.text!.count <= 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Emputy WithdrawalAddress"))
+            }else if withdrawTextfield.text!.count <= 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Emputy WithdrawingAmount"))
+            }else if Double((withdrawTextfield.text! as NSString).doubleValue) < self.model?.startAmount ?? 0 {
+                MBProgressHUD.showInfo(String(format: LanguageHelper.getString(key: "The starting amount is"), self.model?.startAmount ?? 0))
+            }else {
+                self.application()
+            }
         }
     }
     
@@ -72,6 +141,14 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
     }
 
     //pragma mark - SystemDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 202 {
+            if Double((textField.text! as NSString).doubleValue) < self.model?.startAmount ?? 0 {
+                MBProgressHUD.showInfo(String(format: LanguageHelper.getString(key: "The starting amount is"), self.model?.startAmount ?? 0))
+                textField.text = ""
+            }
+        }
+    }
 
     //pragma mark - CustomDelegate
     //扫描到的数据
@@ -167,7 +244,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
         
         //可提币数量
         let numberLabel = UILabel.init()
-        numberLabel.text = "1234567";
+//        numberLabel.text = "1234567";
         numberLabel.textColor = FYColor.goldColor()
         numberLabel.font = UIFont.boldSystemFont(ofSize: 20)
         numberLabel.textAlignment = .center
@@ -248,6 +325,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
         //设置光标初始位置
         withdrawTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
         withdrawTextfield.tag = 202
+        withdrawTextfield.delegate = self
         view.addSubview(withdrawTextfield)
         withdrawTextfield.snp.makeConstraints { (make) in
             make.left.equalTo(addressTextfield.snp_left)
@@ -258,17 +336,17 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate {
         
         //旷工费用
         let feeLabel = YYLabel.init()
-        let str = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Miner cost"), "1234"))
-        str.yy_font = UIFont.systemFont(ofSize: 12)
-        if FYTool.getLanguageType() == "en-CN" {
-            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 10))
-            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 10, length: str.length - 10))
-        }else {
-            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
-            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: str.length - 4))
-        }
-        feeLabel.attributedText = str
-        feeLabel.textAlignment = .right
+//        let str = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Miner cost"), "1234"))
+//        str.yy_font = UIFont.systemFont(ofSize: 12)
+//        if FYTool.getLanguageType() == "en-CN" {
+//            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 10))
+//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 10, length: str.length - 10))
+//        }else {
+//            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
+//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: str.length - 4))
+//        }
+//        feeLabel.attributedText = str
+//        feeLabel.textAlignment = .right
         feeLabel.tag = 203
         view.addSubview(feeLabel)
         feeLabel.snp.makeConstraints { (make) in

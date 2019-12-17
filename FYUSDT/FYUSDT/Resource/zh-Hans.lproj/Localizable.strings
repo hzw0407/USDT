@@ -41,7 +41,7 @@
 "Assets" = "资产";
 "Asset details" = "资产明细";
 "Total Assets" = "总资产(USDT)";
-"Accumulated income" = "累计收益 %@ USDT";
+"Accumulated income" = "累计收益 %.f USDT";
 "Withdraw money" = "提币";
 "Coin charging" = "充币";
 "Grab the order immediately" = "立即抢单";
@@ -91,7 +91,7 @@
 "Money withdrawal address" = "提币地址";
 "USDT withdrawal address" = "   USDT 提币地址";
 "Amount of money raised" = "   提币数量";
-"Miner cost" = "矿工费用 %@";
+"Miner cost" = "矿工费用 %.f";
 "Confirmation of withdrawals" = "确认提币";
 "Grab details" = "抢单详情";
 "Available balance" = "可用余额(USDT)";
@@ -125,3 +125,7 @@
 "Password changed successfully" = "修改密码成功";
 "Coming soon" = "敬请期待";
 "Please enter the old password" = "请输入旧密码";
+"The starting amount is" = "起提金额是%.f";
+"Successful application" = "申请成功";
+"Emputy WithdrawalAddress" = "提币地址不能为空";
+"Emputy WithdrawingAmount" = "提币金额不能为空";

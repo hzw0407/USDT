@@ -25,3 +25,9 @@ let findPassword_sendCode = "/user/odtaUser/forgetPassCode"
 let resetPassword = "/user/odtaUser/forgetPassword"
 //安全中心的重置密码
 let safe_resetPassword = "/user/odtaUser/resetPassword?token=%@"
+//钱包资产
+let Wallet_Assets = "/user/odtaWallet/getUserWallet?token=%@"
+//提币信息
+let withdrawInfo = "/wallet/walletInfo/getOdtaCoin?token=%@"
+//提币申请
+let withdrawApplication = "/user/odtaWallet/permission/transfer?token=%@"

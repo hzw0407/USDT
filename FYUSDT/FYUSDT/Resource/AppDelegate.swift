@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     @objc func setRootViewController() {
-        if UserDefaults.standard.string(forKey: FYToken)!.count > 0 {
+        if UserDefaults.standard.string(forKey: FYToken) != nil {
             //已登录
             window?.rootViewController = FYTabbarVC()
         }else {

@@ -46,6 +46,16 @@ class GQScanViewController: UIViewController {
         leftButton.addTarget(self, action: #selector(leftClick), for: UIControl.Event.touchUpInside)
         let leftItem:UIBarButtonItem = UIBarButtonItem.init(customView: leftButton)
         self.navigationItem.leftBarButtonItem = leftItem
+        
+        let scanImageView = UIImageView.init()
+        scanImageView.image = UIImage(named: "code-bg")
+        self.view.addSubview(scanImageView)
+        scanImageView.snp.makeConstraints { (make) in
+            make.centerX.equalTo(self.view.snp_centerX)
+            make.width.equalTo(200)
+            make.centerY.equalTo(self.view.snp_centerY).offset(-navigationHeight)
+            make.height.equalTo(200)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

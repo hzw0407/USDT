@@ -40,7 +40,7 @@
 "Assets" = "Assets";
 "Asset details" = "Asset details";
 "Total Assets" = "Total Assets(USDT)";
-"Accumulated income" = "Accumulated income %@ USDT";
+"Accumulated income" = "Accumulated income %.f USDT";
 "Withdraw money" = "Withdraw money";
 "Coin charging" = "Coin charging";
 "Grab the order immediately" = "Grab the order immediately";
@@ -90,7 +90,7 @@
 "Money withdrawal address" = "Money withdrawal address";
 "USDT withdrawal address" = "   USDT withdrawal address";
 "Amount of money raised" = "   Amount of money raised";
-"Miner cost" = "Miner cost %@";
+"Miner cost" = "Miner cost %.f";
 "Confirmation of withdrawals" = "Confirmation of withdrawals";
 "Grab details" = "Grab details";
 "Available balance" = "Available balance(USDT)";
@@ -124,3 +124,7 @@
 "Password changed successfully" = "Password changed successfully";
 "Coming soon" = "Coming soon";
 "Please enter the old password" = "Please enter the old password";
+"The starting amount is" = "The starting amount is %.f";
+"Successful application" = "Successful application";
+"Emputy WithdrawalAddress" = "Withdrawal address cannot be empty";
+"Emputy WithdrawingAmount" = "Withdrawing currency amount cannot be empty";

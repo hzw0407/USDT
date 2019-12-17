@@ -7,12 +7,17 @@
 //  --资产
 
 import UIKit
+import HandyJSON
 
 class FYAssetsVC: UIViewController {
     
     //跑马灯
     let hourseView = JJMarqueeView.init(frame: CGRect.init(x: 0, y: 612, width: FYScreenWidth, height: 20))
     var strArray:[String] = ["这是第一段文字","这是第二段文字","这是第三段文字"]
+    //资产模型
+    var assetsModel:FYAssetsModel?
+    //下拉刷新
+    let header = MJRefreshNormalHeader()
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -20,6 +25,18 @@ class FYAssetsVC: UIViewController {
         
         self.view.backgroundColor = FYColor.mainColor()
         self.creatUI()
+        
+        if #available(iOS 11.0, *) {
+            self.scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        
+        header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
+        header.setTitle(LanguageHelper.getString(key: "Release and start refreshing"), for: .pulling)
+        header.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
+        self.scrollView.mj_header = header
+        header.beginRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +57,8 @@ class FYAssetsVC: UIViewController {
     func creatUI() {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(self.view).offset(0)
+            make.left.right.equalTo(self.view).offset(0)
+            make.top.equalTo(self.view).offset(20)
             make.bottom.equalTo(self.view).offset(-bottomSafeAreaHeight)
         }
         
@@ -98,6 +116,36 @@ class FYAssetsVC: UIViewController {
         self.hourseView.dataSource = self
         self.scrollView.addSubview(self.hourseView)
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 640 > FYScreenHeight ? 640 : FYScreenHeight)
+    }
+    
+    //下拉刷新
+    @objc func headerRefresh() {
+        self.getAssets()
+    }
+    
+    //获取资产
+    func getAssets() {
+        let manager = FYRequestManager.shared
+        manager.request(type: .post, url: String(format: Wallet_Assets, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            self.scrollView.mj_header?.endRefreshing()
+            if dict["code"]?.intValue == 200 {
+                self.assetsModel = JSONDeserializer<FYAssetsModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
+                self.refreshInfo()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            self.scrollView.mj_header?.endRefreshing()
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //刷新数据
+    func refreshInfo() {
+        let totalAssetLabel = self.totalImageView.viewWithTag(200) as! UILabel
+        totalAssetLabel.text = String(format: "%.f", self.assetsModel?.balance ?? 0)
+        let profitLabel = self.totalImageView.viewWithTag(201) as! UILabel
+        profitLabel.text = String(format: LanguageHelper.getString(key: "Accumulated income"), self.assetsModel?.getBalance ?? 0)
     }
 
     //pragma mark - ClickMethod
@@ -189,7 +237,7 @@ class FYAssetsVC: UIViewController {
         
         //总资产
         let totalAssetLabel = UILabel.init()
-        totalAssetLabel.text = "0.00000"
+//        totalAssetLabel.text = "0.00000"
         totalAssetLabel.textColor = UIColor.white
         totalAssetLabel.font = UIFont.boldSystemFont(ofSize: 45)
         totalAssetLabel.textAlignment = .center
@@ -203,7 +251,7 @@ class FYAssetsVC: UIViewController {
         
         //累计收益
         let profitLabel = UILabel.init()
-        profitLabel.text = String(format: LanguageHelper.getString(key: "Accumulated income"), "1.2345")
+//        profitLabel.text = String(format: LanguageHelper.getString(key: "Accumulated income"), "1.2345")
         profitLabel.textColor = UIColor.white
         profitLabel.font = UIFont.systemFont(ofSize: 13)
         profitLabel.textAlignment = .center

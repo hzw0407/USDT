@@ -14,11 +14,11 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         ["image" : "bill", "name" : LanguageHelper.getString(key: "Bill management")],
         ["image" : "invite_code", "name" : LanguageHelper.getString(key: "Invite friends")],
         ["image" : "language", "name" : LanguageHelper.getString(key: "Language")],
-        ["image" : "", "name" : LanguageHelper.getString(key: "My team")],
-        ["image" : "", "name" : LanguageHelper.getString(key: "Safety Center")],
-        ["image" : "", "name" : LanguageHelper.getString(key: "Game")],
-        ["image" : "", "name" : LanguageHelper.getString(key: "Social contact")],
-        ["image" : "", "name" : LanguageHelper.getString(key: "Entertainment")],
+        ["image" : "team", "name" : LanguageHelper.getString(key: "My team")],
+        ["image" : "safe", "name" : LanguageHelper.getString(key: "Safety Center")],
+        ["image" : "game", "name" : LanguageHelper.getString(key: "Game")],
+        ["image" : "Social", "name" : LanguageHelper.getString(key: "Social contact")],
+        ["image" : "Entertainment", "name" : LanguageHelper.getString(key: "Entertainment")],
         ["image" : "quit", "name" : LanguageHelper.getString(key: "Cancellation account")]
     ]
     
@@ -80,17 +80,18 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case 0:
             //账单管理
             let vc = FYBillVC()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-        }else if indexPath.row == 1 {
+        case 1:
             //申请邀请码
             let vc = FYApplicationVC()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-        }else if indexPath.row == 2 {
+        case 2:
             //切换语言
             if UserDefaults.standard.value(forKey: "languageStr") == nil {
                 if FYTool.getLanguageType() == "en-CN" {
@@ -120,9 +121,75 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
             let AppDelegate = UIApplication.shared.delegate as! AppDelegate
             AppDelegate.window?.rootViewController = FYTabbarVC()
-        }else {
-            //注销登录
+        case 3:
+            //我的团队
+            let vc = FYMyTeamVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            //安全中心
+            let vc = FYFindPasswordVC()
+            vc.type = 2
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            //游戏
+            MBProgressHUD.showInfo("Coming soon")
+        case 6:
+            //社交
+            MBProgressHUD.showInfo("Coming soon")
+        case 7:
+            //娱乐
+            MBProgressHUD.showInfo("Coming soon")
+        case 8:
+            //注销账户
+            break
+        default:
+            break
         }
+//        if indexPath.row == 0 {
+//            //账单管理
+//            let vc = FYBillVC()
+//            vc.hidesBottomBarWhenPushed = true
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }else if indexPath.row == 1 {
+//            //申请邀请码
+//            let vc = FYApplicationVC()
+//            vc.hidesBottomBarWhenPushed = true
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }else if indexPath.row == 2 {
+//            //切换语言
+//            if UserDefaults.standard.value(forKey: "languageStr") == nil {
+//                if FYTool.getLanguageType() == "en-CN" {
+//                    //设置成中文并记录
+//                    LanguageHelper.shareInstance.setLanguage(langeuage: "zh-Hans")
+//                    UserDefaults.standard.set("zh-Hans", forKey: "languageStr")
+//                    UserDefaults.standard.synchronize()
+//                }else {
+//                    //设置成英文并记录
+//                    LanguageHelper.shareInstance.setLanguage(langeuage: "en")
+//                    UserDefaults.standard.set("en", forKey: "languageStr")
+//                    UserDefaults.standard.synchronize()
+//                }
+//            }else {
+//                //之前在app里面设置过语言
+//                if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
+//                    //设置成中文并记录
+//                    LanguageHelper.shareInstance.setLanguage(langeuage: "zh-Hans")
+//                    UserDefaults.standard.set("zh-Hans", forKey: "languageStr")
+//                    UserDefaults.standard.synchronize()
+//                }else {
+//                    //设置成英文并记录
+//                    LanguageHelper.shareInstance.setLanguage(langeuage: "en")
+//                    UserDefaults.standard.set("en", forKey: "languageStr")
+//                    UserDefaults.standard.synchronize()
+//                }
+//            }
+//            let AppDelegate = UIApplication.shared.delegate as! AppDelegate
+//            AppDelegate.window?.rootViewController = FYTabbarVC()
+//        }else {
+//            //注销登录
+//        }
     }
 
     //pragma mark - CustomDelegate

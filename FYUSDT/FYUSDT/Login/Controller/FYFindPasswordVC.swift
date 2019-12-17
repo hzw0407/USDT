@@ -10,6 +10,8 @@ import UIKit
 
 class FYFindPasswordVC: UIViewController {
     
+    //1登录进来 2安全中心进来
+    public var type:Int?
     var countDown = 60
     var timer:Timer?
     
@@ -141,6 +143,7 @@ class FYFindPasswordVC: UIViewController {
                 let vc = FYSetNewPasswordVC()
                 vc.email = self.emailTextfield.text
                 vc.code = self.codeTextfield.text
+                vc.type = self.type
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

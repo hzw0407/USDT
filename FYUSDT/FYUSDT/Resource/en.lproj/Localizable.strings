@@ -24,6 +24,8 @@
 "Empty Email" = "Email address cannot be empty";
 "Empty Code" = "Verification code cannot be empty";
 "Empty Password" = "Password cannot be empty";
+"Empty NewPassword" = "New password cannot be empty";
+"Empty OldPassword" = "Old password cannot be empty";
 "Password Inconsistent" = "The two passwords are inconsistent";
 "Empty Invate" = "Invitation code cannot be empty";
 "Agreement Service" = "Please agree to the agreement first";
@@ -120,3 +122,5 @@
 "Register Success" = "Register Success";
 "Send Success" = "Send Success";
 "Password changed successfully" = "Password changed successfully";
+"Coming soon" = "Coming soon";
+"Please enter the old password" = "Please enter the old password";

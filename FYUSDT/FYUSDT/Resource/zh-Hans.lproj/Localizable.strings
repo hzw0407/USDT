@@ -25,6 +25,8 @@
 "Empty Email" = "邮箱地址不能为空";
 "Empty Code" = "验证码不能为空";
 "Empty Password" = "密码不能为空";
+"Empty NewPassword" = "新密码不能为空";
+"Empty OldPassword" = "旧密码不能为空";
 "Password Inconsistent" = "两次输入的密码不一致";
 "Empty Invate" = "邀请码不能为空";
 "Agreement Service" = "请先同意协议";
@@ -121,3 +123,5 @@
 "Register Success" = "注册成功";
 "Send Success" = "发送成功";
 "Password changed successfully" = "修改密码成功";
+"Coming soon" = "敬请期待";
+"Please enter the old password" = "请输入旧密码";

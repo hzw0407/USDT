@@ -158,6 +158,7 @@ class FYLoginVC: UIViewController {
         }else if btn.tag == 103 {
             //忘记密码
             let vc = FYFindPasswordVC()
+            vc.type = 1
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }

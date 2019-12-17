@@ -21,5 +21,7 @@ let Register = "/user/odtaUser/signUp"
 let Login = "/user/odtaUser/userLogin"
 //找回密码发送验证码
 let findPassword_sendCode = "/user/odtaUser/forgetPassCode"
-//充值密码
+//重置密码
 let resetPassword = "/user/odtaUser/forgetPassword"
+//安全中心的重置密码
+let safe_resetPassword = "/user/odtaUser/resetPassword?token=%@"

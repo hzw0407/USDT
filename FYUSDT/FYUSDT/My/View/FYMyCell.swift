@@ -138,12 +138,7 @@ class FYMyCell: UITableViewCell {
                 make.width.equalTo(18)
                 make.height.equalTo(22)
             }
-        }else if row == 1 {
-            self.iconImageView.snp.updateConstraints { (make) in
-                make.width.equalTo(22)
-                make.height.equalTo(18)
-            }
-        }else if row == 2 {
+        }else {
             self.iconImageView.snp.updateConstraints { (make) in
                 make.width.height.equalTo(22)
             }

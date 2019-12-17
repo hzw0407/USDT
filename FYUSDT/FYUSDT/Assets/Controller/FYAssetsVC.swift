@@ -77,8 +77,16 @@ class FYAssetsVC: UIViewController {
             make.height.equalTo(115)
         }
         
-        self.scrollView.addSubview(self.rushOrderView)
-        self.rushOrderView.snp.makeConstraints { (make) in
+//        self.scrollView.addSubview(self.rushOrderView)
+//        self.rushOrderView.snp.makeConstraints { (make) in
+//            make.left.equalTo(self.view).offset(15)
+//            make.right.equalTo(self.view).offset(-15)
+//            make.top.equalTo(self.operationView.snp_bottom).offset(70)
+//            make.height.equalTo(70)
+//        }
+        
+        self.scrollView.addSubview(self.rushOrderButton)
+        self.rushOrderButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
             make.right.equalTo(self.view).offset(-15)
             make.top.equalTo(self.operationView.snp_bottom).offset(70)
@@ -89,7 +97,7 @@ class FYAssetsVC: UIViewController {
         self.hourseView.delegate = self
         self.hourseView.dataSource = self
         self.scrollView.addSubview(self.hourseView)
-        self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 1640 > FYScreenHeight ? 1640 : FYScreenHeight)
+        self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 640 > FYScreenHeight ? 640 : FYScreenHeight)
     }
 
     //pragma mark - ClickMethod
@@ -99,6 +107,12 @@ class FYAssetsVC: UIViewController {
             let vc = FYBillVC()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
+        }else if btn.tag == 400 {
+            //立即抢单
+            let tabbarVC = FYTabbarVC()
+            tabbarVC.selectedIndex = 1
+            let AppDelegate = UIApplication.shared.delegate as! AppDelegate
+            AppDelegate.window?.rootViewController = tabbarVC
         }
     }
     
@@ -320,38 +334,54 @@ class FYAssetsVC: UIViewController {
     }()
     
     //立即抢单
-    lazy var rushOrderView:UIView = {
-        let view = UIView.init()
-        view.backgroundColor = FYTool.hexStringToUIColor(hexString: "#EBC186")
-        view.isUserInteractionEnabled = true
-        view.layer.cornerRadius = 35
-        view.clipsToBounds = true
-        view.tag = 400
-        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapClick(tap:)))
-        view.addGestureRecognizer(tap)
-        
-        let titleLabel = UILabel.init()
-        titleLabel.text = LanguageHelper.getString(key: "Grab the order immediately")
-        titleLabel.textColor = FYColor.rushColor()
-        titleLabel.font = UIFont.systemFont(ofSize: 25)
-        view.addSubview(titleLabel)
-        let titleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Grab the order immediately"), font: UIFont.systemFont(ofSize: 25), height: 70)
-        titleLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(view.snp_centerX).offset(-20)
-            make.width.equalTo(titleWidth + 5)
-            make.top.bottom.equalTo(view).offset(0)
-        }
-        
-        let iconImageView = UIImageView.init()
-        iconImageView.image = UIImage(named: "Asset_Rush")
-        view.addSubview(iconImageView)
-        iconImageView.snp.makeConstraints { (make) in
-            make.left.equalTo(titleLabel.snp_right).offset(20)
-            make.width.equalTo(50)
-            make.centerY.equalTo(view.snp_centerY)
-            make.height.equalTo(50)
-        }
-        return view
+//    lazy var rushOrderView:UIView = {
+//        let view = UIView.init()
+//        view.backgroundColor = FYTool.hexStringToUIColor(hexString: "#EBC186")
+//        view.isUserInteractionEnabled = true
+//        view.layer.cornerRadius = 35
+//        view.clipsToBounds = true
+//        view.tag = 400
+//        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapClick(tap:)))
+//        view.addGestureRecognizer(tap)
+//        
+//        let titleLabel = UILabel.init()
+//        titleLabel.text = LanguageHelper.getString(key: "Grab the order immediately")
+//        titleLabel.textColor = FYColor.rushColor()
+//        titleLabel.font = UIFont.systemFont(ofSize: 25)
+//        view.addSubview(titleLabel)
+//        let titleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Grab the order immediately"), font: UIFont.systemFont(ofSize: 25), height: 70)
+//        titleLabel.snp.makeConstraints { (make) in
+//            make.centerX.equalTo(view.snp_centerX).offset(-20)
+//            make.width.equalTo(titleWidth + 5)
+//            make.top.bottom.equalTo(view).offset(0)
+//        }
+//        
+//        let iconImageView = UIImageView.init()
+//        iconImageView.image = UIImage(named: "Asset_Rush")
+//        view.addSubview(iconImageView)
+//        iconImageView.snp.makeConstraints { (make) in
+//            make.left.equalTo(titleLabel.snp_right).offset(20)
+//            make.width.equalTo(50)
+//            make.centerY.equalTo(view.snp_centerY)
+//            make.height.equalTo(50)
+//        }
+//        return view
+//    }()
+    
+    lazy var rushOrderButton:UIButton = {
+        let button = UIButton.init()
+        button.backgroundColor = FYTool.hexStringToUIColor(hexString: "#EBC186")
+        button.isUserInteractionEnabled = true
+        button.layer.cornerRadius = 35
+        button.clipsToBounds = true
+        button.setTitle(LanguageHelper.getString(key: "Grab the order immediately"), for: .normal)
+        button.setTitleColor(FYColor.rushColor(), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        button.setImage(UIImage(named: "Asset_Rush"), for: .normal)
+        button.setImagePosition(position: .right, spacing: 80)
+        button.tag = 400
+        button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        return button
     }()
 
 }

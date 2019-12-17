@@ -48,19 +48,22 @@ class FYRequestManager: NSObject {
             Alamofire.request(tempUrl, method: .get, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
                 if response.result.isSuccess {
                     if let jsonString = response.result.value {
-                        let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
-                        let message = (jsonString as! [String : AnyObject])["message"] as! NSString
-                        if UserDefaults.standard.value(forKey: "languageStr") == nil {
-                            if FYTool.getLanguageType() == "en-CN" {
-                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                        let tempDic = (jsonString as! [String : AnyObject])
+                        if !tempDic.keys.contains("error") {
+                            let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
+                            let message = (jsonString as! [String : AnyObject])["message"] as! NSString
+                            if UserDefaults.standard.value(forKey: "languageStr") == nil {
+                                if FYTool.getLanguageType() == "en-CN" {
+                                    successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                                }else {
+                                    successCompletion(jsonString as! [String : AnyObject],message as String)
+                                }
                             }else {
-                                successCompletion(jsonString as! [String : AnyObject],message as String)
-                            }
-                        }else {
-                            if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
-                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
-                            }else {
-                                successCompletion(jsonString as! [String : AnyObject],message as String)
+                                if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
+                                    successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                                }else {
+                                    successCompletion(jsonString as! [String : AnyObject],message as String)
+                                }
                             }
                         }
                     }
@@ -82,19 +85,22 @@ class FYRequestManager: NSObject {
             Alamofire.request(request).responseJSON { (response) in
                 if response.result.isSuccess {
                         if let jsonString = response.result.value {
-                            let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
-                            let message = (jsonString as! [String : AnyObject])["message"] as! NSString
-                            if UserDefaults.standard.value(forKey: "languageStr") == nil {
-                                if FYTool.getLanguageType() == "en-CN" {
-                                    successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                            let tempDic = (jsonString as! [String : AnyObject])
+                            if !tempDic.keys.contains("error") {
+                                let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
+                                let message = (jsonString as! [String : AnyObject])["message"] as! NSString
+                                if UserDefaults.standard.value(forKey: "languageStr") == nil {
+                                    if FYTool.getLanguageType() == "en-CN" {
+                                        successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                                    }else {
+                                        successCompletion(jsonString as! [String : AnyObject],message as String)
+                                    }
                                 }else {
-                                    successCompletion(jsonString as! [String : AnyObject],message as String)
-                                }
-                            }else {
-                                if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
-                                    successCompletion(jsonString as! [String : AnyObject],enMessage as String)
-                                }else {
-                                    successCompletion(jsonString as! [String : AnyObject],message as String)
+                                    if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
+                                        successCompletion(jsonString as! [String : AnyObject],enMessage as String)
+                                    }else {
+                                        successCompletion(jsonString as! [String : AnyObject],message as String)
+                                    }
                                 }
                             }
                         }

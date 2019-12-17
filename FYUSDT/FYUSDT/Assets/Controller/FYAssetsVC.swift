@@ -13,9 +13,10 @@ class FYAssetsVC: UIViewController {
     
     //跑马灯
     let hourseView = JJMarqueeView.init(frame: CGRect.init(x: 0, y: 612, width: FYScreenWidth, height: 20))
-    var strArray:[String] = ["这是第一段文字","这是第二段文字","这是第三段文字"]
     //资产模型
     var assetsModel:FYAssetsModel?
+    //消息数组
+    var infoArray:[FYInfoModel]?
     //下拉刷新
     let header = MJRefreshNormalHeader()
     
@@ -121,6 +122,7 @@ class FYAssetsVC: UIViewController {
     //下拉刷新
     @objc func headerRefresh() {
         self.getAssets()
+        self.infoList()
     }
     
     //获取资产
@@ -136,6 +138,21 @@ class FYAssetsVC: UIViewController {
             }
         }) { (errMessage) in
             self.scrollView.mj_header?.endRefreshing()
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //获取滚动信息
+    func infoList() {
+        let manager = FYRequestManager.shared
+        manager.request(type: .post, url: Assets_InfoList, successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.infoArray = JSONDeserializer<FYInfoModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as? [FYInfoModel]
+                self.hourseView.reload()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
             MBProgressHUD.showInfo(errMessage)
         }
     }
@@ -237,7 +254,6 @@ class FYAssetsVC: UIViewController {
         
         //总资产
         let totalAssetLabel = UILabel.init()
-//        totalAssetLabel.text = "0.00000"
         totalAssetLabel.textColor = UIColor.white
         totalAssetLabel.font = UIFont.boldSystemFont(ofSize: 45)
         totalAssetLabel.textAlignment = .center
@@ -251,7 +267,6 @@ class FYAssetsVC: UIViewController {
         
         //累计收益
         let profitLabel = UILabel.init()
-//        profitLabel.text = String(format: LanguageHelper.getString(key: "Accumulated income"), "1.2345")
         profitLabel.textColor = UIColor.white
         profitLabel.font = UIFont.systemFont(ofSize: 13)
         profitLabel.textAlignment = .center
@@ -437,14 +452,15 @@ class FYAssetsVC: UIViewController {
 extension FYAssetsVC:JJMarqueeViewDelegate,JJMarqueeViewDataSource {
     //多少条数据
     func numberOfItems(_ marqueeView: JJMarqueeView) -> Int {
-        return self.strArray.count
+        return self.infoArray?.count ?? 0
     }
     
     //每条数据的内容
     func marqueeView(_ marqueeView: JJMarqueeView, cellForItemAt index: Int) -> NSAttributedString {
-        let str = self.strArray[index]
-        let tempStr = str as NSString
-        let r = tempStr.range(of: str)
+        let model = self.infoArray![index]
+        let str = model.email
+        let tempStr = str! as NSString
+        let r = tempStr.range(of: str!)
         let att = NSMutableAttributedString.init(string: tempStr as String)
         att.addAttribute(NSAttributedString.Key.foregroundColor, value: FYColor.goldColor(), range: r)
         return att

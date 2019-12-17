@@ -13,15 +13,27 @@ enum sortType {
 }
 
 import UIKit
+import HandyJSON
 
 class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    let buttonNameArray:[[String:String]] = [["image" : "","name" : LanguageHelper.getString(key: "All")],
+    //类型按钮数组
+    let buttonNameArray:[[String:String]] = [["image" : "drop_down","name" : LanguageHelper.getString(key: "All")],
                                            ["image" : "nomal","name" : LanguageHelper.getString(key: "Amount")],
                                            ["image" : "down","name" : LanguageHelper.getString(key: "Time")]]
     var buttonArray:[UIButton] = []
-    var amountType:sortType?//金额排序方式
-    var timeType:sortType?//时间排序方式
+    //所有的类型数组
+    let allTypeArray:[String] = [LanguageHelper.getString(key: "All"),LanguageHelper.getString(key: "Recharge"),LanguageHelper.getString(key: "Withdraw"),LanguageHelper.getString(key: "Income from investment"),LanguageHelper.getString(key: "Recommended Award")]
+    //金额排序方式 默认没选中
+    var amountType:sortType = .nomal
+    //时间排序方式 默认倒序
+    var timeType:sortType = .down
+    //全部按钮是否是选中状态
+    var isSelectAll:Bool = false
+    //选中的类型 默认选中全部
+    var selectType:Int = 0
+    //数据模型数组
+    var infoArray:[FYBillModel]?
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -35,12 +47,29 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             make.height.equalTo(200)
         }
         
+        self.view.addSubview(self.selectTypeView)
+        self.selectTypeView.snp.makeConstraints { (make) in
+            make.leading.right.equalTo(self.view).offset(0)
+            make.top.equalTo(self.headerView.snp_bottom)
+            make.height.equalTo(65)
+        }
+        
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view).offset(0)
-            make.top.equalTo(self.headerView.snp_bottom)
+            make.top.equalTo(self.selectTypeView.snp_bottom).offset(-5)
             make.bottom.equalTo(self.view).offset(0)
         }
+        
+        self.view.addSubview(self.allTypeView)
+        self.allTypeView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.view)
+            make.width.equalTo(FYScreenWidth / 3)
+            make.top.equalTo(self.tableView.snp_top)
+            make.height.equalTo(40 * self.allTypeArray.count)
+        }
+        
+        self.getBill()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +79,27 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
 
     //pragma mark - CustomMethod
+    //获取账单信息
+    func getBill() {
+        let manager = FYRequestManager.shared
+        manager.addparameter(key: "type", value: "\(self.selectType)" as AnyObject)
+        if self.amountType != .nomal {
+            manager.addparameter(key: "amountBy", value: (self.amountType == .up ? "2" : "1") as AnyObject)
+        }
+        if self.timeType != .nomal {
+            manager.addparameter(key: "timeBy", value: (self.timeType == .up ? "2" : "1") as AnyObject)
+        }
+        manager.request(type: .post, url: String(format: bill, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.infoArray = JSONDeserializer<FYBillModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as? [FYBillModel]
+                self.tableView.reloadData()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
 
     //pragma mark - ClickMethod
     @objc func backClick() {
@@ -67,18 +117,21 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         if btn.tag == 100 {
             //全部
-            for tempButton in self.buttonArray {
-                if tempButton.tag == 101 || tempButton.tag == 102 {
-                    //将金额和时间的状态都改为未选中
-                    tempButton.setImage(UIImage(named: "nomal"), for: .normal)
-                    self.timeType = .nomal
-                    self.amountType = .nomal
-                }
-            }
+//            for tempButton in self.buttonArray {
+//                if tempButton.tag == 101 || tempButton.tag == 102 {
+//                    //将金额和时间的状态都改为未选中
+//                    tempButton.setImage(UIImage(named: "nomal"), for: .normal)
+//                    self.timeType = .nomal
+//                    self.amountType = .nomal
+//                }
+//            }
+            self.allTypeView.isHidden = self.isSelectAll
+            self.isSelectAll = !self.isSelectAll
         }else if btn.tag == 101 {
             //金额
             if btn.isSelected {
                 self.timeType = .nomal
+                self.isSelectAll = false
                 for tempButton in self.buttonArray {
                     if tempButton.tag == 102 {
                         tempButton.setImage(UIImage(named: "nomal"), for: .normal)
@@ -99,6 +152,7 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             //时间
             if btn.isSelected {
                 self.amountType = .nomal
+                self.isSelectAll = false
                 for tempButton in self.buttonArray {
                     if tempButton.tag == 101 {
                         tempButton.setImage(UIImage(named: "nomal"), for: .normal)
@@ -117,16 +171,31 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             }
         }
         
+        self.getBill()
+    }
+    
+    //选择类型
+    @objc func typeClick(btn:UIButton) {
+        let typeStr = self.allTypeArray[btn.tag - 200]
+        let allButton = self.buttonArray[0]
+        allButton.setTitle(typeStr, for: .normal)
+        self.allTypeView.isHidden = true
+        self.isSelectAll = !self.isSelectAll
+        self.selectType = btn.tag - 200
+        
+        self.getBill()
     }
 
     //pragma mark - SystemDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.infoArray?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FYBillCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        let model = self.infoArray![indexPath.row] 
+        cell.refreshWithModel(model: model)
         return cell
     }
     
@@ -135,41 +204,12 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView.init(frame: CGRect(x: 0, y: 0, width: FYScreenWidth, height: 65))
-        let buttonWidth = FYScreenWidth / 3
-        for i in 0 ..< self.buttonNameArray.count {
-            let dic:[String:String] = self.buttonNameArray[i]
-            let button = UIButton.init()
-            button.setTitle(dic["name"], for: .normal)
-            button.setTitleColor(UIColor.gray, for: .normal)
-            button.setTitleColor(FYColor.goldColor(), for: .selected)
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            if i != 0 {
-                button.setImage(UIImage(named: dic["image"]!), for: .normal)
-                button.setImagePosition(position: .right, spacing: 20)
-                if i == 2 {
-                    //默认时间降序
-                    button.isSelected = true
-                    self.timeType = .down
-                }else {
-                    self.amountType = .nomal
-                }
-            }
-            button.tag = 100 + i
-            button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-            view.addSubview(button)
-            self.buttonArray.append(button)
-            button.snp.makeConstraints { (make) in
-                make.left.equalTo(buttonWidth * CGFloat(i))
-                make.width.equalTo(buttonWidth)
-                make.top.bottom.equalTo(view).offset(0)
-            }
-        }
+        let view = UIView.init(frame: CGRect.zero)
         return view
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 65
+        return 0.01
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -234,15 +274,79 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         return view
     }()
     
+    //选择类型
+    lazy var selectTypeView:UIView = {
+        let view = UIView.init()
+        view.backgroundColor = FYColor.rgb(25, 25, 25, 1)
+        view.layer.cornerRadius = 10.0
+        view.clipsToBounds = true
+        
+        let buttonWidth = FYScreenWidth / 3
+        for i in 0 ..< self.buttonNameArray.count {
+            let dic:[String:String] = self.buttonNameArray[i]
+            let button = UIButton.init()
+            button.setTitle(dic["name"], for: .normal)
+            button.setTitleColor(UIColor.gray, for: .normal)
+            if i != 0 {
+                //全部按钮不变色
+                button.setTitleColor(FYColor.goldColor(), for: .selected)
+                button.setImage(UIImage(named: dic["image"]!), for: .normal)
+                button.setImagePosition(position: .right, spacing: 20)
+                if i == 2 {
+                    //默认时间降序
+                    button.isSelected = true
+                }
+            }
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            button.tag = 100 + i
+            button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+            view.addSubview(button)
+            self.buttonArray.append(button)
+            button.snp.makeConstraints { (make) in
+                make.left.equalTo(buttonWidth * CGFloat(i))
+                make.width.equalTo(buttonWidth)
+                make.top.bottom.equalTo(view).offset(0)
+            }
+        }
+        
+        return view
+    }()
+    
     lazy var tableView:UITableView = {
         let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.grouped)
         tableView.backgroundColor = FYColor.rgb(25, 25, 25, 1)
-        tableView.layer.cornerRadius = 10.0
         tableView.delegate = self as UITableViewDelegate
         tableView.dataSource = self as UITableViewDataSource
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(FYBillCell.self, forCellReuseIdentifier: "cell")
         return tableView
+    }()
+    
+    //所有的类型
+    lazy var allTypeView:UIView = {
+        let view = UIView.init()
+        view.backgroundColor = FYColor.rgb(25, 25, 25, 1)
+        
+        for i in 0 ..< self.allTypeArray.count {
+            let typeStr = self.allTypeArray[i]
+            let typeButton = UIButton.init()
+            typeButton.setTitle(typeStr, for: .normal)
+            typeButton.setTitleColor(UIColor.gray, for: .normal)
+            typeButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            typeButton.contentHorizontalAlignment = .center
+            typeButton.tag = 200 + i
+            typeButton.addTarget(self, action: #selector(typeClick(btn:)), for: .touchUpInside)
+            view.addSubview(typeButton)
+            typeButton.snp.makeConstraints { (make) in
+                make.left.right.equalTo(view).offset(0)
+                make.top.equalTo(5 + 35 * i)
+                make.height.equalTo(30)
+            }
+        }
+        
+        view.isHidden = true
+        
+        return view
     }()
 
 }

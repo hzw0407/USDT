@@ -27,7 +27,11 @@ let resetPassword = "/user/odtaUser/forgetPassword"
 let safe_resetPassword = "/user/odtaUser/resetPassword?token=%@"
 //钱包资产
 let Wallet_Assets = "/user/odtaWallet/getUserWallet?token=%@"
+//滚动信息
+let Assets_InfoList = "/financial/product/getOrderLimit"
 //提币信息
 let withdrawInfo = "/wallet/walletInfo/getOdtaCoin?token=%@"
 //提币申请
 let withdrawApplication = "/user/odtaWallet/permission/transfer?token=%@"
+//账单
+let bill = "/user/exchange/list?token=%@"

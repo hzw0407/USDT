@@ -129,3 +129,5 @@
 "Successful application" = "申请成功";
 "Emputy WithdrawalAddress" = "提币地址不能为空";
 "Emputy WithdrawingAmount" = "提币金额不能为空";
+"Income from investment" = "投资收益";
+"Recommended Award" = "推荐奖励";

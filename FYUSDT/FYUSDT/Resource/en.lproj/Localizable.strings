@@ -128,3 +128,5 @@
 "Successful application" = "Successful application";
 "Emputy WithdrawalAddress" = "Withdrawal address cannot be empty";
 "Emputy WithdrawingAmount" = "Withdrawing currency amount cannot be empty";
+"Income from investment" = "Income from investment";
+"Recommended Award" = "Recommended Award";

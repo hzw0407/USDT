@@ -60,6 +60,6 @@ class FYColor: NSObject {
     
     //蓝色
     static func blueColor() -> UIColor {
-        return FYTool.hexStringToUIColor(hexString: "#ED4D67")
+        return FYTool.hexStringToUIColor(hexString: "#196AF0")
     }
 }

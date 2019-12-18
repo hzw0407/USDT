@@ -98,31 +98,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BEC4639E-D6B5-4735-9BE2-7533D8B9CA11"
+            uuid = "68A80901-95EB-466B-BE8B-C34308FB829F"
             shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYUSDT/Bill/Controller/FYBillVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "getBill()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "43E20B80-7AC9-432A-B0B8-C6A8659345B6"
-            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FYUSDT/RushOrder/View/FYRushOrderCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "refreshWithModel(model:index:)"
             landmarkType = "7">
          </BreakpointContent>

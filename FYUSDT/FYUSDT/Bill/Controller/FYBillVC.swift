@@ -82,11 +82,12 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     //获取账单信息
     func getBill() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.addparameter(key: "type", value: "\(self.selectType ?? 0)" as AnyObject)
-        if self.amountType != .nomal {
+        if self.amountType != .nomal && self.timeType == .nomal {
             manager.addparameter(key: "amountBy", value: (self.amountType == .up ? "2" : "1") as AnyObject)
         }
-        if self.timeType != .nomal {
+        if self.timeType != .nomal && self.amountType == .nomal {
             manager.addparameter(key: "timeBy", value: (self.timeType == .up ? "2" : "1") as AnyObject)
         }
         manager.request(type: .post, url: String(format: bill, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in

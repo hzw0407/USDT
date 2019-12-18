@@ -37,6 +37,10 @@ class FYRequestManager: NSObject {
         self.parametersDic[key] = value as AnyObject
     }
     
+    func clearparameter() {
+        self.parametersDic.removeAll()
+    }
+    
     func request(type:requestType,
                  url:String,
                  successCompletion:@escaping(_ dict:[String : AnyObject],_ message:String)->(),

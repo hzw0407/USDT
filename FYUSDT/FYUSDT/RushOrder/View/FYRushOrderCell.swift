@@ -286,7 +286,7 @@ class FYRushOrderCell: UITableViewCell {
         amountStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: amountStr.length - 3, length: 3))
         self.amountLabel.attributedText = amountStr
         
-        let rateStr = NSMutableAttributedString(string: String(format: "%.1f%", model.rewardRate ?? 0))
+        let rateStr = NSMutableAttributedString(string: String(format: "%.1f%%", (model.rewardRate ?? 0) * Double(100)))
         rateStr.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: rateStr.length))
         rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: rateStr.length - 1))
         rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: rateStr.length - 1, length: 1))
@@ -296,15 +296,21 @@ class FYRushOrderCell: UITableViewCell {
         self.cirleView.startProgress(to: CGFloat(((model.getAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
         
         self.surplusLabel.text = String(format: "%.2f", model.surplusAmount ?? 0)
-        self.dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), model.day ?? 0)
-        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), "12:12:12")
+        self.dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), model.useNum ?? 0)
+        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: model.timeNum ?? 0))
         
         let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
-        self.dayLabel.snp.updateConstraints { (make) in
+        self.dayLabel.snp.remakeConstraints { (make) in
+            make.right.equalTo(self).offset(-15~)
             make.width.equalTo(timeWidth + 10~)
+            make.top.equalTo(self.surplusTitleLabel.snp_top)
+            make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
-        self.timeLabel.snp.updateConstraints { (make) in
+        self.timeLabel.snp.remakeConstraints { (make) in
+            make.right.equalTo(self.dayLabel.snp_right)
             make.width.equalTo(self.dayLabel.snp_width)
+            make.bottom.equalTo(self.surplusLabel.snp_bottom)
+            make.height.equalTo(self.dayLabel.snp_height)
         }
         
         self.countTime = model.timeNum ?? 0

@@ -36,4 +36,8 @@ let withdrawApplication = "/user/odtaWallet/permission/transfer?token=%@"
 //账单
 let bill = "/user/exchange/list?token=%@"
 //抢单广场列表
-let rushOrderList = "/financial/product/getOrderList?token=%@"
+let rushOrderList = "/financial/product/getProduct?token=%@"
+//下单
+let PlaceOrder = "/financial/product/save?token=%@"
+//抢单详情
+let rushOrderDetail = "/financial/product/getProductInfo?token=%@"

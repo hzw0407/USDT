@@ -130,3 +130,11 @@
 "Emputy WithdrawingAmount" = "Withdrawing currency amount cannot be empty";
 "Income from investment" = "Income from investment";
 "Recommended Award" = "Recommended Award";
+"Please enter the investment amount" = "Please enter the investment amount";
+"Cancel" = "Cancel";
+"Confirm" = "Confirm";
+"placeOrderTip" = "   Investment amount (need to be greater than 100 and multiple of 100)";
+"Less100" = "Investment amount cannot be less than 100";
+"integer" = "The investment amount needs to be an integer of 100";
+"PlaceOrder Success" = "PlaceOrder Success";
+"No more data yet" = "No more data yet";

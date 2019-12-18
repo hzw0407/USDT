@@ -131,3 +131,11 @@
 "Emputy WithdrawingAmount" = "提币金额不能为空";
 "Income from investment" = "投资收益";
 "Recommended Award" = "推荐奖励";
+"Please enter the investment amount" = "请输入投资金额";
+"Cancel" = "取消";
+"Confirm" = "确定";
+"placeOrderTip" = "   投资金额（需要大于100 并且是100的倍数）";
+"Less100" = "投资金额不能小于100";
+"integer" = "投资金额需要为100的整数";
+"PlaceOrder Success" = "下单成功";
+"No more data yet" = "暂无更多数据";

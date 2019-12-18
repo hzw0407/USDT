@@ -133,7 +133,7 @@ class FYBillCell: UITableViewCell {
         if (model.amount ?? 0) - 0.0 >= 0 {
             self.YKLabel.text = String(format: "+%.f USDT", model.amount ?? 0)
         }else {
-            self.YKLabel.text = String(format: "-%.f USDT", model.amount ?? 0)
+            self.YKLabel.text = String(format: "%.f USDT", model.amount ?? 0)
         }
         self.timeLabel.text = model.createTime
         if model.type == 1 {

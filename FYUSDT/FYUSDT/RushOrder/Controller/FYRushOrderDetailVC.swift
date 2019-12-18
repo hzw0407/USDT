@@ -8,12 +8,17 @@
 
 import UIKit
 import UICircularProgressRing
+import HandyJSON
 
 class FYRushOrderDetailVC: UIViewController {
     
     //定时器
     var timer:Timer?
-    var countTime = arc4random() % 1000
+    var countTime:Int?
+    //产品id
+    var id:String?
+    //详情模型
+    var model:FYRushOrderDetailModel?
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -22,12 +27,23 @@ class FYRushOrderDetailVC: UIViewController {
         self.view.backgroundColor = FYColor.mainColor()
         
         self.creatUI()
+        
+        self.getDetailInfo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.timer != nil) {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
     }
 
     //pragma mark - CustomMethod
@@ -56,12 +72,100 @@ class FYRushOrderDetailVC: UIViewController {
         
     }
     
+    //获取详情
+    func getDetailInfo() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.addparameter(key: "id", value: self.id! as AnyObject)
+        manager.request(type: .post, url: String(format: rushOrderDetail, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.model = JSONDeserializer<FYRushOrderDetailModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
+                self.refreshInfo()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //下单
+    func placeOrder(productId:String,amount:Int) {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.addparameter(key: "productId", value: productId as AnyObject)
+        manager.addparameter(key: "useAmount", value: "\(amount)" as AnyObject)
+        manager.request(type: .post, url: String(format: PlaceOrder, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+//                MBProgressHUD.showInfo(LanguageHelper.getString(key: "PlaceOrder Success"))
+                self.successView.isHidden = false
+                self.getDetailInfo()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //刷新数据
+    func refreshInfo() {
+        let headerView = self.scrollView.viewWithTag(200)!
+        let amountLable = headerView.viewWithTag(201) as! UILabel
+        amountLable.text = String(format: "%.2f", self.model?.demandAmount ?? 0)
+        
+        let rateLabel = headerView.viewWithTag(202) as! UILabel
+        let rateStr = NSMutableAttributedString(string: String(format: "%.1f%%", Double(self.model?.rewardRate ?? 0) * Double(100)))
+        rateStr.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: rateStr.length))
+        rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: rateStr.length - 1))
+        rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: rateStr.length - 1, length: 1))
+        rateLabel.attributedText = rateStr
+        
+        let surplusLabel = headerView.viewWithTag(203) as! UILabel
+        let surplusStr = NSMutableAttributedString(string: String(format: "%.2f", self.model?.surplusAmount ?? 0))
+        surplusStr.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray], range: NSRange(location: 0, length: surplusStr.length))
+        surplusStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: surplusStr.length - 3))
+        surplusStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: surplusStr.length - 3, length: 3))
+        surplusLabel.attributedText = surplusStr
+        
+        let cirleView = headerView.viewWithTag(204) as! UICircularProgressRing
+        cirleView.startProgress(to: CGFloat(((self.model?.getAmount ?? 0) / (self.model?.demandAmount ?? 0)) * Double(100)), duration: 0.1)
+        
+        let dayLabel = headerView.viewWithTag(205) as! UILabel
+        dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), self.model?.useNum ?? 0)
+        
+        self.countTime = self.model?.timeNum ?? 0
+        if self.model?.timeNum ?? 0 > 0 {
+            if self.timer == nil {
+                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+                RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.common)
+            }
+        }
+        
+        let bottomView = self.scrollView.viewWithTag(300)!
+        let balanceLabel = bottomView.viewWithTag(301) as! UILabel
+        balanceLabel.text = String(format: "%.2f", self.model?.availableBalance ?? 0)
+        
+        let profitLabel = bottomView.viewWithTag(305) as! YYLabel
+        let profitStr = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Expected return"), "\((self.model?.userGetAmount ?? 0) * (self.model?.rewardRate ?? 0))"))
+        profitStr.yy_font = UIFont.systemFont(ofSize: 15)
+        if FYTool.getLanguageType() == "en-CN" {
+            profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 15))
+            profitStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 15, length: profitStr.length - 15))
+        }else {
+            profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
+            profitStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: profitStr.length - 4))
+        }
+        profitLabel.attributedText = profitStr
+    }
+    
+    //倒计时
     @objc func countDown() {
         let headerView = self.scrollView.viewWithTag(200)!
         let timeLabel = headerView.viewWithTag(206) as! UILabel
-        self.countTime -= 1
-        timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: Int(self.countTime)))
-        if self.countTime <= 0 {
+        self.countTime! -= 1
+        timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: Int(self.countTime!)))
+        if self.countTime! <= 0 {
             self.timer?.invalidate()
             self.timer = nil
         }
@@ -73,17 +177,34 @@ class FYRushOrderDetailVC: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }else if btn.tag == 302 {
             //充币
+            let vc = FYRechargeVC()
+            self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 303 {
             //输入全部余额
+            let bottomView = self.scrollView.viewWithTag(300)!
+            let amountTextfield = bottomView.viewWithTag(304) as! FYUITextField
+            amountTextfield.text = String(format: "%.2f", self.model?.availableBalance ?? 0)
         }else if btn.tag == 306 {
             //下单
+            let bottomView = self.scrollView.viewWithTag(300)!
+            let amountTextfield = bottomView.viewWithTag(304) as! FYUITextField
+            if Int(amountTextfield.text!)! < 100 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Less100"))
+            }else if Int((amountTextfield.text!))! % 100 != 0 {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "integer"))
+            }else {
+                self.placeOrder(productId: self.id!, amount: Int((amountTextfield.text!))!)
+            }
         }else if btn.tag == 400 {
             //关闭成功提示
             self.successView.isHidden = true
         }else if btn.tag == 401 {
             //再抢一笔
+            self.successView.isHidden = true
         }else if btn.tag == 402 {
             //查看订单
+            NotificationCenter.default.post(name: NSNotification.Name.init("FYRushOrderDetailVC"), object: nil)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 
@@ -146,7 +267,7 @@ class FYRushOrderDetailVC: UIViewController {
         
         //需求金额
         let amountLable = UILabel.init()
-        amountLable.text = "10000.00"
+//        amountLable.text = "10000.00"
         amountLable.textColor = UIColor.white
         amountLable.font = UIFont.boldSystemFont(ofSize: 45)
         amountLable.tag = 201
@@ -173,11 +294,6 @@ class FYRushOrderDetailVC: UIViewController {
         
         //预计年利化率
         let rateLabel = UILabel.init()
-        let str = NSMutableAttributedString(string: "6.0%")
-        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 1))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 1, length: 1))
-        rateLabel.attributedText = str
         rateLabel.tag = 202
         headerView.addSubview(rateLabel)
         rateLabel.snp.makeConstraints { (make) in
@@ -202,11 +318,6 @@ class FYRushOrderDetailVC: UIViewController {
         
         //剩余额度
         let surplusLabel = UILabel.init()
-        let str1 = NSMutableAttributedString(string: "10000.00")
-        str1.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray], range: NSRange(location: 0, length: str1.length))
-        str1.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str1.length - 3))
-        str1.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str1.length - 3, length: 3))
-        surplusLabel.attributedText = str1
         surplusLabel.tag = 203
         headerView.addSubview(surplusLabel)
         surplusLabel.snp.makeConstraints { (make) in
@@ -231,8 +342,6 @@ class FYRushOrderDetailVC: UIViewController {
         cirleView.outerRingColor = UIColor.gray
         //进度条颜色
         cirleView.innerRingColor = FYColor.goldColor()
-        //设置进度
-        cirleView.startProgress(to: 30, duration: 0.1)
         cirleView.tag = 204
         headerView.addSubview(cirleView)
         cirleView.snp.makeConstraints { (make) in
@@ -244,7 +353,6 @@ class FYRushOrderDetailVC: UIViewController {
         
         //用款天数
         let dayLabel = UILabel.init()
-        dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), 1)
         dayLabel.textColor = UIColor.gray
         dayLabel.font = UIFont.systemFont(ofSize: 13)
         dayLabel.tag = 205
@@ -268,10 +376,6 @@ class FYRushOrderDetailVC: UIViewController {
             make.top.equalTo(dayLabel.snp_top)
             make.height.equalTo(dayLabel.snp_height)
         }
-        if self.timer == nil {
-            self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
-            RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.common)
-        }
         
         //下半部
         let bottomView = UIView.init()
@@ -279,7 +383,7 @@ class FYRushOrderDetailVC: UIViewController {
         bottomView.tag = 300
         bottomView.layer.cornerRadius = 10.0
         bottomView.clipsToBounds = true
-        headerView.addSubview(bottomView)
+        scrollView.addSubview(bottomView)
         bottomView.snp.makeConstraints { (make) in
             make.left.equalTo(headerView.snp_left)
             make.width.equalTo(headerView.snp_width)
@@ -302,7 +406,6 @@ class FYRushOrderDetailVC: UIViewController {
 
         //可用余额
         let balanceLabel = UILabel.init()
-        balanceLabel.text = "10000.00"
         balanceLabel.textColor = UIColor.white
         balanceLabel.font = UIFont.systemFont(ofSize: 25)
         balanceLabel.tag = 301
@@ -335,8 +438,9 @@ class FYRushOrderDetailVC: UIViewController {
         //下单金额输入框
         let amountTextfield = FYUITextField.init()
         amountTextfield.backgroundColor = FYColor.rgb(32, 32, 32, 1.0)
-        amountTextfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "Please enter the order amount"), attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 20)])
-        amountTextfield.font = UIFont.systemFont(ofSize: 15)
+        amountTextfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "placeOrderTip"), attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12)])
+        amountTextfield.font = UIFont.systemFont(ofSize: 12)
+        amountTextfield.textColor = UIColor.white
         //设置右边扫描按钮
         let rightButton = UIButton(type: .custom)
         rightButton.setTitle(LanguageHelper.getString(key: "All"), for: .normal)
@@ -346,6 +450,7 @@ class FYRushOrderDetailVC: UIViewController {
         rightButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         amountTextfield.rightView = rightButton
         amountTextfield.rightViewMode = .always
+        amountTextfield.keyboardType = UIKeyboardType.numberPad
         //设置光标初始位置
         amountTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
         amountTextfield.tag = 304
@@ -359,16 +464,6 @@ class FYRushOrderDetailVC: UIViewController {
 
         //预期收益
         let profitLabel = YYLabel.init()
-        let str2 = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Expected return"), "12345"))
-        str2.yy_font = UIFont.systemFont(ofSize: 15)
-        if FYTool.getLanguageType() == "en-CN" {
-            str2.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 15))
-            str2.yy_setColor(FYColor.goldColor(), range: NSRange(location: 15, length: str2.length - 15))
-        }else {
-            str2.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
-            str2.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: str2.length - 4))
-        }
-        profitLabel.attributedText = str2
         profitLabel.tag = 305
         bottomView.addSubview(profitLabel)
         profitLabel.snp.makeConstraints { (make) in
@@ -404,6 +499,7 @@ class FYRushOrderDetailVC: UIViewController {
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 5.0
         view.clipsToBounds = true
+        view.isHidden = true
         
         //关闭按钮
         let closeButton = UIButton.init()

@@ -53,3 +53,5 @@ let applicationList = "/user/InviteCodeLog/selectListByUser?token=%@"
 let applicationinviteCode = "/user/InviteCodeLog/insert?token=%@"
 //我的团队
 let myTeamInfo = "/user/odtaUser/queryDownUser?token=%@"
+//资讯列表
+let newsList = "/user/odtaNews/selectList"

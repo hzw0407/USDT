@@ -11,6 +11,18 @@ import HandyJSON
 
 class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdvertisementCellDelegate {
     
+    //下拉刷新
+    let header = MJRefreshNormalHeader()
+    //上拉加载更多
+    let footer = MJRefreshAutoNormalFooter()
+    //banner图数据数组
+    var bannerArray:[String] = []
+    //资讯数据模型数组
+    var infoArray:[FYHomeModel] = []
+    var page:Int = 1
+    //总数据
+    var totalNumber:Int?
+    
     //pragma mark - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +31,25 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
         self.tableView.snp.makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(self.view).offset(0)
         }
+        
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
+        
+        header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
+        header.setTitle(LanguageHelper.getString(key: "Release and start refreshing"), for: .pulling)
+        header.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
+        self.tableView.mj_header = header
+        header.beginRefreshing()
+        
+        footer.setRefreshingTarget(self, refreshingAction: #selector(footRefresh))
+        footer.setTitle(LanguageHelper.getString(key: "Pull-up Load More"), for: .pulling)
+        footer.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
+        self.tableView.mj_footer = footer
+        
+        self.getBanner()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +59,76 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     }
 
     //pragma mark - CustomMethod
+    //下拉刷新
+    @objc func headerRefresh() {
+        self.page = 1
+        self.infoArray.removeAll()
+        self.getInfoList()
+    }
+    
+    //上拉加载更多
+    @objc func footRefresh() {
+        if self.infoArray.count >= self.totalNumber! {
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "No more data yet"))
+            self.tableView.mj_footer?.endRefreshing()
+        }else {
+            self.page += 1
+            self.getInfoList()
+        }
+    }
+    
+    //获取banner图
+    func getBanner() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.addparameter(key: "currentPage", value: "\(self.page)" as AnyObject)
+        manager.addparameter(key: "pageSize", value: "10" as AnyObject)
+        manager.addparameter(key: "type", value: "2" as AnyObject)
+        manager.request(type: .post, url: newsList, successCompletion: { (dict, message) in
+            self.tableView.mj_header?.endRefreshing()
+            self.tableView.mj_footer?.endRefreshing()
+            if dict["code"]?.intValue == 200 {
+                let tempArray = JSONDeserializer<FYHomeModel>.deserializeModelArrayFrom(array: dict["data"]!["list"] as? NSArray) as? [FYHomeModel]
+                for tempModel in tempArray! {
+                    self.bannerArray.append(tempModel.imgUrl ?? "")
+                }
+                self.tableView.reloadData()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            self.tableView.mj_header?.endRefreshing()
+            self.tableView.mj_footer?.endRefreshing()
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //获取资讯列表
+    func getInfoList() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.addparameter(key: "currentPage", value: "\(self.page)" as AnyObject)
+        manager.addparameter(key: "pageSize", value: "10" as AnyObject)
+        manager.addparameter(key: "type", value: "1" as AnyObject)
+        manager.request(type: .post, url: newsList, successCompletion: { (dict, message) in
+            self.tableView.mj_header?.endRefreshing()
+            self.tableView.mj_footer?.endRefreshing()
+            if dict["code"]?.intValue == 200 {
+                self.totalNumber = dict["data"]!["total"] as? Int
+                let tempArray = JSONDeserializer<FYHomeModel>.deserializeModelArrayFrom(array: dict["data"]!["list"] as? NSArray) as? [FYHomeModel]
+                for tempModel in tempArray! {
+                    self.infoArray.append(tempModel)
+                }
+                self.tableView.reloadData()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            self.tableView.mj_header?.endRefreshing()
+            self.tableView.mj_footer?.endRefreshing()
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
@@ -49,24 +150,21 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
         if section == 0 {
             return 1
         }else {
-            return 5
+            return self.infoArray.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell:FYAdvertisementCell = tableView.dequeueReusableCell(withIdentifier: "ADCell") as! FYAdvertisementCell
-            cell.delegate = self as! FYAdvertisementCellDelegate
-            cell.imageArray = [
-                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542274166859&di=4c518c688e6f1bf54c6e34e461c23888&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F5%2F57b40d52e787e.jpg",
-                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542274217900&di=e2d692fb3232d79fb4c42cdcd5913269&imgtype=jpg&src=http%3A%2F%2Fimg3.imgtn.bdimg.com%2Fit%2Fu%3D2526878758%2C1925171575%26fm%3D214%26gp%3D0.jpg",
-                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542274270063&di=f977235332c479eab625b3ba522b77c4&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fb90e7bec54e736d1cb2b2b2f90504fc2d56269d9.jpg",
-                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542274383727&di=40b810e53893b74f2ea5d767d4e7cb17&imgtype=0&src=http%3A%2F%2Fpic33.nipic.com%2F20131008%2F9527735_184105459000_2.jpg"
-            ]
+            cell.delegate = self as FYAdvertisementCellDelegate
+            cell.imageArray = bannerArray
             return cell
         }else {
             let cell:FYInformationCell = tableView.dequeueReusableCell(withIdentifier: "informationCell") as! FYInformationCell
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            let model = self.infoArray[indexPath.row]
+            cell.refreshWithModel(model:model)
             return cell
         }
     }
@@ -155,6 +253,13 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
             return 40
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = self.infoArray[indexPath.row]
+        let vc = FYHomeDetailVC()
+        vc.urlStr = model.h5Path
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 
     //pragma mark - CustomDelegate
     //点击广告图
@@ -166,11 +271,14 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     lazy var tableView:UITableView = {
         let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.grouped)
         tableView.backgroundColor = FYColor.mainColor()
-        tableView.delegate = self as! UITableViewDelegate
-        tableView.dataSource = self as! UITableViewDataSource
+        tableView.delegate = self as UITableViewDelegate
+        tableView.dataSource = self as UITableViewDataSource
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(FYAdvertisementCell.self, forCellReuseIdentifier: "ADCell")
         tableView.register(FYInformationCell.self, forCellReuseIdentifier: "informationCell")
+        tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
         return tableView;
     }()
     

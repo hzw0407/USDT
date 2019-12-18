@@ -7,13 +7,14 @@
 //  --首页资讯cell
 
 import UIKit
+import Kingfisher
 
 class FYInformationCell: UITableViewCell {
 
     //标题
     lazy var titleLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "这是一个标题这是一个标题"
+//        label.text = "这是一个标题这是一个标题"
         label.textColor = FYColor.goldColor()
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -22,7 +23,7 @@ class FYInformationCell: UITableViewCell {
     //图片
     lazy var iconImageView:UIImageView = {
         let imageView = UIImageView.init()
-        imageView.backgroundColor = FYColor.goldColor()
+//        imageView.backgroundColor = FYColor.goldColor()
         imageView.layer.cornerRadius = 5.0
         imageView.clipsToBounds = true
         return imageView
@@ -31,7 +32,7 @@ class FYInformationCell: UITableViewCell {
     //内容
     lazy var contentLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容"
+//        label.text = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 0
@@ -41,7 +42,7 @@ class FYInformationCell: UITableViewCell {
     //发布时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "2小时前"
+//        label.text = "2小时前"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
         return label
@@ -100,4 +101,11 @@ class FYInformationCell: UITableViewCell {
         super.init(coder: coder)
     }
 
+    //刷新数据
+    func refreshWithModel(model:FYHomeModel) {
+        self.titleLabel.text = model.title ?? ""
+        self.iconImageView.kf.setImage(with: URL(string: model.imgUrl ?? ""))
+        self.contentLabel.text = model.text ?? ""
+        self.timeLabel.text = model.createTime
+    }
 }

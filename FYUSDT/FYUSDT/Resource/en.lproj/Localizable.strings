@@ -144,3 +144,8 @@
 "Audit reject" = "Audit reject";
 "Have been issued" = "Have been issued";
 "Already used" = "Already used";
+"Email" = "Email:%@";
+"Order number" = "Order number:%zd";
+"Income generated for me" = "Income generated for me:%@";
+"Assets1" = "Assets:%@";
+"Profit1" = "Profit:%@";

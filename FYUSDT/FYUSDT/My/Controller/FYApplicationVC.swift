@@ -313,23 +313,6 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             make.height.equalTo(50)
         }
         
-        //下半部
-//        let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.grouped)
-//        tableView.backgroundColor = FYColor.mainColor()
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
-//        tableView.layer.cornerRadius = 5.0
-//        tableView.clipsToBounds = true
-//        tableView.register(FYApplicationCell.self, forCellReuseIdentifier: "cell")
-//        scrollView.addSubview(tableView)
-//        tableView.snp.makeConstraints { (make) in
-//            make.left.equalTo(scrollView).offset(0)
-//            make.width.equalTo(FYScreenWidth)
-//            make.top.equalTo(middleImageView.snp_bottom).offset(-10)
-//            make.height.equalTo(360)
-//        }
-        
         return scrollView
     }()
     

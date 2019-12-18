@@ -49,3 +49,5 @@ let queryNewCode = "/user/InviteCodeLog/selectNewCodeByUser?token=%@"
 let applicationList = "/user/InviteCodeLog/selectListByUser?token=%@"
 //申请邀请码
 let applicationinviteCode = "/user/InviteCodeLog/insert?token=%@"
+//我的团队
+let myTeamInfo = "/user/odtaUser/queryDownUser?token=%@"

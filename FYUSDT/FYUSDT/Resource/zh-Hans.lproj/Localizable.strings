@@ -145,3 +145,8 @@
 "Audit reject" = "审核拒绝";
 "Have been issued" = "已发放";
 "Already used" = "已使用";
+"Email" = "邮箱:%@";
+"Order number" = "订单数:%zd";
+"Income generated for me" = "为我产生的收益:%@";
+"Assets1" = "资产:%@";
+"Profit1" = "收益:%@";

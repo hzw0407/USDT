@@ -16,6 +16,8 @@
 		7C25388F23A8D6A000268805 /* FYRushOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C25388E23A8D6A000268805 /* FYRushOrderModel.swift */; };
 		7C5135A723AA499600BB5174 /* FYOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5135A623AA499600BB5174 /* FYOrderModel.swift */; };
 		7C5135A923AA572700BB5174 /* FYApplicationRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5135A823AA572700BB5174 /* FYApplicationRecordModel.swift */; };
+		7C5135AB23AA65A200BB5174 /* FYMyTeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5135AA23AA65A200BB5174 /* FYMyTeamCell.swift */; };
+		7C5135AD23AA69FD00BB5174 /* FYMyTeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5135AC23AA69FD00BB5174 /* FYMyTeamModel.swift */; };
 		7C7D216523A1D8760083587F /* FYAssetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216423A1D8760083587F /* FYAssetsVC.swift */; };
 		7C7D216723A1DBD90083587F /* FYAdvertisementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */; };
 		7C7D216923A1DBFC0083587F /* FYInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C7D216823A1DBFC0083587F /* FYInformationCell.swift */; };
@@ -89,6 +91,8 @@
 		7C25388E23A8D6A000268805 /* FYRushOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderModel.swift; sourceTree = "<group>"; };
 		7C5135A623AA499600BB5174 /* FYOrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYOrderModel.swift; sourceTree = "<group>"; };
 		7C5135A823AA572700BB5174 /* FYApplicationRecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYApplicationRecordModel.swift; sourceTree = "<group>"; };
+		7C5135AA23AA65A200BB5174 /* FYMyTeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYMyTeamCell.swift; sourceTree = "<group>"; };
+		7C5135AC23AA69FD00BB5174 /* FYMyTeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYMyTeamModel.swift; sourceTree = "<group>"; };
 		7C7D216423A1D8760083587F /* FYAssetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYAssetsVC.swift; sourceTree = "<group>"; };
 		7C7D216623A1DBD90083587F /* FYAdvertisementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYAdvertisementCell.swift; sourceTree = "<group>"; };
 		7C7D216823A1DBFC0083587F /* FYInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYInformationCell.swift; sourceTree = "<group>"; };
@@ -405,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				7C5135A823AA572700BB5174 /* FYApplicationRecordModel.swift */,
+				7C5135AC23AA69FD00BB5174 /* FYMyTeamModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 			children = (
 				7C9C0D2223A3AAA300BFE14F /* FYMyCell.swift */,
 				7CE2CD1223A5190D008EB9AB /* FYApplicationCell.swift */,
+				7C5135AA23AA65A200BB5174 /* FYMyTeamCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -735,7 +741,9 @@
 				7CE2CCBC23A4AD73008EB9AB /* FYRechargeVC.swift in Sources */,
 				7C942EA323A0C0BA0064816A /* FYRegisterVC.swift in Sources */,
 				7C0AEA4623A77CF600CF5A87 /* FYUserModel.swift in Sources */,
+				7C5135AB23AA65A200BB5174 /* FYMyTeamCell.swift in Sources */,
 				7C25388B23A8804600268805 /* FYWithdrawModel.swift in Sources */,
+				7C5135AD23AA69FD00BB5174 /* FYMyTeamModel.swift in Sources */,
 				7CF6EA7D239F6F050077DB90 /* FYHomeVC.swift in Sources */,
 				7CF6EA32239F46820077DB90 /* FYConfig.swift in Sources */,
 				7C942E9923A08FB60064816A /* FYLoginVC.swift in Sources */,

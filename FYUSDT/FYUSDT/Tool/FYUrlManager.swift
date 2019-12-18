@@ -33,6 +33,8 @@ let Assets_InfoList = "/financial/product/getOrderLimit"
 let withdrawInfo = "/wallet/walletInfo/getOdtaCoin?token=%@"
 //提币申请
 let withdrawApplication = "/user/odtaWallet/permission/transfer?token=%@"
+//获取用户充值地址
+let getAddress = "/wallet/walletInfo/getAddress?token=%@"
 //账单
 let bill = "/user/exchange/list?token=%@"
 //抢单广场列表

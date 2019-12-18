@@ -7,6 +7,7 @@
 //  --充币
 
 import UIKit
+import EFQRCode
 
 class FYRechargeVC: UIViewController {
     //pragma mark - lifecycle
@@ -35,6 +36,8 @@ class FYRechargeVC: UIViewController {
             make.top.equalTo(self.bottomView.snp_top).offset(-25)
             make.height.equalTo(50)
         }
+        
+        self.getRechargeAddress()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +47,32 @@ class FYRechargeVC: UIViewController {
     }
 
     //pragma mark - CustomMethod
+    //获取用户充值地址
+    func getRechargeAddress() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.request(type: .post, url: String(format: getAddress, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                let codeAddressView = self.bottomView.viewWithTag(201)!
+                let codeAddressLabel = codeAddressView.viewWithTag(202) as! UILabel
+                let codeImageView = self.bottomView.viewWithTag(203) as! UIImageView
+                let address = dict["data"] as? NSString
+                if address != nil {
+                    codeAddressLabel.text = address! as String
+                    if let tryImage = EFQRCode.generate(
+                        content: address! as String
+                        ) {
+                        codeImageView.image = UIImage.init(cgImage: tryImage)
+                    }
+                }
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMesaage) in
+            MBProgressHUD.showInfo(errMesaage)
+        }
+    }
+    
     @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
            if error != nil{
             MBProgressHUD.showInfo(LanguageHelper.getString(key: "Save failed"))
@@ -147,7 +176,7 @@ class FYRechargeVC: UIViewController {
         
         //二维码图片
         let codeImageView = UIImageView.init()
-        codeImageView.image = UIImage(named: "1576311370176")
+//        codeImageView.image = UIImage(named: "1576311370176")
         codeImageView.tag = 203
         view.addSubview(codeImageView)
         codeImageView.snp.makeConstraints { (make) in
@@ -203,7 +232,6 @@ class FYRechargeVC: UIViewController {
         }
         
         let codeAddressLabel = UILabel.init()
-        codeAddressLabel.text = "ADFFKF45FDAS4F54D545A44DSFDGKFADFFKF45FDAS4F54D545A44DSFDGKF"
         codeAddressLabel.textColor = UIColor.black
         codeAddressLabel.font = UIFont.systemFont(ofSize: 15)
         codeAddressLabel.numberOfLines = 0
@@ -223,7 +251,7 @@ class FYRechargeVC: UIViewController {
         copyImageView.snp.makeConstraints { (make) in
             make.right.equalTo(codeAddressView).offset(-10)
             make.width.equalTo(20)
-            make.bottom.equalTo(codeAddressView).offset(0)
+            make.centerY.equalTo(codeAddressView.snp_centerY)
             make.height.equalTo(20)
         }
         

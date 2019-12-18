@@ -102,7 +102,7 @@
 "Review Order" = "Review Order";
 "Application invitation code" = "Application invitation code";
 "Your account number" = "Your account number";
-"Latest" = "Latest invitation code (click QR code to finish copying)";
+"Latest" = "Latest invitation code (click the invitation code to finish copying)";
 "Immediate application" = "Immediate application";
 "Application record" = "Application record";
 "Invitation code" = "Invitation code";
@@ -138,3 +138,9 @@
 "integer" = "The investment amount needs to be an integer of 100";
 "PlaceOrder Success" = "PlaceOrder Success";
 "No more data yet" = "No more data yet";
+"Reminder" = "Reminder";
+"Are you sure you want to log out?" = "Are you sure you want to log out?";
+"Application" = "Application";
+"Audit reject" = "Audit reject";
+"Have been issued" = "Have been issued";
+"Already used" = "Already used";

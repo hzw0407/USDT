@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCellDelegate {
 
     let dataArray:[[String: String]] = [
         ["image" : "bill", "name" : LanguageHelper.getString(key: "Bill management")],
@@ -60,6 +60,7 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FYMyCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.delegate = self
         let dict:[String : String] = self.dataArray[indexPath.row]
         cell.refreshWithRow(row: indexPath.row,dict: dict)
         return cell
@@ -135,65 +136,32 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.navigationController?.pushViewController(vc, animated: true)
         case 5:
             //游戏
-            MBProgressHUD.showInfo("Coming soon")
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
         case 6:
             //社交
-            MBProgressHUD.showInfo("Coming soon")
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
         case 7:
             //娱乐
-            MBProgressHUD.showInfo("Coming soon")
-        case 8:
-            //注销账户
-            break
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
         default:
             break
         }
-//        if indexPath.row == 0 {
-//            //账单管理
-//            let vc = FYBillVC()
-//            vc.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }else if indexPath.row == 1 {
-//            //申请邀请码
-//            let vc = FYApplicationVC()
-//            vc.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }else if indexPath.row == 2 {
-//            //切换语言
-//            if UserDefaults.standard.value(forKey: "languageStr") == nil {
-//                if FYTool.getLanguageType() == "en-CN" {
-//                    //设置成中文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "zh-Hans")
-//                    UserDefaults.standard.set("zh-Hans", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }else {
-//                    //设置成英文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "en")
-//                    UserDefaults.standard.set("en", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }
-//            }else {
-//                //之前在app里面设置过语言
-//                if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
-//                    //设置成中文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "zh-Hans")
-//                    UserDefaults.standard.set("zh-Hans", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }else {
-//                    //设置成英文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "en")
-//                    UserDefaults.standard.set("en", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }
-//            }
-//            let AppDelegate = UIApplication.shared.delegate as! AppDelegate
-//            AppDelegate.window?.rootViewController = FYTabbarVC()
-//        }else {
-//            //注销登录
-//        }
     }
 
     //pragma mark - CustomDelegate
+    //注销登录
+    func logout() {
+        let alertController = UIAlertController.init(title: LanguageHelper.getString(key: "Reminder"), message: LanguageHelper.getString(key: "Are you sure you want to log out?"), preferredStyle: UIAlertController.Style.alert)
+        let cancelAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Cancel"), style: UIAlertAction.Style.cancel, handler: nil)
+        let confirmAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Confirm"), style: UIAlertAction.Style.default) { (action) in
+            UserDefaults.standard.set(nil, forKey: FYToken)
+            UserDefaults.standard.synchronize()
+            NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "FYSetNewPasswordVC"), object: nil)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
     //pragma mark - GetterAndSetter
     lazy var headerView:UIView = {
@@ -225,7 +193,7 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         //邮箱
         let emailLabel = UILabel.init()
-        emailLabel.text = "12345@qq.com"
+        emailLabel.text = UserDefaults.standard.string(forKey: FYEmail)!
         emailLabel.textColor = FYColor.goldColor()
         emailLabel.font = UIFont.systemFont(ofSize: 15)
         view.addSubview(emailLabel)

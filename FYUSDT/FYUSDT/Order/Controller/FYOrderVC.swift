@@ -7,11 +7,14 @@
 //  --订单
 
 import UIKit
+import HandyJSON
 
 class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     //下拉刷新
     let header = MJRefreshNormalHeader()
+    //数据模型数组
+    var modelArray:[FYOrderModel] = []
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -45,6 +48,9 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         header.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
         self.tableView.mj_header = header
         header.beginRefreshing()
+        
+        //接收下单成功通知
+        NotificationCenter.default.addObserver(self, selector: #selector(getOrderList), name: Notification.Name.init("FYRushOrderDetailVC"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,19 +62,38 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     //pragma mark - CustomMethod
     //下拉刷新
     @objc func headerRefresh() {
-        self.tableView.mj_header?.endRefreshing()
+        self.getOrderList()
+    }
+    
+    //获取订单列表
+    @objc func getOrderList() {
+        let manager = FYRequestManager.shared
+        manager.request(type: .post, url: String(format: orderList, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            self.tableView.mj_header?.endRefreshing()
+            if dict["code"]?.intValue == 200 {
+                self.modelArray = (JSONDeserializer<FYOrderModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as? [FYOrderModel])!
+                self.tableView.reloadData()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            self.tableView.mj_header?.endRefreshing()
+            MBProgressHUD.showInfo(errMessage)
+        }
     }
 
     //pragma mark - ClickMethod
 
     //pragma mark - SystemDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.modelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FYOrderCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        let model = self.modelArray[indexPath.row]
+        cell.refreshWithModel(model:model)
         return cell
     }
     

@@ -8,7 +8,14 @@
 
 import UIKit
 
+public protocol FYMyCellDelegate:class {
+    //注销登录
+    func logout()
+}
+
 class FYMyCell: UITableViewCell {
+    
+    public weak var delegate:FYMyCellDelegate?
 
     lazy var backGroundView:UIView = {
         let view = UIView.init()
@@ -53,6 +60,7 @@ class FYMyCell: UITableViewCell {
         button.setImage(UIImage(named: "quit"), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.setImagePosition(position: .left, spacing: 10)
+        button.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
         return button
     }()
     
@@ -167,6 +175,10 @@ class FYMyCell: UITableViewCell {
             self.languageLabel.isHidden = true
         }
         
+    }
+    
+    @objc func btnClick() {
+        self.delegate?.logout()
     }
 
 }

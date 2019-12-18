@@ -97,7 +97,7 @@ class FYRushOrderDetailVC: UIViewController {
         manager.addparameter(key: "useAmount", value: "\(amount)" as AnyObject)
         manager.request(type: .post, url: String(format: PlaceOrder, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
-//                MBProgressHUD.showInfo(LanguageHelper.getString(key: "PlaceOrder Success"))
+                NotificationCenter.default.post(name: NSNotification.Name.init("FYRushOrderDetailVC"), object: nil)
                 self.successView.isHidden = false
                 self.getDetailInfo()
             }else {
@@ -203,7 +203,6 @@ class FYRushOrderDetailVC: UIViewController {
             self.successView.isHidden = true
         }else if btn.tag == 402 {
             //查看订单
-            NotificationCenter.default.post(name: NSNotification.Name.init("FYRushOrderDetailVC"), object: nil)
             self.navigationController?.popViewController(animated: true)
         }
     }

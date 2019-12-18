@@ -126,6 +126,7 @@ class FYLoginVC: UIViewController {
             if dict["code"]?.intValue == 200 {
                 let userModel = JSONDeserializer<userModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
                 UserDefaults.standard.set(userModel?.token, forKey: FYToken)
+                UserDefaults.standard.set(userModel?.email, forKey: FYEmail)
                 UserDefaults.standard.synchronize()
                 NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "FYLoginVC"), object: nil)
             }else {

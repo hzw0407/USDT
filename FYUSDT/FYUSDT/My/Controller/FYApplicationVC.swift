@@ -7,8 +7,13 @@
 //  --申请邀请码
 
 import UIKit
+import HandyJSON
 
 class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    //申请记录数组
+    var recordArray:[FYApplicationRecordModel] = []
+    
     //pragma mark - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +21,9 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         self.view.backgroundColor = FYColor.mainColor()
         
         self.creatUI()
+        
+        self.getNewCode()
+        self.getApplicationList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +48,15 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             make.top.equalTo(self.backButton.snp_bottom)
             make.bottom.equalTo(self.view).offset(0)
         }
+        
+        let middleImageView = self.scrollView.viewWithTag(300) as! UIImageView
+        self.scrollView.addSubview(self.tableView)
+        self.tableView.snp.makeConstraints { (make) in
+            make.left.equalTo(self.scrollView).offset(0)
+            make.width.equalTo(FYScreenWidth)
+            make.top.equalTo(middleImageView.snp_bottom).offset(-10)
+            make.height.equalTo(360)
+        }
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 770 > FYScreenHeight ? 770 : FYScreenHeight)
         
         self.view.addSubview(self.successView)
@@ -49,16 +66,68 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             make.height.equalTo(320)
         }
     }
+    
+    //获取最新的邀请码
+    func getNewCode() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.request(type: .post, url: String(format: queryNewCode, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                let codeStr = dict["data"]
+                let middleImageView = self.scrollView.viewWithTag(300) as! UIImageView
+                let codeButton = middleImageView.viewWithTag(301) as! UIButton
+                codeButton.setTitle(codeStr as? String, for: .normal)
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //获取申请记录列表
+    func getApplicationList() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.request(type: .post, url: String(format: applicationList, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.recordArray = (JSONDeserializer<FYApplicationRecordModel>.deserializeModelArrayFrom(array: dict["data"]!["list"] as? NSArray) as? [FYApplicationRecordModel])!
+                self.tableView.reloadData()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
+    
+    //申请邀请码
+    func applicationCode() {
+        let manager = FYRequestManager.shared
+        manager.clearparameter()
+        manager.request(type: .post, url: String(format: applicationinviteCode, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            if dict["code"]?.intValue == 200 {
+                self.successView.isHidden = false
+                self.getApplicationList()
+            }else {
+                MBProgressHUD.showInfo(message)
+            }
+        }) { (errMessage) in
+            MBProgressHUD.showInfo(errMessage)
+        }
+    }
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
         if btn.tag == 100 {
             self.navigationController?.popViewController(animated: true)
         }else if btn.tag == 301 {
+            //复制
             UIPasteboard.general.string = btn.titleLabel?.text!
             MBProgressHUD.showInfo(LanguageHelper.getString(key: "copy_success"))
         }else if btn.tag == 302 {
             //申请邀请码
+            self.applicationCode()
         }else if btn.tag == 400 {
             //关闭申请成功view
             self.successView.isHidden = true
@@ -70,12 +139,14 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
     //pragma mark - SystemDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.recordArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FYApplicationCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        let model = self.recordArray[indexPath.row]
+        cell.refreshWithModel(model: model)
         return cell
     }
     
@@ -172,7 +243,7 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
         
         let accountLabel = UILabel.init()
-        accountLabel.text = "12345@qq.com"
+        accountLabel.text = UserDefaults.standard.string(forKey: FYEmail)!
         accountLabel.textColor = FYColor.goldColor()
         accountLabel.font = UIFont.systemFont(ofSize: 15)
         accountLabel.tag = 201
@@ -185,13 +256,12 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
         
         //中间部分
-        let middleView = UIView.init()
-        middleView.backgroundColor = FYTool.hexStringToUIColor(hexString: "#E32959")
-        middleView.layer.cornerRadius = 5.0
-        middleView.clipsToBounds = true
-        middleView.tag = 300
-        scrollView.addSubview(middleView)
-        middleView.snp.makeConstraints { (make) in
+        let middleImageView = UIImageView.init()
+        middleImageView.image = UIImage(named: "applicationBackground")
+        middleImageView.isUserInteractionEnabled = true
+        middleImageView.tag = 300
+        scrollView.addSubview(middleImageView)
+        middleImageView.snp.makeConstraints { (make) in
             make.left.equalTo(scrollView).offset(0)
             make.width.equalTo(FYScreenWidth)
             make.top.equalTo(headeerView.snp_bottom)
@@ -204,23 +274,23 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         latestLabel.textColor = UIColor.white
         latestLabel.font = UIFont.systemFont(ofSize: 15)
         latestLabel.textAlignment = .center
-        middleView.addSubview(latestLabel)
+        middleImageView.addSubview(latestLabel)
         latestLabel.snp.makeConstraints { (make) in
-            make.left.right.equalTo(middleView).offset(0)
-            make.top.equalTo(middleView).offset(25)
+            make.left.right.equalTo(middleImageView).offset(0)
+            make.top.equalTo(middleImageView).offset(25)
             make.height.equalTo(15)
         }
         
         //邀请码
         let codeButton = UIButton.init()
-        codeButton.setTitle("12345", for: .normal)
+//        codeButton.setTitle("12345", for: .normal)
         codeButton.setTitleColor(UIColor.white, for: .normal)
         codeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
         codeButton.tag = 301
         codeButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-        middleView.addSubview(codeButton)
+        middleImageView.addSubview(codeButton)
         codeButton.snp.makeConstraints { (make) in
-            make.left.right.equalTo(middleView).offset(0)
+            make.left.right.equalTo(middleImageView).offset(0)
             make.top.equalTo(latestLabel.snp_bottom).offset(15)
             make.height.equalTo(35)
         }
@@ -235,32 +305,44 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         applicationButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         applicationButton.tag = 302
         applicationButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-        middleView.addSubview(applicationButton)
+        middleImageView.addSubview(applicationButton)
         applicationButton.snp.makeConstraints { (make) in
-            make.centerX.equalTo(middleView.snp_centerX)
+            make.centerX.equalTo(middleImageView.snp_centerX)
             make.width.equalTo(150)
             make.top.equalTo(codeButton.snp_bottom).offset(25)
             make.height.equalTo(50)
         }
         
         //下半部
+//        let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.grouped)
+//        tableView.backgroundColor = FYColor.mainColor()
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+//        tableView.layer.cornerRadius = 5.0
+//        tableView.clipsToBounds = true
+//        tableView.register(FYApplicationCell.self, forCellReuseIdentifier: "cell")
+//        scrollView.addSubview(tableView)
+//        tableView.snp.makeConstraints { (make) in
+//            make.left.equalTo(scrollView).offset(0)
+//            make.width.equalTo(FYScreenWidth)
+//            make.top.equalTo(middleImageView.snp_bottom).offset(-10)
+//            make.height.equalTo(360)
+//        }
+        
+        return scrollView
+    }()
+    
+    lazy var tableView:UITableView = {
         let tableView = UITableView.init(frame: CGRect.zero, style: UITableView.Style.grouped)
-        tableView.backgroundColor = FYColor.mainColor()
+        tableView.backgroundColor = FYColor.rgb(25, 25, 25, 1.0)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.layer.cornerRadius = 5.0
         tableView.clipsToBounds = true
         tableView.register(FYApplicationCell.self, forCellReuseIdentifier: "cell")
-        scrollView.addSubview(tableView)
-        tableView.snp.makeConstraints { (make) in
-            make.left.equalTo(scrollView).offset(0)
-            make.width.equalTo(FYScreenWidth)
-            make.top.equalTo(middleView.snp_bottom).offset(-10)
-            make.height.equalTo(360)
-        }
-        
-        return scrollView
+        return tableView
     }()
     
     //申请成功
@@ -269,6 +351,7 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         view.backgroundColor = UIColor.white
         view.layer.cornerRadius = 5.0
         view.clipsToBounds = true
+        view.isHidden = true
         
         //关闭按钮
         let closeButton = UIButton.init()

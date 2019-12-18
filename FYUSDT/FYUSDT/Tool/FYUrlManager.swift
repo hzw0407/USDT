@@ -41,3 +41,11 @@ let rushOrderList = "/financial/product/getProduct?token=%@"
 let PlaceOrder = "/financial/product/save?token=%@"
 //抢单详情
 let rushOrderDetail = "/financial/product/getProductInfo?token=%@"
+//订单列表
+let orderList = "/financial/product/getOrderList?token=%@"
+//查询最新的邀请码
+let queryNewCode = "/user/InviteCodeLog/selectNewCodeByUser?token=%@"
+//申请邀请码记录列表
+let applicationList = "/user/InviteCodeLog/selectListByUser?token=%@"
+//申请邀请码
+let applicationinviteCode = "/user/InviteCodeLog/insert?token=%@"

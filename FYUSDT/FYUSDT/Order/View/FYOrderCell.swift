@@ -31,11 +31,11 @@ class FYOrderCell: UITableViewCell {
     //下单金额
     lazy var amountLabel:UILabel = {
         let label = UILabel.init()
-        let str = NSMutableAttributedString(string: "10000.00")
-        str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
-        label.attributedText = str
+//        let str = NSMutableAttributedString(string: "10000.00")
+//        str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
+//        label.attributedText = str
         return label
     }()
     
@@ -51,11 +51,11 @@ class FYOrderCell: UITableViewCell {
     //预计收益
     lazy var revenueLabel:UILabel = {
         let label = UILabel.init()
-        let str = NSMutableAttributedString(string: "100.00")
-        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
-        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
-        label.attributedText = str
+//        let str = NSMutableAttributedString(string: "100.00")
+//        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
+//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
+//        label.attributedText = str
         return label
     }()
     
@@ -72,7 +72,7 @@ class FYOrderCell: UITableViewCell {
     //用款天数
     lazy var dayLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "30"
+//        label.text = "30"
         label.textColor = FYColor.grayColor()
         label.font = UIFont.systemFont(ofSize: 25)
         label.textAlignment = .right
@@ -110,7 +110,7 @@ class FYOrderCell: UITableViewCell {
     //剩余额度
     lazy var surplusLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "12345.00"
+//        label.text = "12345.00"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -129,7 +129,7 @@ class FYOrderCell: UITableViewCell {
     //结算时间
     lazy var closeLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "2019-12-13 18:20:30"
+//        label.text = "2019-12-13 18:20:30"
         label.textColor = FYColor.grayColor()
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .right
@@ -139,7 +139,7 @@ class FYOrderCell: UITableViewCell {
     //下单时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-        label.text = String(format: LanguageHelper.getString(key: "Order time"), "2019-12-12 12:12:12")
+//        label.text = String(format: LanguageHelper.getString(key: "Order time"), "2019-12-12 12:12:12")
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 10)
         return label
@@ -148,21 +148,21 @@ class FYOrderCell: UITableViewCell {
     //参与人数
     lazy var participatedLabel:YYLabel = {
         let label = YYLabel.init()
-        let tempStr:String = String(format: LanguageHelper.getString(key: "people have participated"), "10")
-        let str = NSMutableAttributedString(string: tempStr)
-        str.yy_font = UIFont.systemFont(ofSize: 10)
-        if FYTool.getLanguageType() == "en-CN" {
-            //英文
-            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 0, length: 2))
-            str.yy_setColor(UIColor.gray, range: NSRange(location: 2, length: str.length - 2))
-        }else {
-            //中文
-            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 2))
-            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 3, length: 2))
-            str.yy_setColor(UIColor.gray, range: NSRange(location: 5, length: str.length - 5))
-        }
-        label.attributedText = str
-        label.textAlignment = .right
+//        let tempStr:String = String(format: LanguageHelper.getString(key: "people have participated"), "10")
+//        let str = NSMutableAttributedString(string: tempStr)
+//        str.yy_font = UIFont.systemFont(ofSize: 10)
+//        if FYTool.getLanguageType() == "en-CN" {
+//            //英文
+//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 0, length: 2))
+//            str.yy_setColor(UIColor.gray, range: NSRange(location: 2, length: str.length - 2))
+//        }else {
+//            //中文
+//            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 2))
+//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 3, length: 2))
+//            str.yy_setColor(UIColor.gray, range: NSRange(location: 5, length: str.length - 5))
+//        }
+//        label.attributedText = str
+//        label.textAlignment = .right
         return label
     }()
     
@@ -248,7 +248,7 @@ class FYOrderCell: UITableViewCell {
             make.top.equalTo(self.amountLabel.snp_bottom).offset(25)
             make.height.equalTo(35)
         }
-        self.cirleView.startProgress(to: 30, duration: 0.1)
+//        self.cirleView.startProgress(to: 30, duration: 0.1)
         
         let surplusWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Surplus amount"), font: UIFont.systemFont(ofSize: 13), height: 20)
         self.addSubview(self.surplusTitleLabel)
@@ -302,6 +302,43 @@ class FYOrderCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    //刷新数据
+    func refreshWithModel(model:FYOrderModel) {
+        let amountStr = NSMutableAttributedString(string: String(format: "%.2f", model.useAmount ?? 0))
+        amountStr.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: amountStr.length))
+        amountStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: amountStr.length - 3))
+        amountStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: amountStr.length - 3, length: 3))
+        self.amountLabel.attributedText = amountStr
+        
+        let revenueStr = NSMutableAttributedString(string: String(format: "%.2f", model.rewardNum ?? 0))
+        revenueStr.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: revenueStr.length))
+        revenueStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: revenueStr.length - 3))
+        revenueStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: revenueStr.length - 3, length: 3))
+        self.revenueLabel.attributedText = revenueStr
+        
+        self.dayLabel.text = "\(model.useNum ?? 0)"
+        self.cirleView.startProgress(to: CGFloat(((model.getAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
+        self.surplusLabel.text = String(format: "%.2f", model.surplusAmount ?? 0)
+        self.closeLabel.text = model.UseEndTime
+        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Order time"), model.createTime ?? "")
+        
+        let tempStr:String = String(format: LanguageHelper.getString(key: "people have participated"), "\(model.pnum ?? 0)")
+        let participatedStr = NSMutableAttributedString(string: tempStr)
+        participatedStr.yy_font = UIFont.systemFont(ofSize: 10)
+        if FYTool.getLanguageType() == "en-CN" {
+            //英文
+            participatedStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 0, length: 2))
+            participatedStr.yy_setColor(UIColor.gray, range: NSRange(location: 2, length: participatedStr.length - 2))
+        }else {
+            //中文
+            participatedStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 2))
+            participatedStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 3, length: 2))
+            participatedStr.yy_setColor(UIColor.gray, range: NSRange(location: 5, length: participatedStr.length - 5))
+        }
+        self.participatedLabel.attributedText = participatedStr
+        self.participatedLabel.textAlignment = .right
     }
 
 }

@@ -34,22 +34,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C13A717A-FAAF-4F17-A0DB-BF6F07E6452C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYUSDT/Order/View/FYOrderCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "participatedLabel"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "57C8D6ED-CD65-47E9-8961-386D30F4E2DD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -108,6 +92,22 @@
             startingLineNumber = "283"
             endingLineNumber = "283"
             landmarkName = "refreshWithModel(model:index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ABEFF7C4-67F0-410B-8483-14D05840EC01"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FYUSDT/My/Controller/FYApplicationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "getApplicationList()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

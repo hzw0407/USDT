@@ -141,6 +141,7 @@ class FYSetNewPasswordVC: UIViewController {
                 if dict["code"]?.intValue == 200 {
                     MBProgressHUD.showInfo(LanguageHelper.getString(key: "Password changed successfully"))
                     UserDefaults.standard.set(nil, forKey: FYToken)
+                    UserDefaults.standard.set(nil, forKey: FYEmail)
                     UserDefaults.standard.synchronize()
                     NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "FYSetNewPasswordVC"), object: nil)
                 }else {
@@ -161,6 +162,7 @@ class FYSetNewPasswordVC: UIViewController {
                 if dict["code"]?.intValue == 200 {
                     MBProgressHUD.showInfo(LanguageHelper.getString(key: "Password changed successfully"))
                     UserDefaults.standard.set(nil, forKey: FYToken)
+                    UserDefaults.standard.set(nil, forKey: FYEmail)
                     UserDefaults.standard.synchronize()
                     NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "FYSetNewPasswordVC"), object: nil)
                 }else {

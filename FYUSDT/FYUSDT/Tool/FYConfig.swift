@@ -27,3 +27,5 @@ let FYScreenHeight = UIScreen.main.bounds.size.height
 
 //token
 let FYToken = "token"
+//email
+let FYEmail = "email"

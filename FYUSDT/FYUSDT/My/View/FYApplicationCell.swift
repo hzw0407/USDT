@@ -31,19 +31,15 @@ class FYApplicationCell: UITableViewCell {
     //邀请码
     lazy var codeButton:UIButton = {
         let button = UIButton.init()
-        button.setTitle("123445", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
-        button.setImage(UIImage(named: "copy"), for: .normal)
-        button.setImagePosition(position: .right, spacing: 35)
-        button.addTarget(self, action: #selector(btnClick), for: .touchUpInside)
+        button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         return button
     }()
     
     //申请时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-        label.text = String(format: LanguageHelper.getString(key: "Application time"), "2019-12-12 12:12:12")
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
         return label
@@ -52,9 +48,9 @@ class FYApplicationCell: UITableViewCell {
     //状态
     lazy var statusLabel:UILabel = {
         let label = UILabel.init()
-        label.text = "申请中";
         label.textColor = FYColor.greenColor()
         label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .right
         return label
     }()
     
@@ -72,7 +68,7 @@ class FYApplicationCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.backgroundColor = FYColor.mainColor()
+        self.backgroundColor = FYColor.rgb(25, 25, 25, 1.0)
         
         self.addSubview(self.backGroundImageView)
         self.backGroundImageView.snp.makeConstraints { (make) in
@@ -118,8 +114,36 @@ class FYApplicationCell: UITableViewCell {
         super.init(coder: coder)
     }
     
-    @objc func btnClick() {
-        
+    @objc func btnClick(btn:UIButton) {
+        UIPasteboard.general.string = btn.titleLabel?.text!
+        MBProgressHUD.showInfo(LanguageHelper.getString(key: "copy_success"))
+    }
+    
+    //刷新数据
+    func refreshWithModel(model:FYApplicationRecordModel) {
+        if model.userInviteCode != nil {
+            self.codeButton.setTitle(model.userInviteCode, for: .normal)
+            self.codeButton.setImage(UIImage(named: "copy"), for: .normal)
+            self.codeButton.setImagePosition(position: .right, spacing: 15)
+        }
+        self.timeLabel.text = String(format: LanguageHelper.getString(key: "Application time"), model.createTime ?? "")
+        if model.status == 0 {
+            //申请中
+            self.statusLabel.text = LanguageHelper.getString(key: "Application")
+            self.statusLabel.textColor = FYColor.blueColor()
+        }else if model.status == 1 {
+            //审核拒绝
+            self.statusLabel.text = LanguageHelper.getString(key: "Audit reject")
+            self.statusLabel.textColor = FYColor.redColor()
+        }else if model.status == 2 {
+            //已发放
+            self.statusLabel.text = LanguageHelper.getString(key: "Have been issued")
+            self.statusLabel.textColor = FYColor.greenColor()
+        }else if model.status == 3 {
+            //已使用
+            self.statusLabel.text = LanguageHelper.getString(key: "Already used")
+            self.statusLabel.textColor = FYColor.placeholderColor()
+        }
     }
 
 }

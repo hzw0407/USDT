@@ -12,7 +12,7 @@ import HandyJSON
 class FYAssetsVC: UIViewController {
     
     //跑马灯
-    let hourseView = JJMarqueeView.init(frame: CGRect.init(x: 0, y: 612, width: FYScreenWidth, height: 20))
+    let hourseView = JJMarqueeView.init(frame: CGRect.init(x: 0, y: (navigationHeight + 35 + 20 + 152 + 40 + 115 + 70 + 70 + 10), width: FYScreenWidth, height: 20))
     //资产模型
     var assetsModel:FYAssetsModel?
     //消息数组
@@ -59,7 +59,7 @@ class FYAssetsVC: UIViewController {
         self.view.addSubview(self.scrollView)
         self.scrollView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self.view).offset(0)
-            make.top.equalTo(self.view).offset(20)
+            make.top.equalTo(self.view).offset(0)
             make.bottom.equalTo(self.view).offset(-bottomSafeAreaHeight)
         }
         
@@ -68,7 +68,7 @@ class FYAssetsVC: UIViewController {
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
             make.width.equalTo(titleWidth + 5)
-            make.top.equalTo(self.scrollView).offset(100)
+            make.top.equalTo(self.scrollView).offset(navigationHeight)
             make.height.equalTo(35)
         }
         
@@ -118,7 +118,7 @@ class FYAssetsVC: UIViewController {
         self.hourseView.delegate = self
         self.hourseView.dataSource = self
         self.scrollView.addSubview(self.hourseView)
-        self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 640 > FYScreenHeight ? 640 : FYScreenHeight)
+        self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: (navigationHeight + 35 + 20 + 152 + 40 + 115 + 70 + 70 + 10) > FYScreenHeight ? (navigationHeight + 35 + 20 + 152 + 40 + 115 + 70 + 70 + 10) : FYScreenHeight)
     }
     
     //下拉刷新
@@ -302,7 +302,7 @@ class FYAssetsVC: UIViewController {
             make.width.equalTo(165)
             make.top.bottom.equalTo(view).offset(0)
         }
-        
+
         let withdrawImageView = UIImageView.init()
         withdrawImageView.image = UIImage(named: "coin_out")
         withdrawView.addSubview(withdrawImageView)
@@ -324,7 +324,7 @@ class FYAssetsVC: UIViewController {
             make.bottom.equalTo(withdrawView).offset(-20)
             make.height.equalTo(20)
         }
-        
+
         //充币
         let chargeView = UIView.init()
         chargeView.backgroundColor = FYColor.operationColor()
@@ -340,7 +340,7 @@ class FYAssetsVC: UIViewController {
             make.width.equalTo(withdrawView.snp_width)
             make.top.bottom.equalTo(view).offset(0)
         }
-        
+
         let chargeViewImageView = UIImageView.init()
         chargeViewImageView.image = UIImage(named: "coin_in")
         chargeView.addSubview(chargeViewImageView)
@@ -370,7 +370,7 @@ class FYAssetsVC: UIViewController {
 //        withdrawButton.setTitle(LanguageHelper.getString(key: "Withdraw money"), for: .normal)
 //        withdrawButton.setTitleColor(FYColor.goldColor(), for: .normal)
 //        withdrawButton.setImage(UIImage(named: "coin_out"), for: .normal)
-//        withdrawButton.setImagePosition(position: .top, spacing: 5)
+//        withdrawButton.setImagePosition(position: .top, spacing: 35)
 //        withdrawButton.tag = 300
 //        withdrawButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
 //        view.addSubview(withdrawButton)
@@ -379,7 +379,7 @@ class FYAssetsVC: UIViewController {
 //            make.width.equalTo(165)
 //            make.top.bottom.equalTo(view).offset(0)
 //        }
-        //充币
+//        //充币
 //        let chargeButton = UIButton.init()
 //        chargeButton.backgroundColor = FYColor.operationColor()
 //        chargeButton.layer.cornerRadius = 10.0
@@ -387,7 +387,7 @@ class FYAssetsVC: UIViewController {
 //        chargeButton.setTitle(LanguageHelper.getString(key: "Coin charging"), for: .normal)
 //        chargeButton.setTitleColor(FYColor.goldColor(), for: .normal)
 //        chargeButton.setImage(UIImage(named: "coin_in"), for: .normal)
-//        chargeButton.setImagePosition(position: .top, spacing: 5)
+//        chargeButton.setImagePosition(position: .top, spacing: 35)
 //        chargeButton.tag = 301
 //        chargeButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
 //        view.addSubview(chargeButton)

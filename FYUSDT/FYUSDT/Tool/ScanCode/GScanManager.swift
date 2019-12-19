@@ -2,8 +2,8 @@
 //  GScanManager.swift
 //  Scan
 //
-//  Created by gqshi on 2019/6/14.
-//  Copyright © 2019 develop. All rights reserved.
+//  Created by 何志武 on 2019/12/11.
+//  Copyright © 2019 何志武. All rights reserved.
 //
 
 import UIKit

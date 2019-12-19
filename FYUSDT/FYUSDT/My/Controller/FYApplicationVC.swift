@@ -38,7 +38,7 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         self.backButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
             make.width.equalTo(28)
-            make.top.equalTo(self.view).offset(50)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(20)
         }
         

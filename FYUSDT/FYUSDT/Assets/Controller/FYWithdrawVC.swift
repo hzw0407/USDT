@@ -138,7 +138,8 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
     
     //点击全部提币
     @objc func allClick() {
-        
+        let withdrawTextfield = self.bottomView.viewWithTag(202) as! UITextField
+        withdrawTextfield.text = "\(self.model?.availableAmount ?? 0)"
     }
 
     //pragma mark - SystemDelegate
@@ -179,7 +180,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         backButton.snp.makeConstraints { (make) in
             make.left.equalTo(view).offset(15)
             make.width.equalTo(28.5)
-            make.top.equalTo(view).offset(55)
+            make.top.equalTo(view).offset(35)
             make.height.equalTo(20)
         }
         //标题
@@ -316,11 +317,12 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         withdrawTextfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "Amount of money raised"), attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15)])
         withdrawTextfield.font = UIFont.systemFont(ofSize: 15)
         //设置右边全部按钮
+        let rightButtonWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "All"), font: UIFont.systemFont(ofSize: 12), height: 20)
         let withdrawRightButton = UIButton(type: .custom)
         withdrawRightButton.setTitle(LanguageHelper.getString(key: "All"), for: .normal)
         withdrawRightButton.setTitleColor(FYColor.goldColor(), for: .normal)
         withdrawRightButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        withdrawRightButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        withdrawRightButton.frame = CGRect(x: 0, y: 0, width: rightButtonWidth + 5, height: 20)
         withdrawRightButton.addTarget(self, action: #selector(allClick), for: .touchUpInside)
         withdrawTextfield.rightView = withdrawRightButton
         withdrawTextfield.rightViewMode = .always

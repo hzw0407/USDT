@@ -169,7 +169,7 @@ class FYMyCell: UITableViewCell {
             self.logoutButton.isHidden = true
         }
         
-        if row == 2 {
+        if row == 7 {
             self.languageLabel.isHidden = false
         }else {
             self.languageLabel.isHidden = true

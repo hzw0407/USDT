@@ -3,8 +3,8 @@
 //  JJMarqueeView.swift
 //  LaiZhuanPro
 //
-//  Created by 123 on 2018/3/13.
-//  Copyright © 2018年 Jason. All rights reserved.
+//  Created by 何志武 on 2019/12/10.
+//  Copyright © 2019 何志武. All rights reserved.
 //  --跑马灯
 
 @objc

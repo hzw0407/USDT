@@ -26,7 +26,7 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
             make.right.equalTo(self.view)
-            make.top.equalTo(self.view).offset(100)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(35)
         }
         

@@ -57,8 +57,8 @@
             filePath = "FYUSDT/Login/Controller/FYRegisterVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "register()"
             landmarkType = "7">
          </BreakpointContent>
@@ -76,22 +76,6 @@
             startingLineNumber = "61"
             endingLineNumber = "61"
             landmarkName = "getInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "68A80901-95EB-466B-BE8B-C34308FB829F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "FYUSDT/RushOrder/View/FYRushOrderCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "refreshWithModel(model:index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

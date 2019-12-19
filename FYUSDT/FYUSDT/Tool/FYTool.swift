@@ -122,7 +122,7 @@ class FYTool: NSObject {
             }
         }
         
-    //获取手机系统语言
+    //获取当前使用的语言
     static func getLanguageType() -> String {
         if UserDefaults.standard.value(forKey: "languageStr") == nil {
             //没有设置过语言 跟随系统语言
@@ -138,11 +138,6 @@ class FYTool: NSObject {
                 return "zh-Hans"
             }
         }
-        
-//        let def = UserDefaults.standard
-//        let allLanguages: [String] = def.object(forKey: "AppleLanguages") as! [String]
-//        let chooseLanguage = allLanguages.first
-//        return chooseLanguage ?? "en-CN"
     }
         
     static func dateConvertString(date:Date, dateFormat:String="yyyy-MM-dd") -> String {

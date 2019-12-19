@@ -38,7 +38,7 @@ class FYSetNewPasswordVC: UIViewController {
         self.backButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(30)
             make.width.equalTo(30)
-            make.top.equalTo(self.view).offset(110)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(20)
         }
         
@@ -46,7 +46,7 @@ class FYSetNewPasswordVC: UIViewController {
         self.setLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.backButton.snp_left)
             make.right.equalTo(self.view)
-            make.top.equalTo(self.backButton.snp_bottom).offset(80)
+            make.top.equalTo(self.backButton.snp_bottom).offset(60)
             make.height.equalTo(30)
         }
         

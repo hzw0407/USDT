@@ -31,7 +31,7 @@ class FYLoginVC: UIViewController {
         self.closeButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(30)
             make.width.equalTo(20.5)
-            make.top.equalTo(self.view).offset(64)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(20.5)
         }
         
@@ -40,7 +40,7 @@ class FYLoginVC: UIViewController {
         self.regiserButton.snp.makeConstraints { (make) in
             make.right.equalTo(self.view).offset(-30)
             make.width.equalTo(registerWidth + 5)
-            make.top.equalTo(self.view).offset(66.5)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(15)
         }
         
@@ -97,7 +97,7 @@ class FYLoginVC: UIViewController {
             make.left.equalTo(self.lineViewOne.snp_left)
             make.right.equalTo(self.lineViewOne.snp_right)
             make.top.equalTo(self.passwordTextfield.snp_bottom).offset(5)
-            make.height.equalTo(0.2)
+            make.height.equalTo(0.5)
         }
         
         self.view.addSubview(self.loginButton)

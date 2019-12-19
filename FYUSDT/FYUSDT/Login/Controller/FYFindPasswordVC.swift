@@ -38,7 +38,7 @@ class FYFindPasswordVC: UIViewController {
         self.backButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(30)
             make.width.equalTo(30)
-            make.top.equalTo(self.view).offset(110)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(20)
         }
         
@@ -46,7 +46,7 @@ class FYFindPasswordVC: UIViewController {
         self.findPasswordLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.backButton.snp_left)
             make.right.equalTo(self.view)
-            make.top.equalTo(self.backButton.snp_bottom).offset(83)
+            make.top.equalTo(self.backButton.snp_bottom).offset(63)
             make.height.equalTo(28)
         }
         
@@ -73,6 +73,8 @@ class FYFindPasswordVC: UIViewController {
             make.top.equalTo(self.lineViewOne.snp_bottom).offset(33)
             make.height.equalTo(self.emailTextfield.snp_height)
         }
+        let placeLabel = self.codeTextfield.value(forKeyPath: "_placeholderLabel") as! UILabel
+        placeLabel.adjustsFontSizeToFitWidth = true
         
         self.view.addSubview(self.lineViewTwo)
         self.lineViewTwo.snp.makeConstraints { (make) in
@@ -194,7 +196,8 @@ class FYFindPasswordVC: UIViewController {
         textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "input_code"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
-        let rightButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 70, height: 20))
+        let rightButtonWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "get_code"), font: UIFont.systemFont(ofSize: 14), height: 20)
+        let rightButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: rightButtonWidth + 5, height: 20))
         rightButton.backgroundColor = FYColor.goldColor()
         rightButton.setTitle(LanguageHelper.getString(key: "get_code"), for: .normal)
         rightButton.setTitleColor(UIColor.white, for: .normal)

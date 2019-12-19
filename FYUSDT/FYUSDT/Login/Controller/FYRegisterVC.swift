@@ -42,7 +42,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         self.closeButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.scrollView).offset(30)
             make.width.equalTo(20.5)
-            make.top.equalTo(self.scrollView).offset(64)
+            make.top.equalTo(self.scrollView).offset(navigationHeight)
             make.height.equalTo(20.5)
         }
         
@@ -50,7 +50,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         self.loginButton.snp.makeConstraints { (make) in
             make.right.equalTo(self.view).offset(-30)
             make.width.equalTo(40)
-            make.top.equalTo(self.scrollView).offset(66.5)
+            make.top.equalTo(self.scrollView).offset(navigationHeight)
             make.height.equalTo(15)
         }
         
@@ -94,6 +94,10 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
             make.top.equalTo(self.lineViewOne.snp_bottom).offset(33)
             make.height.equalTo(self.emailTextfield.snp_height)
         }
+        self.codeTextfield.layoutIfNeeded()
+        self.codeTextfield.adjustsFontSizeToFitWidth = true
+        let placeLabel = self.codeTextfield.value(forKeyPath: "_placeholderLabel") as! UILabel
+        placeLabel.adjustsFontSizeToFitWidth = true
 
         self.scrollView.addSubview(self.lineViewTwo)
         self.lineViewTwo.snp.makeConstraints { (make) in
@@ -162,12 +166,11 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         self.scrollView.addSubview(self.agreementLabel)
         self.agreementLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.checklistButton.snp_right).offset(5)
-//            make.right.equalTo(self.lineViewFive.snp_right)
             make.right.equalTo(self.scrollView)
             make.top.equalTo(self.checklistButton.snp_top)
             make.height.equalTo(20)
         }
-
+        
         self.scrollView.addSubview(self.nextButton)
         self.nextButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.lineViewFive.snp_left)
@@ -177,7 +180,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         }
         
         self.scrollView.layoutIfNeeded()
-        self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 670 > FYScreenHeight ? 670 : FYScreenHeight)
+        self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: 700 > FYScreenHeight ? 700 : FYScreenHeight)
     }
     
     //验证邮箱
@@ -363,6 +366,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "input_code"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14)])
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
+        let rightButtonWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "get_code"), font: UIFont.systemFont(ofSize: 14), height: 20)
         let rightButton = UIButton(type: .custom)
         rightButton.backgroundColor = FYColor.goldColor()
         rightButton.setTitle(LanguageHelper.getString(key: "get_code"), for: .normal)
@@ -370,7 +374,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         rightButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         rightButton.layer.cornerRadius = 5.0
         rightButton.clipsToBounds = true
-        rightButton.frame = CGRect(x: 0, y: 0, width: 100, height: 20)
+        rightButton.frame = CGRect(x: 0, y: 0, width: rightButtonWidth + 5, height: 20)
         rightButton.tag = 102
         rightButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         textfield.rightView = rightButton
@@ -453,7 +457,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         let attribute = NSMutableAttributedString(string: agreeString)
         var range:NSRange?
         if FYTool.getLanguageType() == "en-CN" {
-            range = NSRange(location: 29, length: 19)
+            range = NSRange(location: 28, length: attribute.length - 28)
             attribute.yy_setColor(FYColor.placeholderColor(), range: NSRange(location: 0, length: 29))
         }else {
             range = NSRange(location: 7, length: 6)

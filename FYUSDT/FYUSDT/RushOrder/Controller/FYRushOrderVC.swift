@@ -19,7 +19,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
     var infoArray:[FYRushOrderModel] = []
     var page:Int = 1
     //总数据
-    var totalNumber:Int?
+    var totalNumber:Int = 0
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         self.titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
             make.right.equalTo(self.view)
-            make.top.equalTo(self.view).offset(100)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(35)
         }
         
@@ -80,7 +80,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
     
     //上拉加载更多
     @objc func footRefresh() {
-        if self.infoArray.count >= self.totalNumber! {
+        if self.infoArray.count >= self.totalNumber {
             MBProgressHUD.showInfo(LanguageHelper.getString(key: "No more data yet"))
             self.tableView.mj_footer?.endRefreshing()
         }else {
@@ -99,7 +99,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
             self.tableView.mj_header?.endRefreshing()
             self.tableView.mj_footer?.endRefreshing()
             if dict["code"]?.intValue == 200 {
-                self.totalNumber = dict["data"]!["total"] as? Int
+                self.totalNumber = (dict["data"]!["total"] as? Int)!
                 let tempArray = JSONDeserializer<FYRushOrderModel>.deserializeModelArrayFrom(array: dict["data"]!["list"] as? NSArray) as? [FYRushOrderModel]
                 for tempModel in tempArray! {
                     self.infoArray.append(tempModel)

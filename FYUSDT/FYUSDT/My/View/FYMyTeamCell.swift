@@ -78,7 +78,7 @@ class FYMyTeamCell: UITableViewCell {
         self.addSubview(self.emailLabel)
         self.emailLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(15)
-            make.width.equalTo((FYScreenWidth - 30) / 2)
+            make.width.equalTo(((FYScreenWidth - 30) / 2) + 10)
             make.top.equalTo(self).offset(20)
             make.height.equalTo(20)
         }
@@ -86,7 +86,7 @@ class FYMyTeamCell: UITableViewCell {
         self.addSubview(self.assetLabel)
         self.assetLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-15)
-            make.width.equalTo(self.emailLabel.snp_width)
+            make.width.equalTo(self.emailLabel.snp_width).offset(-20)
             make.top.equalTo(self.emailLabel.snp_top)
             make.height.equalTo(self.emailLabel.snp_height)
         }

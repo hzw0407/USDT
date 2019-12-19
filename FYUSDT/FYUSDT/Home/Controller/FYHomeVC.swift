@@ -21,7 +21,7 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     var infoArray:[FYHomeModel] = []
     var page:Int = 1
     //总数据
-    var totalNumber:Int?
+    var totalNumber:Int = 0
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     
     //上拉加载更多
     @objc func footRefresh() {
-        if self.infoArray.count >= self.totalNumber! {
+        if self.infoArray.count >= self.totalNumber {
             MBProgressHUD.showInfo(LanguageHelper.getString(key: "No more data yet"))
             self.tableView.mj_footer?.endRefreshing()
         }else {
@@ -128,7 +128,7 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
             self.tableView.mj_header?.endRefreshing()
             self.tableView.mj_footer?.endRefreshing()
             if dict["code"]?.intValue == 200 {
-                self.totalNumber = dict["data"]!["total"] as? Int
+                self.totalNumber = (dict["data"]!["total"] as? Int)!
                 let tempArray = JSONDeserializer<FYHomeModel>.deserializeModelArrayFrom(array: dict["data"]!["list"] as? NSArray) as? [FYHomeModel]
                 for tempModel in tempArray! {
                     self.infoArray.append(tempModel)
@@ -150,8 +150,6 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
             //抢单
             let vc = FYLoginVC()
             self.navigationController?.pushViewController(vc, animated: true)
-        }else if btn.tag == 101 {
-            //全部
         }
     }
 
@@ -234,20 +232,20 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
                 make.top.equalTo(headerView)
                 make.height.equalTo(20)
             }
-            //全部
-            let allButton = UIButton.init()
-            allButton.setTitle(LanguageHelper.getString(key: "All"), for: .normal)
-            allButton.setTitleColor(FYColor.goldColor(), for: .normal)
-            allButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-            allButton.tag = 101
-            allButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-            headerView.addSubview(allButton)
-            allButton.snp.makeConstraints { (make) in
-                make.right.equalTo(headerView).offset(-15)
-                make.width.equalTo(30)
-                make.top.equalTo(headerView)
-                make.height.equalTo(infomationLabel.snp_height)
-            }
+//            //全部
+//            let allButton = UIButton.init()
+//            allButton.setTitle(LanguageHelper.getString(key: "All"), for: .normal)
+//            allButton.setTitleColor(FYColor.goldColor(), for: .normal)
+//            allButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+//            allButton.tag = 101
+//            allButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+//            headerView.addSubview(allButton)
+//            allButton.snp.makeConstraints { (make) in
+//                make.right.equalTo(headerView).offset(-15)
+//                make.width.equalTo(30)
+//                make.top.equalTo(headerView)
+//                make.height.equalTo(infomationLabel.snp_height)
+//            }
             return headerView
         }
     }

@@ -245,7 +245,7 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         backButton.snp.makeConstraints { (make) in
             make.left.equalTo(view).offset(15)
             make.width.equalTo(28.5)
-            make.top.equalTo(view).offset(55)
+            make.top.equalTo(view).offset(navigationHeight)
             make.height.equalTo(20)
         }
         //标题

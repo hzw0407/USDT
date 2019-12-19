@@ -19,7 +19,7 @@ class FYMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var listArray:[FYMyTeamModel] = []
     var page:Int = 1
     //总数据
-    var totalNumber:Int?
+    var totalNumber:Int = 0
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -42,7 +42,7 @@ class FYMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.backButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
             make.width.equalTo(28)
-            make.top.equalTo(self.view).offset(50)
+            make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(20)
         }
         
@@ -79,7 +79,7 @@ class FYMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     //上拉加载更多
     @objc func footRefresh() {
-        if self.listArray.count >= self.totalNumber ?? 0 {
+        if self.listArray.count >= self.totalNumber {
             MBProgressHUD.showInfo(LanguageHelper.getString(key: "No more data yet"))
             self.tableView.mj_footer?.endRefreshing()
         }else {
@@ -98,7 +98,7 @@ class FYMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.tableView.mj_header?.endRefreshing()
             self.tableView.mj_footer?.endRefreshing()
             if dict["code"]?.intValue == 200 {
-                self.totalNumber = dict["data"]!["total"] as? Int
+                self.totalNumber = (dict["data"]!["total"] as? Int)!
                 let tempArray = JSONDeserializer<FYMyTeamModel>.deserializeModelArrayFrom(array: dict["data"]!["list"] as? NSArray) as? [FYMyTeamModel]
                 for tempModel in tempArray! {
                     self.listArray.append(tempModel)
@@ -116,7 +116,7 @@ class FYMyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     //pragma mark - ClickMethod
     @objc func btnClick() {
-        
+        self.navigationController?.popViewController(animated: true)
     }
 
     //pragma mark - SystemDelegate

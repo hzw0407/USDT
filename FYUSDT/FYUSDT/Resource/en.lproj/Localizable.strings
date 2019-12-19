@@ -20,7 +20,7 @@
 "sure_password" = "Please confirm the password";
 "invateCode" = "Invitation code (required)";
 "Next step" = "Next step";
-"Agreement" = "I have read and agree to the 《service agreement》";
+"Agreement" = "I have read and agree to the<service agreement>";
 "Empty Email" = "Email address cannot be empty";
 "Empty Code" = "Verification code cannot be empty";
 "Empty Password" = "Password cannot be empty";
@@ -43,7 +43,7 @@
 "Accumulated income" = "Accumulated income %.f USDT";
 "Withdraw money" = "Withdraw money";
 "Coin charging" = "Coin charging";
-"Grab the order immediately" = "Grab the order immediately";
+"Grab the order immediately" = "Rush order immediately";
 "Demand amount" = "Demand amount(USDT)";
 "Annual interest rate" = "Annual interest rate";
 "Rush1" = "Rush Order";
@@ -106,7 +106,7 @@
 "Immediate application" = "Immediate application";
 "Application record" = "Application record";
 "Invitation code" = "Invitation code";
-"Application time" = "Application time %@";
+"Application time" = "Time %@";
 "Application succeeded" = "Application succeeded, waiting for approval";
 "Return to view" = "Return to view";
 "Set new password" = "Set new password";

@@ -12,13 +12,13 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCel
 
     let dataArray:[[String: String]] = [
         ["image" : "bill", "name" : LanguageHelper.getString(key: "Bill management")],
-        ["image" : "invite_code", "name" : LanguageHelper.getString(key: "Invite friends")],
-        ["image" : "language", "name" : LanguageHelper.getString(key: "Language")],
         ["image" : "team", "name" : LanguageHelper.getString(key: "My team")],
         ["image" : "safe", "name" : LanguageHelper.getString(key: "Safety Center")],
+        ["image" : "invite_code", "name" : LanguageHelper.getString(key: "Invite friends")],
         ["image" : "game", "name" : LanguageHelper.getString(key: "Game")],
         ["image" : "Social", "name" : LanguageHelper.getString(key: "Social contact")],
         ["image" : "Entertainment", "name" : LanguageHelper.getString(key: "Entertainment")],
+        ["image" : "language", "name" : LanguageHelper.getString(key: "Language")],
         ["image" : "quit", "name" : LanguageHelper.getString(key: "Cancellation account")]
     ]
     
@@ -31,7 +31,7 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCel
         self.view.addSubview(self.headerView)
         self.headerView.snp.makeConstraints { (make) in
             make.left.right.top.equalTo(self.view).offset(0)
-            make.height.equalTo(300)
+            make.height.equalTo(270)
         }
         
         self.view.addSubview(self.tableView)
@@ -89,11 +89,31 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCel
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case 1:
-            //申请邀请码
-            let vc = FYApplicationVC()
+            //我的团队
+            let vc = FYMyTeamVC()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         case 2:
+            //安全中心
+            let vc = FYFindPasswordVC()
+            vc.type = 2
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            //邀请好友
+            let vc = FYApplicationVC()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            //游戏
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
+        case 5:
+            //社交
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
+        case 6:
+            //娱乐
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
+        case 7:
             //切换语言
             if FYTool.getLanguageType() == "en-CN" {
                 //设置成中文并记录
@@ -134,26 +154,6 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCel
 //            }
             let AppDelegate = UIApplication.shared.delegate as! AppDelegate
             AppDelegate.window?.rootViewController = FYTabbarVC()
-        case 3:
-            //我的团队
-            let vc = FYMyTeamVC()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 4:
-            //安全中心
-            let vc = FYFindPasswordVC()
-            vc.type = 2
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case 5:
-            //游戏
-            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
-        case 6:
-            //社交
-            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
-        case 7:
-            //娱乐
-            MBProgressHUD.showInfo(LanguageHelper.getString(key: "Coming soon"))
         default:
             break
         }
@@ -187,7 +187,7 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCel
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(view).offset(15)
             make.right.equalTo(view).offset(0)
-            make.top.equalTo(view).offset(100)
+            make.top.equalTo(view).offset(navigationHeight)
             make.height.equalTo(35)
         }
         

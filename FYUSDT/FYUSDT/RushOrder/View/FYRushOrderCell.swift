@@ -40,11 +40,6 @@ class FYRushOrderCell: UITableViewCell {
     //需求金额
     lazy var amountLabel:UILabel = {
         let label = UILabel.init()
-//        let str = NSMutableAttributedString(string: "10000.00")
-//        str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 3))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 3, length: 3))
-//        label.attributedText = str
         return label
     }()
     
@@ -60,11 +55,6 @@ class FYRushOrderCell: UITableViewCell {
     //预计年利化率
     lazy var rateLabel:UILabel = {
         let label = UILabel.init()
-//        let str = NSMutableAttributedString(string: "6.0%")
-//        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: str.length - 1))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: str.length - 1, length: 1))
-//        label.attributedText = str
         return label
     }()
     
@@ -110,7 +100,6 @@ class FYRushOrderCell: UITableViewCell {
     //剩余额度
     lazy var surplusLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "12345.00"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 15~)
         return label
@@ -119,18 +108,18 @@ class FYRushOrderCell: UITableViewCell {
     //用款天数
     lazy var dayLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = String(format: LanguageHelper.getString(key: "Payment days"), 1)
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13~)
+        label.textAlignment = .right
         return label
     }()
     
     //剩余时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = String(format: LanguageHelper.getString(key: "Remaining time"), "01:20:30")
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13~)
+        label.textAlignment = .right
         return label
     }()
     
@@ -167,7 +156,7 @@ class FYRushOrderCell: UITableViewCell {
         self.addSubview(self.amountTitleLabel)
         self.amountTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.lineView.snp_left)
-            make.width.equalTo(amountTitleWidth~ + 30~)
+            make.width.equalTo(amountTitleWidth + 30~)
             make.top.equalTo(self.lineView.snp_bottom).offset(20~)
             make.height.equalTo(20~)
         }
@@ -184,7 +173,7 @@ class FYRushOrderCell: UITableViewCell {
         self.addSubview(self.rateTitleLabel)
         self.rateTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.amountTitleLabel.snp_right)
-            make.width.equalTo(rateTitleWidth~ + 5~)
+            make.width.equalTo(rateTitleWidth + 5~)
             make.top.equalTo(self.amountTitleLabel.snp_top)
             make.height.equalTo(self.amountTitleLabel.snp_height)
         }
@@ -201,7 +190,7 @@ class FYRushOrderCell: UITableViewCell {
         self.addSubview(self.rushButton)
         self.rushButton.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-15~)
-            make.width.equalTo(rushWidth~ + 5~ > 80~ ? rushWidth~ + 5~ : 80~)
+            make.width.equalTo(rushWidth + 5~ > 80~ ? rushWidth + 5~ : 80~)
             make.top.equalTo(self.rateTitleLabel.snp_top)
             make.height.equalTo(45~)
         }
@@ -216,12 +205,13 @@ class FYRushOrderCell: UITableViewCell {
             make.height.equalTo(35~)
         }
         
+        let surplusTitleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Surplus amount"), font: UIFont.systemFont(ofSize: 13~), height: 20~)
         self.addSubview(self.surplusTitleLabel)
         self.surplusTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.cirleView.snp_right).offset(10~)
-            make.width.equalTo(150~)
+            make.width.equalTo(surplusTitleWidth + 5~)
             make.top.equalTo(self.cirleView.snp_top)
-            make.height.equalTo(20)
+            make.height.equalTo(20~)
         }
         
         self.addSubview(self.surplusLabel)
@@ -234,16 +224,18 @@ class FYRushOrderCell: UITableViewCell {
         
         self.addSubview(self.dayLabel)
         self.dayLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.surplusTitleLabel.snp_right).offset(5~)
             make.right.equalTo(self).offset(-15~)
-            make.width.equalTo(0)
+//            make.width.equalTo(0)
             make.top.equalTo(self.surplusTitleLabel.snp_top)
             make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
         
         self.addSubview(self.timeLabel)
         self.timeLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.dayLabel.snp_left)
             make.right.equalTo(self.dayLabel.snp_right)
-            make.width.equalTo(0)
+//            make.width.equalTo(0)
             make.bottom.equalTo(self.surplusLabel.snp_bottom)
             make.height.equalTo(self.dayLabel.snp_height)
         }
@@ -262,13 +254,13 @@ class FYRushOrderCell: UITableViewCell {
     @objc func countDown() {
         self.countTime! -= 1
         self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: self.countTime!))
-        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
-        self.dayLabel.snp.updateConstraints { (make) in
-            make.width.equalTo(timeWidth~ + 10~)
-        }
-        self.timeLabel.snp.updateConstraints { (make) in
-            make.width.equalTo(self.dayLabel.snp_width)
-        }
+//        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
+//        self.dayLabel.snp.updateConstraints { (make) in
+//            make.width.equalTo(timeWidth~ + 10~)
+//        }
+//        self.timeLabel.snp.updateConstraints { (make) in
+//            make.width.equalTo(self.dayLabel.snp_width)
+//        }
         if self.countTime! <= 0 {
             self.timer?.invalidate()
             self.timer = nil
@@ -299,19 +291,19 @@ class FYRushOrderCell: UITableViewCell {
         self.dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), model.useNum ?? 0)
         self.timeLabel.text = String(format: LanguageHelper.getString(key: "Remaining time"), FYTool.transToHourMinSec(time: model.timeNum ?? 0))
         
-        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
-        self.dayLabel.snp.remakeConstraints { (make) in
-            make.right.equalTo(self).offset(-15~)
-            make.width.equalTo(timeWidth + 10~)
-            make.top.equalTo(self.surplusTitleLabel.snp_top)
-            make.height.equalTo(self.surplusTitleLabel.snp_height)
-        }
-        self.timeLabel.snp.remakeConstraints { (make) in
-            make.right.equalTo(self.dayLabel.snp_right)
-            make.width.equalTo(self.dayLabel.snp_width)
-            make.bottom.equalTo(self.surplusLabel.snp_bottom)
-            make.height.equalTo(self.dayLabel.snp_height)
-        }
+//        let timeWidth = FYTool.getTexWidth(textStr: self.timeLabel.text!, font: UIFont.systemFont(ofSize: 13~), height: 20~)
+//        self.dayLabel.snp.remakeConstraints { (make) in
+//            make.right.equalTo(self).offset(-15~)
+//            make.width.equalTo(timeWidth + 10~)
+//            make.top.equalTo(self.surplusTitleLabel.snp_top)
+//            make.height.equalTo(self.surplusTitleLabel.snp_height)
+//        }
+//        self.timeLabel.snp.remakeConstraints { (make) in
+//            make.right.equalTo(self.dayLabel.snp_right)
+//            make.width.equalTo(self.dayLabel.snp_width)
+//            make.bottom.equalTo(self.surplusLabel.snp_bottom)
+//            make.height.equalTo(self.dayLabel.snp_height)
+//        }
         
         self.countTime = model.timeNum ?? 0
         if model.timeNum ?? 0 > 0 {

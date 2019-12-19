@@ -13,7 +13,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'SnapKit'
 #适配
 pod 'SwiftyFitsize'
-#若提示
+#弱提示
 pod 'MBProgressHUD'
 #上下拉刷新
 pod 'MJRefresh'

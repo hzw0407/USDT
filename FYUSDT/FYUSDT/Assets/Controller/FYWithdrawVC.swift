@@ -89,7 +89,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
     //刷新数据
     func refreshInfo() {
         let numberLabel = self.bottomView.viewWithTag(200) as! UILabel
-        numberLabel.text = String(format: "%.f", self.model?.availableAmount ?? 0)
+        numberLabel.text = String(format: "%.f USDT", self.model?.availableAmount ?? 0)
         let feeLabel = self.bottomView.viewWithTag(203) as! YYLabel
         let str = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Miner cost"), self.model?.withdrawFee ?? 0))
         str.yy_font = UIFont.systemFont(ofSize: 12)
@@ -247,7 +247,6 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         
         //可提币数量
         let numberLabel = UILabel.init()
-//        numberLabel.text = "1234567";
         numberLabel.textColor = FYColor.goldColor()
         numberLabel.font = UIFont.boldSystemFont(ofSize: 20)
         numberLabel.textAlignment = .center

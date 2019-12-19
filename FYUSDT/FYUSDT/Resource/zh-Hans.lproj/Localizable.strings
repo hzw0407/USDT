@@ -91,7 +91,7 @@
 "Money withdrawal address" = "提币地址";
 "USDT withdrawal address" = "   USDT 提币地址";
 "Amount of money raised" = "   提币数量";
-"Miner cost" = "矿工费用 %.f";
+"Miner cost" = "矿工费用 %.f USDT";
 "Confirmation of withdrawals" = "确认提币";
 "Grab details" = "抢单详情";
 "Available balance" = "可用余额(USDT)";

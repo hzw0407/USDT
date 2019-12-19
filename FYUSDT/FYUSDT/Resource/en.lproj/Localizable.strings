@@ -90,7 +90,7 @@
 "Money withdrawal address" = "Money withdrawal address";
 "USDT withdrawal address" = "   USDT withdrawal address";
 "Amount of money raised" = "   Amount of money raised";
-"Miner cost" = "Miner cost %.f";
+"Miner cost" = "Miner cost %.f USDT";
 "Confirmation of withdrawals" = "Confirmation of withdrawals";
 "Grab details" = "Grab details";
 "Available balance" = "Available balance(USDT)";

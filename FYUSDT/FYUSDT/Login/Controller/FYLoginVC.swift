@@ -35,10 +35,11 @@ class FYLoginVC: UIViewController {
             make.height.equalTo(20.5)
         }
         
+        let registerWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Register"), font: UIFont.systemFont(ofSize: 14), height: 15)
         self.view.addSubview(self.regiserButton)
         self.regiserButton.snp.makeConstraints { (make) in
             make.right.equalTo(self.view).offset(-30)
-            make.width.equalTo(40)
+            make.width.equalTo(registerWidth + 5)
             make.top.equalTo(self.view).offset(66.5)
             make.height.equalTo(15)
         }

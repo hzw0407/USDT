@@ -177,7 +177,6 @@ class FYRechargeVC: UIViewController {
         
         //二维码图片
         let codeImageView = UIImageView.init()
-//        codeImageView.image = UIImage(named: "1576311370176")
         codeImageView.tag = 203
         view.addSubview(codeImageView)
         codeImageView.snp.makeConstraints { (make) in

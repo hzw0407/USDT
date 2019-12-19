@@ -21,8 +21,6 @@ class FYBillCell: UITableViewCell {
     //盈亏
     lazy var YKLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "+1000.00 USDT"
-//        label.textColor = FYColor.greenColor()
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()
@@ -55,7 +53,6 @@ class FYBillCell: UITableViewCell {
     //时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "2019-12-14 12:12:12"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .right
@@ -93,20 +90,6 @@ class FYBillCell: UITableViewCell {
             make.top.equalTo(self.backGroundView).offset(20)
             make.height.equalTo(11)
         }
-        
-//        let waitWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Waiting for arrival"), font: UIFont.systemFont(ofSize: 10), height: 16)
-//        self.backGroundView.addSubview(self.waitImageView)
-//        self.waitImageView.snp.makeConstraints { (make) in
-//            make.right.equalTo(self.backGroundView)
-//            make.width.equalTo(waitWidth + 10)
-//            make.top.equalTo(self.backGroundView)
-//            make.height.equalTo(16)
-//        }
-        
-//        self.waitImageView.addSubview(self.waitLabel)
-//        self.waitLabel.snp.makeConstraints { (make) in
-//            make.left.right.top.bottom.equalTo(self.waitImageView).offset(0)
-//        }
         
         self.backGroundView.addSubview(self.typeLabel)
         self.typeLabel.snp.makeConstraints { (make) in

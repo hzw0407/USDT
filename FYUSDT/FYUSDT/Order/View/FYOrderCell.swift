@@ -24,11 +24,6 @@ class FYOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Order amount")
         label.textColor = UIColor.gray
-//        if FYTool.getLanguageType() == "en-CN" {
-//            label.font = UIFont.systemFont(ofSize: 10)
-//        }else {
-//            label.font = UIFont.systemFont(ofSize: 13)
-//        }
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
@@ -44,11 +39,6 @@ class FYOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Estimated revenue")
         label.textColor = UIColor.gray
-//        if FYTool.getLanguageType() == "en-CN" {
-//            label.font = UIFont.systemFont(ofSize: 10)
-//        }else {
-//            label.font = UIFont.systemFont(ofSize: 13)
-//        }
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
@@ -64,11 +54,6 @@ class FYOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Payment days (days)")
         label.textColor = UIColor.gray
-//        if FYTool.getLanguageType() == "en-CN" {
-//            label.font = UIFont.systemFont(ofSize: 10)
-//        }else {
-//            label.font = UIFont.systemFont(ofSize: 13)
-//        }
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .right
         return label
@@ -176,11 +161,9 @@ class FYOrderCell: UITableViewCell {
             make.height.equalTo(0.5)
         }
         
-        let amountWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Order amount"), font: UIFont.systemFont(ofSize: 13), height: 20)
         self.addSubview(self.amountTitleLabel)
         self.amountTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.lineView.snp_left)
-//            make.width.equalTo(amountWidth + 5)
             make.width.equalTo((FYScreenWidth - 30) / 3)
             make.top.equalTo(self.lineView.snp_bottom).offset(20)
             make.height.equalTo(20)
@@ -196,11 +179,9 @@ class FYOrderCell: UITableViewCell {
             make.height.equalTo(self.amountTitleLabel.snp_height)
         }
         
-        let revenueWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Estimated revenue"), font: UIFont.systemFont(ofSize: 13), height: 20)
         self.addSubview(self.revenueTitleLabel)
         self.revenueTitleLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.snp_centerX)
-//            make.width.equalTo(revenueWidth + 5)
             make.width.equalTo(self.amountTitleLabel.snp_width)
             make.top.equalTo(self.amountTitleLabel.snp_top)
             make.height.equalTo(self.amountTitleLabel.snp_height)
@@ -216,11 +197,9 @@ class FYOrderCell: UITableViewCell {
             make.height.equalTo(self.revenueTitleLabel.snp_height)
         }
         
-        let dayWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Payment days (days)"), font: UIFont.systemFont(ofSize: 13), height: 20)
         self.addSubview(self.dayTitleLabel)
         self.dayTitleLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-15)
-//            make.width.equalTo(dayWidth + 5)
             make.width.equalTo(self.revenueTitleLabel.snp_width)
             make.top.equalTo(self.revenueTitleLabel.snp_top)
             make.height.equalTo(self.revenueTitleLabel.snp_height)

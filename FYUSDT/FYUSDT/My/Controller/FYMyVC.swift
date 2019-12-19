@@ -126,32 +126,6 @@ class FYMyVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYMyCel
                 UserDefaults.standard.set("en", forKey: "languageStr")
                 UserDefaults.standard.synchronize()
             }
-//            if UserDefaults.standard.value(forKey: "languageStr") == nil {
-//                if FYTool.getLanguageType() == "en-CN" {
-//                    //设置成中文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "zh-Hans")
-//                    UserDefaults.standard.set("zh-Hans", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }else {
-//                    //设置成英文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "en")
-//                    UserDefaults.standard.set("en", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }
-//            }else {
-//                //之前在app里面设置过语言
-//                if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
-//                    //设置成中文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "zh-Hans")
-//                    UserDefaults.standard.set("zh-Hans", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }else {
-//                    //设置成英文并记录
-//                    LanguageHelper.shareInstance.setLanguage(langeuage: "en")
-//                    UserDefaults.standard.set("en", forKey: "languageStr")
-//                    UserDefaults.standard.synchronize()
-//                }
-//            }
             let AppDelegate = UIApplication.shared.delegate as! AppDelegate
             AppDelegate.window?.rootViewController = FYTabbarVC()
         default:

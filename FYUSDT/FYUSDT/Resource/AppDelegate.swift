@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor.white
         self.setupGlobalUIStyle()
         self.setRootViewController()
-//        window?.rootViewController = UINavigationController.init(rootViewController: FYHomeVC())
         window?.makeKeyAndVisible()
         
         //接收登录成功通知

@@ -4,7 +4,7 @@
 //
 //  Created by 何志武 on 2019/12/14.
 //  Copyright © 2019 何志武. All rights reserved.
-//  --申请邀请码
+//  --邀请好友
 
 import UIKit
 import HandyJSON

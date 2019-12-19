@@ -340,17 +340,6 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         
         //旷工费用
         let feeLabel = YYLabel.init()
-//        let str = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Miner cost"), "1234"))
-//        str.yy_font = UIFont.systemFont(ofSize: 12)
-//        if FYTool.getLanguageType() == "en-CN" {
-//            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 10))
-//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 10, length: str.length - 10))
-//        }else {
-//            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
-//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: str.length - 4))
-//        }
-//        feeLabel.attributedText = str
-//        feeLabel.textAlignment = .right
         feeLabel.tag = 203
         view.addSubview(feeLabel)
         feeLabel.snp.makeConstraints { (make) in

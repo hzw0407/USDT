@@ -118,14 +118,6 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         if btn.tag == 100 {
             //全部
-//            for tempButton in self.buttonArray {
-//                if tempButton.tag == 101 || tempButton.tag == 102 {
-//                    //将金额和时间的状态都改为未选中
-//                    tempButton.setImage(UIImage(named: "nomal"), for: .normal)
-//                    self.timeType = .nomal
-//                    self.amountType = .nomal
-//                }
-//            }
             self.allTypeView.isHidden = self.isSelectAll
             self.isSelectAll = !self.isSelectAll
         }else if btn.tag == 101 {

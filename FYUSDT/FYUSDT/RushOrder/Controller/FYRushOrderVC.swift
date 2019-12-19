@@ -113,24 +113,6 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
             MBProgressHUD.showInfo(errMessage)
         }
     }
-    
-    //下单
-//    func placeOrder(productId:String,amount:Int) {
-//        let manager = FYRequestManager.shared
-//        manager.clearparameter()
-//        manager.addparameter(key: "productId", value: productId as AnyObject)
-//        manager.addparameter(key: "useAmount", value: "\(amount)" as AnyObject)
-//        manager.request(type: .post, url: String(format: PlaceOrder, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
-//            if dict["code"]?.intValue == 200 {
-//                MBProgressHUD.showInfo(LanguageHelper.getString(key: "PlaceOrder Success"))
-//                self.tableView.mj_header?.beginRefreshing()
-//            }else {
-//                MBProgressHUD.showInfo(message)
-//            }
-//        }) { (errMessage) in
-//            MBProgressHUD.showInfo(errMessage)
-//        }
-//    }
 
     //pragma mark - ClickMethod
 
@@ -182,27 +164,6 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         vc.id = model.id
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
-//        let alertController = UIAlertController.init(title: LanguageHelper.getString(key: "Please enter the investment amount"), message: nil, preferredStyle: UIAlertController.Style.alert)
-//        alertController.addTextField { (textfield) in
-//            textfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "placeOrderTip"), attributes: [NSAttributedString.Key.foregroundColor : FYColor.placeholderColor(),NSAttributedString.Key.font:UIFont.systemFont(ofSize: 10)])
-//            textfield.font = UIFont.systemFont(ofSize: 10)
-//            textfield.textColor = UIColor.black
-//            textfield.keyboardType = UIKeyboardType.numberPad
-//        }
-//        let cancelAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Cancel"), style: UIAlertAction.Style.cancel, handler: nil)
-//        let confirmAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Confirm"), style: UIAlertAction.Style.default, handler: { (action) in
-//            let textfield = alertController.textFields?.first
-//            if Int((textfield!.text!))! < 100 {
-//                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Less100"))
-//            }else if Int((textfield!.text!))! % 100 != 0 {
-//                MBProgressHUD.showInfo(LanguageHelper.getString(key: "integer"))
-//            }else {
-//                self.placeOrder(productId: model.id!, amount: Int((textfield!.text!))!)
-//            }
-//        })
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(confirmAction)
-//        self.present(alertController, animated: true, completion: nil)
     }
 
     //pragma mark - GetterAndSetter

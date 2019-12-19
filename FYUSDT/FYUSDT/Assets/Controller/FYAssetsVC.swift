@@ -96,14 +96,6 @@ class FYAssetsVC: UIViewController {
             make.height.equalTo(115)
         }
         
-//        self.scrollView.addSubview(self.rushOrderView)
-//        self.rushOrderView.snp.makeConstraints { (make) in
-//            make.left.equalTo(self.view).offset(15)
-//            make.right.equalTo(self.view).offset(-15)
-//            make.top.equalTo(self.operationView.snp_bottom).offset(70)
-//            make.height.equalTo(70)
-//        }
-        
         self.scrollView.addSubview(self.rushOrderButton)
         self.rushOrderButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(15)
@@ -363,77 +355,10 @@ class FYAssetsVC: UIViewController {
             make.height.equalTo(withdrawTitleLabel.snp_height)
         }
         
-//        let withdrawButton = UIButton.init()
-//        withdrawButton.backgroundColor = FYColor.operationColor()
-//        withdrawButton.layer.cornerRadius = 10.0
-//        withdrawButton.clipsToBounds = true
-//        withdrawButton.setTitle(LanguageHelper.getString(key: "Withdraw money"), for: .normal)
-//        withdrawButton.setTitleColor(FYColor.goldColor(), for: .normal)
-//        withdrawButton.setImage(UIImage(named: "coin_out"), for: .normal)
-//        withdrawButton.setImagePosition(position: .top, spacing: 35)
-//        withdrawButton.tag = 300
-//        withdrawButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-//        view.addSubview(withdrawButton)
-//        withdrawButton.snp.makeConstraints { (make) in
-//            make.left.equalTo(view).offset(15)
-//            make.width.equalTo(165)
-//            make.top.bottom.equalTo(view).offset(0)
-//        }
-//        //充币
-//        let chargeButton = UIButton.init()
-//        chargeButton.backgroundColor = FYColor.operationColor()
-//        chargeButton.layer.cornerRadius = 10.0
-//        chargeButton.clipsToBounds = true
-//        chargeButton.setTitle(LanguageHelper.getString(key: "Coin charging"), for: .normal)
-//        chargeButton.setTitleColor(FYColor.goldColor(), for: .normal)
-//        chargeButton.setImage(UIImage(named: "coin_in"), for: .normal)
-//        chargeButton.setImagePosition(position: .top, spacing: 35)
-//        chargeButton.tag = 301
-//        chargeButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-//        view.addSubview(chargeButton)
-//        chargeButton.snp.makeConstraints { (make) in
-//            make.right.equalTo(view).offset(-15)
-//            make.width.equalTo(withdrawButton.snp_width)
-//            make.top.bottom.equalTo(view).offset(0)
-//        }
         return view
     }()
     
     //立即抢单
-//    lazy var rushOrderView:UIView = {
-//        let view = UIView.init()
-//        view.backgroundColor = FYTool.hexStringToUIColor(hexString: "#EBC186")
-//        view.isUserInteractionEnabled = true
-//        view.layer.cornerRadius = 35
-//        view.clipsToBounds = true
-//        view.tag = 400
-//        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapClick(tap:)))
-//        view.addGestureRecognizer(tap)
-//        
-//        let titleLabel = UILabel.init()
-//        titleLabel.text = LanguageHelper.getString(key: "Grab the order immediately")
-//        titleLabel.textColor = FYColor.rushColor()
-//        titleLabel.font = UIFont.systemFont(ofSize: 25)
-//        view.addSubview(titleLabel)
-//        let titleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Grab the order immediately"), font: UIFont.systemFont(ofSize: 25), height: 70)
-//        titleLabel.snp.makeConstraints { (make) in
-//            make.centerX.equalTo(view.snp_centerX).offset(-20)
-//            make.width.equalTo(titleWidth + 5)
-//            make.top.bottom.equalTo(view).offset(0)
-//        }
-//        
-//        let iconImageView = UIImageView.init()
-//        iconImageView.image = UIImage(named: "Asset_Rush")
-//        view.addSubview(iconImageView)
-//        iconImageView.snp.makeConstraints { (make) in
-//            make.left.equalTo(titleLabel.snp_right).offset(20)
-//            make.width.equalTo(50)
-//            make.centerY.equalTo(view.snp_centerY)
-//            make.height.equalTo(50)
-//        }
-//        return view
-//    }()
-    
     lazy var rushOrderButton:UIButton = {
         let button = UIButton.init()
         button.backgroundColor = FYTool.hexStringToUIColor(hexString: "#EBC186")

@@ -232,20 +232,6 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
                 make.top.equalTo(headerView)
                 make.height.equalTo(20)
             }
-//            //全部
-//            let allButton = UIButton.init()
-//            allButton.setTitle(LanguageHelper.getString(key: "All"), for: .normal)
-//            allButton.setTitleColor(FYColor.goldColor(), for: .normal)
-//            allButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-//            allButton.tag = 101
-//            allButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
-//            headerView.addSubview(allButton)
-//            allButton.snp.makeConstraints { (make) in
-//                make.right.equalTo(headerView).offset(-15)
-//                make.width.equalTo(30)
-//                make.top.equalTo(headerView)
-//                make.height.equalTo(infomationLabel.snp_height)
-//            }
             return headerView
         }
     }

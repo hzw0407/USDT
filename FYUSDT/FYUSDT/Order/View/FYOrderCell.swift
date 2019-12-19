@@ -24,6 +24,11 @@ class FYOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Order amount")
         label.textColor = UIColor.gray
+//        if FYTool.getLanguageType() == "en-CN" {
+//            label.font = UIFont.systemFont(ofSize: 10)
+//        }else {
+//            label.font = UIFont.systemFont(ofSize: 13)
+//        }
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
@@ -31,11 +36,6 @@ class FYOrderCell: UITableViewCell {
     //下单金额
     lazy var amountLabel:UILabel = {
         let label = UILabel.init()
-//        let str = NSMutableAttributedString(string: "10000.00")
-//        str.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], range: NSRange(location: 0, length: str.length))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
-//        label.attributedText = str
         return label
     }()
     
@@ -44,6 +44,11 @@ class FYOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Estimated revenue")
         label.textColor = UIColor.gray
+//        if FYTool.getLanguageType() == "en-CN" {
+//            label.font = UIFont.systemFont(ofSize: 10)
+//        }else {
+//            label.font = UIFont.systemFont(ofSize: 13)
+//        }
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
@@ -51,11 +56,6 @@ class FYOrderCell: UITableViewCell {
     //预计收益
     lazy var revenueLabel:UILabel = {
         let label = UILabel.init()
-//        let str = NSMutableAttributedString(string: "100.00")
-//        str.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: str.length))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25)], range: NSRange(location: 0, length: str.length - 3))
-//        str.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13)], range: NSRange(location: str.length - 3, length: 3))
-//        label.attributedText = str
         return label
     }()
     
@@ -64,6 +64,11 @@ class FYOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Payment days (days)")
         label.textColor = UIColor.gray
+//        if FYTool.getLanguageType() == "en-CN" {
+//            label.font = UIFont.systemFont(ofSize: 10)
+//        }else {
+//            label.font = UIFont.systemFont(ofSize: 13)
+//        }
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .right
         return label
@@ -72,7 +77,6 @@ class FYOrderCell: UITableViewCell {
     //用款天数
     lazy var dayLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "30"
         label.textColor = FYColor.grayColor()
         label.font = UIFont.systemFont(ofSize: 25)
         label.textAlignment = .right
@@ -110,7 +114,6 @@ class FYOrderCell: UITableViewCell {
     //剩余额度
     lazy var surplusLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "12345.00"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -129,7 +132,6 @@ class FYOrderCell: UITableViewCell {
     //结算时间
     lazy var closeLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "2019-12-13 18:20:30"
         label.textColor = FYColor.grayColor()
         label.font = UIFont.systemFont(ofSize: 13)
         label.textAlignment = .right
@@ -139,7 +141,6 @@ class FYOrderCell: UITableViewCell {
     //下单时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = String(format: LanguageHelper.getString(key: "Order time"), "2019-12-12 12:12:12")
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 10)
         return label
@@ -148,21 +149,6 @@ class FYOrderCell: UITableViewCell {
     //参与人数
     lazy var participatedLabel:YYLabel = {
         let label = YYLabel.init()
-//        let tempStr:String = String(format: LanguageHelper.getString(key: "people have participated"), "10")
-//        let str = NSMutableAttributedString(string: tempStr)
-//        str.yy_font = UIFont.systemFont(ofSize: 10)
-//        if FYTool.getLanguageType() == "en-CN" {
-//            //英文
-//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 0, length: 2))
-//            str.yy_setColor(UIColor.gray, range: NSRange(location: 2, length: str.length - 2))
-//        }else {
-//            //中文
-//            str.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 2))
-//            str.yy_setColor(FYColor.goldColor(), range: NSRange(location: 3, length: 2))
-//            str.yy_setColor(UIColor.gray, range: NSRange(location: 5, length: str.length - 5))
-//        }
-//        label.attributedText = str
-//        label.textAlignment = .right
         return label
     }()
     
@@ -194,10 +180,13 @@ class FYOrderCell: UITableViewCell {
         self.addSubview(self.amountTitleLabel)
         self.amountTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.lineView.snp_left)
-            make.width.equalTo(amountWidth + 5)
+//            make.width.equalTo(amountWidth + 5)
+            make.width.equalTo((FYScreenWidth - 30) / 3)
             make.top.equalTo(self.lineView.snp_bottom).offset(20)
             make.height.equalTo(20)
         }
+        self.amountTitleLabel.layoutIfNeeded()
+        self.amountTitleLabel.adjustsFontSizeToFitWidth = true
         
         self.addSubview(self.amountLabel)
         self.amountLabel.snp.makeConstraints { (make) in
@@ -211,10 +200,13 @@ class FYOrderCell: UITableViewCell {
         self.addSubview(self.revenueTitleLabel)
         self.revenueTitleLabel.snp.makeConstraints { (make) in
             make.centerX.equalTo(self.snp_centerX)
-            make.width.equalTo(revenueWidth + 5)
+//            make.width.equalTo(revenueWidth + 5)
+            make.width.equalTo(self.amountTitleLabel.snp_width)
             make.top.equalTo(self.amountTitleLabel.snp_top)
             make.height.equalTo(self.amountTitleLabel.snp_height)
         }
+        self.revenueTitleLabel.layoutIfNeeded()
+        self.revenueTitleLabel.adjustsFontSizeToFitWidth = true
         
         self.addSubview(self.revenueLabel)
         self.revenueLabel.snp.makeConstraints { (make) in
@@ -228,10 +220,13 @@ class FYOrderCell: UITableViewCell {
         self.addSubview(self.dayTitleLabel)
         self.dayTitleLabel.snp.makeConstraints { (make) in
             make.right.equalTo(self).offset(-15)
-            make.width.equalTo(dayWidth + 5)
+//            make.width.equalTo(dayWidth + 5)
+            make.width.equalTo(self.revenueTitleLabel.snp_width)
             make.top.equalTo(self.revenueTitleLabel.snp_top)
             make.height.equalTo(self.revenueTitleLabel.snp_height)
         }
+        self.dayTitleLabel.layoutIfNeeded()
+        self.dayTitleLabel.adjustsFontSizeToFitWidth = true
         
         self.addSubview(self.dayLabel)
         self.dayLabel.snp.makeConstraints { (make) in
@@ -248,7 +243,6 @@ class FYOrderCell: UITableViewCell {
             make.top.equalTo(self.amountLabel.snp_bottom).offset(25)
             make.height.equalTo(35)
         }
-//        self.cirleView.startProgress(to: 30, duration: 0.1)
         
         let surplusWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Surplus amount"), font: UIFont.systemFont(ofSize: 13), height: 20)
         self.addSubview(self.surplusTitleLabel)

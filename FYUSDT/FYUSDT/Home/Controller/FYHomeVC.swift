@@ -79,11 +79,18 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     
     //获取banner图
     func getBanner() {
+        var type:Int = 0
+        if FYTool.getLanguageType() == "en-CN" {
+            type = 2
+        }else {
+            type = 1
+        }
         let manager = FYRequestManager.shared
         manager.clearparameter()
         manager.addparameter(key: "currentPage", value: "\(self.page)" as AnyObject)
         manager.addparameter(key: "pageSize", value: "10" as AnyObject)
         manager.addparameter(key: "type", value: "2" as AnyObject)
+        manager.addparameter(key: "language", value: type as AnyObject)
         manager.request(type: .post, url: newsList, successCompletion: { (dict, message) in
             self.tableView.mj_header?.endRefreshing()
             self.tableView.mj_footer?.endRefreshing()
@@ -105,11 +112,18 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
     
     //获取资讯列表
     func getInfoList() {
+        var type:Int = 0
+        if FYTool.getLanguageType() == "en-CN" {
+            type = 2
+        }else {
+            type = 1
+        }
         let manager = FYRequestManager.shared
         manager.clearparameter()
         manager.addparameter(key: "currentPage", value: "\(self.page)" as AnyObject)
         manager.addparameter(key: "pageSize", value: "10" as AnyObject)
         manager.addparameter(key: "type", value: "1" as AnyObject)
+        manager.addparameter(key: "language", value: type as AnyObject)
         manager.request(type: .post, url: newsList, successCompletion: { (dict, message) in
             self.tableView.mj_header?.endRefreshing()
             self.tableView.mj_footer?.endRefreshing()
@@ -181,7 +195,7 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
             let titleWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Home"), font: UIFont.systemFont(ofSize: 35), height: 35)
             titleLabel.snp.makeConstraints { (make) in
                 make.left.equalTo(headerView).offset(15)
-                make.width.equalTo(titleWidth)
+                make.width.equalTo(titleWidth + 20)
                 make.top.equalTo(headerView).offset(50)
                 make.height.equalTo(35)
             }
@@ -216,7 +230,7 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
             headerView.addSubview(infomationLabel)
             infomationLabel.snp.makeConstraints { (make) in
                 make.left.equalTo(headerView).offset(15)
-                make.width.equalTo(100)
+                make.right.equalTo(headerView).offset(-100)
                 make.top.equalTo(headerView)
                 make.height.equalTo(20)
             }

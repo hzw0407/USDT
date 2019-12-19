@@ -134,7 +134,7 @@
 "Please enter the investment amount" = "请输入投资金额";
 "Cancel" = "取消";
 "Confirm" = "确定";
-"placeOrderTip" = "   投资金额（需要大于100 并且是100的倍数）";
+"placeOrderTip" = "   投资金额";
 "Less100" = "投资金额不能小于100";
 "integer" = "投资金额需要为100的整数";
 "PlaceOrder Success" = "下单成功";

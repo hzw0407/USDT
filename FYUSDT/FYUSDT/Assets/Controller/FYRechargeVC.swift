@@ -157,9 +157,10 @@ class FYRechargeVC: UIViewController {
         recordButton.tag = 101
         recordButton.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         view.addSubview(recordButton)
+        let recordButtonWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "Record"), font: UIFont.systemFont(ofSize: 13), height: 30)
         recordButton.snp.makeConstraints { (make) in
             make.right.equalTo(view).offset(-15)
-            make.width.equalTo(30)
+            make.width.equalTo(recordButtonWidth + 5)
             make.centerY.equalTo(view.snp_centerY)
             make.height.equalTo(30)
         }

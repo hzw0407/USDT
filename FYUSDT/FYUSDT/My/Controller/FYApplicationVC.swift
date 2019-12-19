@@ -209,7 +209,7 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         let titleLabel = UILabel.init()
         titleLabel.text = LanguageHelper.getString(key: "Application invitation code")
         titleLabel.textColor = FYColor.goldColor()
-        titleLabel.font = UIFont.systemFont(ofSize: 35)
+        titleLabel.font = UIFont.systemFont(ofSize: 30)
         headeerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(headeerView).offset(20)
@@ -280,10 +280,11 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             make.top.equalTo(middleImageView).offset(25)
             make.height.equalTo(15)
         }
+        latestLabel.layoutIfNeeded()
+        latestLabel.adjustsFontSizeToFitWidth = true
         
         //邀请码
         let codeButton = UIButton.init()
-//        codeButton.setTitle("12345", for: .normal)
         codeButton.setTitleColor(UIColor.white, for: .normal)
         codeButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 45)
         codeButton.tag = 301
@@ -312,6 +313,8 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             make.top.equalTo(codeButton.snp_bottom).offset(25)
             make.height.equalTo(50)
         }
+        applicationButton.layoutIfNeeded()
+        applicationButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         return scrollView
     }()

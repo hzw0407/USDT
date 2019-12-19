@@ -133,7 +133,7 @@
 "Please enter the investment amount" = "Please enter the investment amount";
 "Cancel" = "Cancel";
 "Confirm" = "Confirm";
-"placeOrderTip" = "   Investment amount (need to be greater than 100 and multiple of 100)";
+"placeOrderTip" = "   Investment amount";
 "Less100" = "Investment amount cannot be less than 100";
 "integer" = "The investment amount needs to be an integer of 100";
 "PlaceOrder Success" = "PlaceOrder Success";

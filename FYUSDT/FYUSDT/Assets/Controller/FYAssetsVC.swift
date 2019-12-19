@@ -111,6 +111,8 @@ class FYAssetsVC: UIViewController {
             make.top.equalTo(self.operationView.snp_bottom).offset(70)
             make.height.equalTo(70)
         }
+        self.rushOrderButton.layoutIfNeeded()
+        self.rushOrderButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         self.hourseView.automaticSlidingInterval = 2
         self.hourseView.delegate = self
@@ -440,7 +442,7 @@ class FYAssetsVC: UIViewController {
         button.clipsToBounds = true
         button.setTitle(LanguageHelper.getString(key: "Grab the order immediately"), for: .normal)
         button.setTitleColor(FYColor.rushColor(), for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.setImage(UIImage(named: "Asset_Rush"), for: .normal)
         button.setImagePosition(position: .right, spacing: 80)
         button.tag = 400

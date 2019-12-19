@@ -14,7 +14,6 @@ class FYInformationCell: UITableViewCell {
     //标题
     lazy var titleLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "这是一个标题这是一个标题"
         label.textColor = FYColor.goldColor()
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -23,7 +22,6 @@ class FYInformationCell: UITableViewCell {
     //图片
     lazy var iconImageView:UIImageView = {
         let imageView = UIImageView.init()
-//        imageView.backgroundColor = FYColor.goldColor()
         imageView.layer.cornerRadius = 5.0
         imageView.clipsToBounds = true
         return imageView
@@ -32,7 +30,6 @@ class FYInformationCell: UITableViewCell {
     //内容
     lazy var contentLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "这是内容这是内容这是内容这是内容这是内容这是内容这是内容"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
         label.numberOfLines = 0
@@ -42,7 +39,6 @@ class FYInformationCell: UITableViewCell {
     //发布时间
     lazy var timeLabel:UILabel = {
         let label = UILabel.init()
-//        label.text = "2小时前"
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
         return label
@@ -85,7 +81,7 @@ class FYInformationCell: UITableViewCell {
             make.left.equalTo(self.iconImageView.snp_right).offset(10)
             make.right.equalTo(self).offset(-15)
             make.top.equalTo(self.iconImageView.snp_top)
-            make.bottom.equalTo(self).offset(-30)
+            make.height.equalTo(40)
         }
         
         self.addSubview(self.timeLabel)
@@ -106,6 +102,10 @@ class FYInformationCell: UITableViewCell {
         self.titleLabel.text = model.title ?? ""
         self.iconImageView.kf.setImage(with: URL(string: model.imgUrl ?? ""))
         self.contentLabel.text = model.text ?? ""
+        let contentHeight = FYTool.getTextHeigh(textStr: self.contentLabel.text!, font: UIFont.systemFont(ofSize: 13), width: FYScreenWidth - 15 - 110 - 10 - 15)
+        self.contentLabel.snp.updateConstraints { (make) in
+            make.height.equalTo(contentHeight > 20 ? 40 : 20)
+        }
         self.timeLabel.text = model.createTime
     }
 }

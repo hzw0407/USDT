@@ -107,6 +107,8 @@ class FYApplicationCell: UITableViewCell {
             make.bottom.equalTo(self.timeLabel.snp_bottom)
             make.height.equalTo(self.timeLabel.snp_height)
         }
+        self.statusLabel.layoutIfNeeded()
+        self.statusLabel.adjustsFontSizeToFitWidth = true
         
     }
     

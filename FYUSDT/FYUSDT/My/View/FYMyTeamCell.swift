@@ -110,7 +110,7 @@ class FYMyTeamCell: UITableViewCell {
         self.addSubview(self.myProfitLabel)
         self.myProfitLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.orderNumberLabel.snp_left)
-            make.width.equalTo(self.orderNumberLabel.snp_width)
+            make.right.equalTo(self).offset(-15)
             make.top.equalTo(self.orderNumberLabel.snp_bottom).offset(10)
             make.height.equalTo(self.orderNumberLabel.snp_height)
         }

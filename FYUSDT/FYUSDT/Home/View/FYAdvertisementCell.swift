@@ -54,7 +54,7 @@ class FYAdvertisementCell: UITableViewCell {
         pageControl.setFillColor(.white, for: .selected)
         //设置下标指示器图片（选中状态和普通状态）
         //pageControl.setImage(UIImage.init(named: "1"), for: .normal)
-        //pageControl.setImage(UIImage.init(named: "2"), for: .selected)
+        pageControl.setImage(UIImage.init(named: "banner-on-bg"), for: .selected)
         //绘制下标指示器的形状 (roundedRect绘制绘制圆角或者圆形)
 //        pageControl.setPath(UIBezierPath.init(roundedRect: CGRect.init(x: 0, y: 0, width: 5, height: 5),                 cornerRadius: 4.0), for: .normal)
 //        //pageControl.setPath(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 8, height: 8)), for: .normal)

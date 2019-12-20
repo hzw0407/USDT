@@ -292,7 +292,7 @@ class FYOrderCell: UITableViewCell {
         self.revenueLabel.attributedText = revenueStr
         
         self.dayLabel.text = "\(model.useNum ?? 0)"
-        self.cirleView.startProgress(to: CGFloat(((model.getAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
+        self.cirleView.startProgress(to: CGFloat(((model.surplusAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
         self.surplusLabel.text = String(format: "%.2f", model.surplusAmount ?? 0)
         self.closeLabel.text = model.UseEndTime
         self.timeLabel.text = String(format: LanguageHelper.getString(key: "Order time"), model.createTime ?? "")

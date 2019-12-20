@@ -27,9 +27,9 @@ class FYRequestManager: NSObject {
     
     private func judgeNetwork() {
         if InterfaceBaseDebug == 0 {
-            baseUrl = "http://192.168.0.112:8088"
+            baseUrl = "http://154.206.61.138:8088"
         }else {
-            baseUrl = "http://192.168.0.112:8088"
+            baseUrl = "http://154.206.61.138:8088"
         }
     }
     
@@ -86,6 +86,7 @@ class FYRequestManager: NSObject {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
             request.httpMethod = "POST"
+            request.timeoutInterval = 10
             Alamofire.request(request).responseJSON { (response) in
                 if response.result.isSuccess {
                         if let jsonString = response.result.value {
@@ -106,6 +107,9 @@ class FYRequestManager: NSObject {
                                         successCompletion(jsonString as! [String : AnyObject],message as String)
                                     }
                                 }
+                            }else {
+                                let err = (jsonString as! [String : AnyObject])["error"] as! NSString
+                                successCompletion(jsonString as! [String : AnyObject],err as String)
                             }
                         }
                     }else {

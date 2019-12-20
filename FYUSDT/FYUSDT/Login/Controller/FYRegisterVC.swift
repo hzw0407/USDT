@@ -8,6 +8,7 @@
 
 import UIKit
 import YYText
+//#import <objc/runtime.h>
 
 class FYRegisterVC: UIViewController,UITextFieldDelegate {
 
@@ -96,7 +97,9 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         }
         self.codeTextfield.layoutIfNeeded()
         self.codeTextfield.adjustsFontSizeToFitWidth = true
-        let placeLabel = self.codeTextfield.value(forKeyPath: "_placeholderLabel") as! UILabel
+        //获取默认文字 在iOS13以后必须通过runtime机制去获取
+        let ivar = class_getInstanceVariable(UITextField.self, "_placeholderLabel")
+        let placeLabel = object_getIvar(self.codeTextfield, ivar!) as! UILabel
         placeLabel.adjustsFontSizeToFitWidth = true
 
         self.scrollView.addSubview(self.lineViewTwo)
@@ -285,7 +288,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
 
     //pragma mark - SystemDelegate
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == self.emailTextfield {
+        if textField == self.emailTextfield && textField.text!.count > 0 {
             self.checkEmail()
         }
     }
@@ -338,9 +341,9 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
         textfield.clearButtonMode = .always
-        //修改清除按钮的背景颜色 不然看不到
+        //修改清除按钮的图片 不然看不到
         let clearButton = textfield.value(forKey: "_clearButton") as! UIButton
-        clearButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        clearButton.setImage(UIImage(named: "delete"), for: .normal)
         textfield.delegate = self
         return textfield;
     }()

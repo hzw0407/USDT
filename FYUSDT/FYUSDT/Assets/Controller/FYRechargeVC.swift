@@ -101,8 +101,10 @@ class FYRechargeVC: UIViewController {
     @objc func tapClick() {
         let codeAddressView = self.bottomView.viewWithTag(201)!
         let addressLabel = codeAddressView.viewWithTag(202) as! UILabel
-        UIPasteboard.general.string = addressLabel.text
-        MBProgressHUD.showInfo(LanguageHelper.getString(key: "copy_success"))
+        if addressLabel.text != nil {
+            UIPasteboard.general.string = addressLabel.text
+            MBProgressHUD.showInfo(LanguageHelper.getString(key: "copy_success"))
+        }
     }
 
     //pragma mark - SystemDelegate

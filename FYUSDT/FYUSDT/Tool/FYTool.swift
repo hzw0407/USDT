@@ -139,6 +139,27 @@ class FYTool: NSObject {
             }
         }
     }
+    
+    //邮箱中间部分用*代替
+    static func formatEmailByStar(email:String) -> String {
+        
+        let range: Range = email.range(of: "@")!
+        let location: Int = email.distance(from: email.startIndex, to: range.lowerBound)
+        //截取@前面之前的字符串
+        let subStr = email.prefix(location)
+        //截取包含@之后的字符串
+        let sufStr = email.suffix(email.count - location)
+        //subStr的第一个字符
+        let strartStr = subStr.prefix(1)
+        //subStr的最后一个字符
+        let endStr = subStr.suffix(1)
+        if subStr.count < 2 {
+            //少于两位直接返回
+            return email
+        }else {
+            return strartStr + "****" + endStr + sufStr
+        }
+    }
         
     static func dateConvertString(date:Date, dateFormat:String="yyyy-MM-dd") -> String {
         let timeZone = TimeZone.init(identifier: "UTC")

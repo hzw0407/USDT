@@ -49,14 +49,15 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         }
         
         header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
-        header.setTitle(LanguageHelper.getString(key: "Release and start refreshing"), for: .pulling)
-        header.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh1"), for: .idle)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh2"), for: .pulling)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh3"), for: .refreshing)
+        header.lastUpdatedTimeLabel?.isHidden = true
         self.tableView.mj_header = header
         header.beginRefreshing()
         
         footer.setRefreshingTarget(self, refreshingAction: #selector(footRefresh))
-        footer.setTitle(LanguageHelper.getString(key: "Pull-up Load More"), for: .pulling)
-        footer.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
+        footer.setTitle(LanguageHelper.getString(key: "footerRefresh1"), for: .idle)
         self.tableView.mj_footer = footer
         
         //接收下单成功通知

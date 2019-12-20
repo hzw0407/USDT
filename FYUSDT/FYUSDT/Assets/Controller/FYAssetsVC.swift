@@ -34,8 +34,10 @@ class FYAssetsVC: UIViewController {
         }
         
         header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
-        header.setTitle(LanguageHelper.getString(key: "Release and start refreshing"), for: .pulling)
-        header.setTitle(LanguageHelper.getString(key: "Loading"), for: .refreshing)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh1"), for: .idle)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh2"), for: .pulling)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh3"), for: .refreshing)
+        header.lastUpdatedTimeLabel?.isHidden = true
         self.scrollView.mj_header = header
         header.beginRefreshing()
     }
@@ -386,9 +388,9 @@ extension FYAssetsVC:JJMarqueeViewDelegate,JJMarqueeViewDataSource {
     //每条数据的内容
     func marqueeView(_ marqueeView: JJMarqueeView, cellForItemAt index: Int) -> NSAttributedString {
         let model = self.infoArray![index]
-        let str = model.email
-        let tempStr = str! as NSString
-        let r = tempStr.range(of: str!)
+        let str = FYTool.formatEmailByStar(email: model.email ?? "")
+        let tempStr = str as NSString
+        let r = tempStr.range(of: str)
         let att = NSMutableAttributedString.init(string: tempStr as String)
         att.addAttribute(NSAttributedString.Key.foregroundColor, value: FYColor.goldColor(), range: r)
         return att

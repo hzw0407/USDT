@@ -149,3 +149,10 @@
 "Income generated for me" = "Income generated for me:%@";
 "Assets1" = "Assets:%@";
 "Profit1" = "Profit:%@";
+"Insufficient balance" = "Insufficient balance";
+
+"headRefresh1" = "down to refresh";
+"headRefresh2" = "Release to refresh";
+"headRefresh3" = "Loading...";
+
+"footerRefresh1" = "Tap or pull up to load more";

@@ -278,10 +278,21 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         for i in 0 ..< self.buttonNameArray.count {
             let dic:[String:String] = self.buttonNameArray[i]
             let button = UIButton.init()
-            button.setTitle(dic["name"], for: .normal)
+            if i == 0 {
+                if self.selectType == 1 {
+                    //默认显示充值
+                    button.setTitle(LanguageHelper.getString(key: "Recharge"), for: .normal)
+                }else if self.selectType == 2 {
+                    //默认显示提现
+                    button.setTitle(LanguageHelper.getString(key: "Withdraw"), for: .normal)
+                }else {
+                    button.setTitle(dic["name"], for: .normal)
+                }
+            }
             button.setTitleColor(UIColor.gray, for: .normal)
             if i != 0 {
                 //全部按钮不变色
+                button.setTitle(dic["name"], for: .normal)
                 button.setTitleColor(FYColor.goldColor(), for: .selected)
                 button.setImage(UIImage(named: dic["image"]!), for: .normal)
                 button.setImagePosition(position: .right, spacing: 20)

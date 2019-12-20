@@ -38,14 +38,14 @@
 + (NSString *)mj_localizedStringForKey:(NSString *)key value:(NSString *)value
 {
     static NSBundle *bundle = nil;
-    if (bundle == nil) {
-        NSString *language = MJRefreshConfig.defaultConfig.languageCode;
+//    if (bundle == nil) {
+//        NSString *language = MJRefreshConfig.defaultConfig.languageCode;
+    NSString *language = [[NSUserDefaults standardUserDefaults] stringForKey:@"languageStr"];
         // 如果配置中没有配置语言
         if (!language) {
             // （iOS获取的语言字符串比较不稳定）目前框架只处理en、zh-Hans、zh-Hant三种情况，其他按照系统默认处理
             language = [NSLocale preferredLanguages].firstObject;
         }
-        
         if ([language hasPrefix:@"en"]) {
             language = @"en";
         } else if ([language hasPrefix:@"zh"]) {
@@ -64,9 +64,12 @@
             language = @"en";
         }
         
+        
         // 从MJRefresh.bundle中查找资源
         bundle = [NSBundle bundleWithPath:[[NSBundle mj_refreshBundle] pathForResource:language ofType:@"lproj"]];
-    }
+//        NSString *path = [[NSBundle mainBundle] pathForResource:language ofType:@"lproj"];
+//        bundle = [NSBundle bundleWithPath:path];
+//    }
     value = [bundle localizedStringForKey:key value:value table:nil];
     return [[NSBundle mainBundle] localizedStringForKey:key value:value table:nil];
 }

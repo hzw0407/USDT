@@ -73,7 +73,9 @@ class FYFindPasswordVC: UIViewController {
             make.top.equalTo(self.lineViewOne.snp_bottom).offset(33)
             make.height.equalTo(self.emailTextfield.snp_height)
         }
-        let placeLabel = self.codeTextfield.value(forKeyPath: "_placeholderLabel") as! UILabel
+        //获取默认文字 在iOS13以后必须通过runtime机制去获取
+        let ivar = class_getInstanceVariable(UITextField.self, "_placeholderLabel")
+        let placeLabel = object_getIvar(self.codeTextfield, ivar!) as! UILabel
         placeLabel.adjustsFontSizeToFitWidth = true
         
         self.view.addSubview(self.lineViewTwo)

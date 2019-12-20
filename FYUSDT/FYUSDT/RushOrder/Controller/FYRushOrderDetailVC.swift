@@ -10,7 +10,7 @@ import UIKit
 import UICircularProgressRing
 import HandyJSON
 
-class FYRushOrderDetailVC: UIViewController {
+class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
     
     //定时器
     var timer:Timer?
@@ -19,6 +19,8 @@ class FYRushOrderDetailVC: UIViewController {
     var id:String?
     //详情模型
     var model:FYRushOrderDetailModel?
+    //输入的投资金额
+    var inputInt:Int = 0
     
     //pragma mark - lifecycle
     override func viewDidLoad() {
@@ -53,6 +55,14 @@ class FYRushOrderDetailVC: UIViewController {
             make.left.equalTo(self.view).offset(15)
             make.width.equalTo(28)
             make.top.equalTo(self.view).offset(navigationHeight)
+            make.height.equalTo(20)
+        }
+        
+        self.view.addSubview(self.refreshButton)
+        self.refreshButton.snp.makeConstraints { (make) in
+            make.right.equalTo(self.view).offset(-15)
+            make.width.equalTo(22)
+            make.top.equalTo(self.backButton.snp_top)
             make.height.equalTo(20)
         }
         
@@ -129,7 +139,7 @@ class FYRushOrderDetailVC: UIViewController {
         surplusLabel.attributedText = surplusStr
         
         let cirleView = headerView.viewWithTag(204) as! UICircularProgressRing
-        cirleView.startProgress(to: CGFloat(((self.model?.getAmount ?? 0) / (self.model?.demandAmount ?? 0)) * Double(100)), duration: 0.1)
+        cirleView.startProgress(to: CGFloat(((self.model?.surplusAmount ?? 0) / (self.model?.demandAmount ?? 0)) * Double(100)), duration: 0.1)
         
         let dayLabel = headerView.viewWithTag(205) as! UILabel
         dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), self.model?.useNum ?? 0)
@@ -182,18 +192,22 @@ class FYRushOrderDetailVC: UIViewController {
         }else if btn.tag == 303 {
             //输入全部余额
             let bottomView = self.scrollView.viewWithTag(300)!
-            let amountTextfield = bottomView.viewWithTag(304) as! FYUITextField
-            amountTextfield.text = String(format: "%.2f", self.model?.availableBalance ?? 0)
+            let amountTextfield = bottomView.viewWithTag(304) as! UITextField
+            amountTextfield.text = String(format: "%.2f", (self.model?.availableBalance! ?? "0"))
+            self.inputInt = Int((amountTextfield.text! as NSString).intValue)
         }else if btn.tag == 306 {
             //下单
             let bottomView = self.scrollView.viewWithTag(300)!
-            let amountTextfield = bottomView.viewWithTag(304) as! FYUITextField
-            if Int(amountTextfield.text!)! < 100 {
+            let amountTextfield = bottomView.viewWithTag(304) as! UITextField
+            amountTextfield.resignFirstResponder()
+            if self.inputInt < 100 {
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "Less100"))
-            }else if Int((amountTextfield.text!))! % 100 != 0 {
+            }else if self.inputInt % 100 != 0 {
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "integer"))
+            }else if self.inputInt > Int(self.model!.surplusAmount!) {
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Insufficient balance"))
             }else {
-                self.placeOrder(productId: self.id!, amount: Int((amountTextfield.text!))!)
+                self.placeOrder(productId: self.id!, amount: self.inputInt)
             }
         }else if btn.tag == 400 {
             //关闭成功提示
@@ -204,10 +218,18 @@ class FYRushOrderDetailVC: UIViewController {
         }else if btn.tag == 402 {
             //查看订单
             self.navigationController?.popViewController(animated: true)
+        }else if btn.tag == 500 {
+            //刷新
+            self.getDetailInfo()
         }
     }
 
     //pragma mark - SystemDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 304 {
+            self.inputInt = Int((textField.text! as NSString).intValue)
+        }
+    }
 
     //pragma mark - CustomDelegate
 
@@ -217,6 +239,15 @@ class FYRushOrderDetailVC: UIViewController {
         let button = UIButton.init()
         button.setImage(UIImage(named: "arrow_left"), for: .normal)
         button.tag = 100
+        button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
+        return button
+    }()
+    
+    //刷新按钮
+    lazy var refreshButton:UIButton = {
+        let button = UIButton.init()
+        button.setImage(UIImage(named: "refresh"), for: .normal)
+        button.tag = 500
         button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         return button
     }()
@@ -453,6 +484,7 @@ class FYRushOrderDetailVC: UIViewController {
         //设置光标初始位置
         amountTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
         amountTextfield.tag = 304
+        amountTextfield.delegate = self
         bottomView.addSubview(amountTextfield)
         amountTextfield.snp.makeConstraints { (make) in
             make.left.equalTo(balanceLabel.snp_left)

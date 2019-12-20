@@ -276,7 +276,7 @@ class FYRushOrderCell: UITableViewCell {
         self.rateLabel.attributedText = rateStr
         
         //设置进度
-        self.cirleView.startProgress(to: CGFloat(((model.getAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
+        self.cirleView.startProgress(to: CGFloat(((model.surplusAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
         
         self.surplusLabel.text = String(format: "%.2f", model.surplusAmount ?? 0)
         self.dayLabel.text = String(format: LanguageHelper.getString(key: "Payment days"), model.useNum ?? 0)

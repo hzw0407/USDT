@@ -144,12 +144,13 @@ class FYRechargeVC: UIViewController {
         tipLabel.text = LanguageHelper.getString(key: "RechargeTip")
         tipLabel.textColor = UIColor.gray
         tipLabel.font = UIFont.systemFont(ofSize: 13)
+        tipLabel.numberOfLines = 0
         view.addSubview(tipLabel)
         tipLabel.snp.makeConstraints { (make) in
             make.left.equalTo(titleLabel.snp_left)
             make.right.equalTo(titleLabel.snp_right)
             make.top.equalTo(titleLabel.snp_bottom).offset(5)
-            make.height.equalTo(15)
+            make.height.equalTo(50)
         }
         //记录
         let recordButton = UIButton.init()

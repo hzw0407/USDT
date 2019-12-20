@@ -30,7 +30,7 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
         
         self.creatUI()
         
-        self.getDetailInfo()
+        self.getDetailInfo(isShowAlertController: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +83,7 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
     }
     
     //获取详情
-    func getDetailInfo() {
+    func getDetailInfo(isShowAlertController:Bool) {
         let manager = FYRequestManager.shared
         manager.clearparameter()
         manager.addparameter(key: "id", value: self.id! as AnyObject)
@@ -91,6 +91,20 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
             if dict["code"]?.intValue == 200 {
                 self.model = JSONDeserializer<FYRushOrderDetailModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
                 self.refreshInfo()
+                if isShowAlertController {
+                    let bottomView = self.scrollView.viewWithTag(300)!
+                    let amountTextfield = bottomView.viewWithTag(304) as! UITextField
+                    let alertController = UIAlertController.init(title: LanguageHelper.getString(key: "Insufficient balance"), message: String(format: LanguageHelper.getString(key: "Balancetip"), "\(self.model!.surplusAmount!)"), preferredStyle: UIAlertController.Style.alert)
+                    let cancelAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Cancel"), style: UIAlertAction.Style.cancel, handler: nil)
+                    let confirmAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Confirm"), style: UIAlertAction.Style.default) { (action) in
+                        amountTextfield.text = String(format: "%.2f", (self.model?.surplusAmount! ?? "0"))
+                        self.inputInt = Int((amountTextfield.text! as NSString).intValue)
+                        self.placeOrder(productId: self.id!, amount: self.inputInt)
+                    }
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(confirmAction)
+                    self.navigationController?.present(alertController, animated: true, completion: nil)
+                }
             }else {
                 MBProgressHUD.showInfo(message)
             }
@@ -109,7 +123,7 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
             if dict["code"]?.intValue == 200 {
                 NotificationCenter.default.post(name: NSNotification.Name.init("FYRushOrderDetailVC"), object: nil)
                 self.successView.isHidden = false
-                self.getDetailInfo()
+                self.getDetailInfo(isShowAlertController: false)
             }else {
                 MBProgressHUD.showInfo(message)
             }
@@ -201,11 +215,14 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
             let amountTextfield = bottomView.viewWithTag(304) as! UITextField
             amountTextfield.resignFirstResponder()
             if self.inputInt < 100 {
+                //下单金额小于100
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "Less100"))
             }else if self.inputInt % 100 != 0 {
+                //下单金额不是100的整数
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "integer"))
             }else if self.inputInt > Int(self.model!.surplusAmount!) {
-                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Insufficient balance"))
+                //下单金额大于剩余余额
+                self.getDetailInfo(isShowAlertController: true)
             }else {
                 self.placeOrder(productId: self.id!, amount: self.inputInt)
             }
@@ -220,7 +237,7 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
             self.navigationController?.popViewController(animated: true)
         }else if btn.tag == 500 {
             //刷新
-            self.getDetailInfo()
+            self.getDetailInfo(isShowAlertController: false)
         }
     }
 
@@ -473,6 +490,8 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
         amountTextfield.textColor = UIColor.white
         //设置右边扫描按钮
         let rightButton = UIButton(type: .custom)
+        let rightWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "All"), font: UIFont.systemFont(ofSize: 13), height: 50)
+        rightButton.frame = CGRect(x: 0, y: 0, width: rightWidth + 20, height: 50)
         rightButton.setTitle(LanguageHelper.getString(key: "All"), for: .normal)
         rightButton.setTitleColor(UIColor.white, for: .normal)
         rightButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)

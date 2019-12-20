@@ -388,7 +388,7 @@ extension FYAssetsVC:JJMarqueeViewDelegate,JJMarqueeViewDataSource {
     //每条数据的内容
     func marqueeView(_ marqueeView: JJMarqueeView, cellForItemAt index: Int) -> NSAttributedString {
         let model = self.infoArray![index]
-        let str = FYTool.formatEmailByStar(email: model.email ?? "")
+        let str = FYTool.formatEmailByStar(email: model.email ?? "") + LanguageHelper.getString(key: "Rush Order Succeed")
         let tempStr = str as NSString
         let r = tempStr.range(of: str)
         let att = NSMutableAttributedString.init(string: tempStr as String)

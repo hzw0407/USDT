@@ -76,16 +76,16 @@
 "All records loaded" = "—— All records loaded ——";
 "Withdraw1" = "Withdraw";
 "Recharge1" = "Recharge";
-"RechargeTip" = "Only usdt import is supported, do not import other currencies";
+"RechargeTip" = "Only usdt (Omni) is supported. Please do not recharge other currencies to the above address, otherwise the asset will not be recovered.";
 "Record" = "Record";
 "Save" = "Click to save the QR code picture";
 "Address" = "Wallet address";
 "copy_success" = "Successful replication";
 "Recharge Tip" = "Reminder";
-"Tip Detail" = "1. Please do not recharge any non usdt assets to the above address, otherwise the assets will not be recovered.\n\n2. After recharging, it needs to be confirmed by the whole network node, and it will arrive at the account after one network confirmation.";
+"Tip Detail" = "1. Please do not recharge any non usdt assets to the above address, otherwise the assets will not be recovered.\n\n2. After recharging, it needs to be confirmed by the whole network node, and it will arrive at the account after six network confirmation.";
 "Save successfully" = "Save successfully";
 "Save failed" = "Save failed";
-"WithdrawTip" = "Please fill in the address of wallet accurately, once it is exported, it will not be withdrawn";
+"WithdrawTip" = "Please fill in the address of usdt (Omni) accurately. Once the withdrawal is confirmed, the system will automatically transfer out and cannot withdraw. Be sure to fill in the correct address of usdt (Omni).";
 "Amount of withdrawable currency" = "Amount of withdrawable currency";
 "Money withdrawal address" = "Money withdrawal address";
 "USDT withdrawal address" = "   USDT withdrawal address";
@@ -150,6 +150,8 @@
 "Assets1" = "Assets:%@";
 "Profit1" = "Profit:%@";
 "Insufficient balance" = "Insufficient balance";
+"Rush Order Succeed" = "  Rush Order Succeed";
+"Balancetip" = "Whether to continue to rob the remaining %@ quota";
 
 "headRefresh1" = "down to refresh";
 "headRefresh2" = "Release to refresh";

@@ -77,16 +77,16 @@
 "All records loaded" = "—— 已加載全部記錄 ——";
 "Withdraw1" = "提幣";
 "Recharge1" = "充幣";
-"RechargeTip" = "僅支持USDT匯入，請勿匯入其它幣種";
+"RechargeTip" = "僅支持USDT（OMNI），請勿向上述地址充值其他幣種，否則資產將不可找回。";
 "Record" = "記錄";
 "Save" = "點擊保存二維碼圖片";
 "Address" = "錢包地址";
 "copy_success" = "複製成功";
 "Recharge Tip" = "溫馨提示";
-"Tip Detail" = "1、請勿向上述地址充值任何非USDT資產，否則資產將不可找回。\n\n2、充值後，需要整個網絡節點的確認，1次網絡確認後到賬。";
+"Tip Detail" = "1、請勿向上述地址充值任何非USDT資產，否則資產將不可找回。\n\n2、充值後，需要整個網絡節點的確認，6次網絡確認後到賬。";
 "Save successfully" = "保存成功";
 "Save failed" = "保存失敗";
-"WithdrawTip" = "請準確填寫錢包地址，一旦匯出將不可撤回";
+"WithdrawTip" = "請準確填寫USDT（OMNI）地址，一旦確認提幣，系統將自動轉出無法撤回，務必填寫USDT（OMNI）正確地址。";
 "Amount of withdrawable currency" = "可提幣數量";
 "Money withdrawal address" = "提幣地址";
 "USDT withdrawal address" = "   USDT 提幣地址";
@@ -151,6 +151,8 @@
 "Assets1" = "資產:%@";
 "Profit1" = "收益:%@";
 "Insufficient balance" = "剩餘額度不足";
+"Rush Order Succeed" = "  搶單成功了";
+"Balancetip" = "是否继续抢剩余的%@额度";
 
 "headRefresh1" = "下拉可以刷新";
 "headRefresh2" = "鬆開立即刷新";

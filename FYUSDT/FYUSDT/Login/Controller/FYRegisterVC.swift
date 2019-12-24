@@ -189,6 +189,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
     //验证邮箱
     func checkEmail() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
         manager.request(type: .get, url: verificationEmail, successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
@@ -205,7 +206,9 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
     //获取验证码
     func getCode() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
+        manager.addparameter(key: "flag", value: "1" as AnyObject)
         manager.request(type: .post, url: sendCode, successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "Send Success"))
@@ -225,6 +228,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
     //注册
     func register() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.addparameter(key: "email", value: self.emailTextfield.text as AnyObject)
         manager.addparameter(key: "ecode", value: self.codeTextfield.text as AnyObject)
         manager.addparameter(key: "password", value: self.setPasswordTextfield.text as AnyObject)
@@ -329,7 +333,7 @@ class FYRegisterVC: UIViewController,UITextFieldDelegate {
     lazy var creatLabel:UILabel = {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Creat")
-        label.textColor = UIColor.white
+        label.textColor = FYColor.goldColor()
         label.font = UIFont.systemFont(ofSize: 30)
         return label
     }()

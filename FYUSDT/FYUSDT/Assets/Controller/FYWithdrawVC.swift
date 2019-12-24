@@ -55,6 +55,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
     //获取提币相关信息
     func getInfo() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.request(type: .post, url: String(format: withdrawInfo, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
                 self.model = JSONDeserializer<FYWithdrawModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
@@ -72,6 +73,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         let addressTextfield = self.bottomView.viewWithTag(201) as! UITextField
         let withdrawTextfield = self.bottomView.viewWithTag(202) as! UITextField
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.addparameter(key: "amount", value: "\(Double((withdrawTextfield.text! as NSString).doubleValue) - (self.model?.withdrawFee ?? 0))" as AnyObject)
         manager.addparameter(key: "fee", value: "\(self.model?.withdrawFee ?? 0)" as AnyObject)
         manager.addparameter(key: "desAddress", value: addressTextfield.text! as AnyObject)

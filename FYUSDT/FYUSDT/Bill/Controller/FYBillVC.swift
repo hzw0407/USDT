@@ -294,13 +294,15 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 //全部按钮不变色
                 button.setTitle(dic["name"], for: .normal)
                 button.setTitleColor(FYColor.goldColor(), for: .selected)
-                button.setImage(UIImage(named: dic["image"]!), for: .normal)
-                button.setImagePosition(position: .right, spacing: 20)
+//                button.setImage(UIImage(named: dic["image"]!), for: .normal)
+//                button.setImagePosition(position: .right, spacing: 20)
                 if i == 2 {
                     //默认时间降序
                     button.isSelected = true
                 }
             }
+            button.setImage(UIImage(named: dic["image"]!), for: .normal)
+            button.setImagePosition(position: .right, spacing: 20)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             button.tag = 100 + i
             button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
@@ -345,6 +347,15 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                 make.left.right.equalTo(view).offset(0)
                 make.top.equalTo(5 + 35 * i)
                 make.height.equalTo(30)
+            }
+            
+            let lineView = UIView.init()
+            lineView.backgroundColor = UIColor.gray
+            view.addSubview(lineView)
+            lineView.snp.makeConstraints { (make) in
+                make.left.right.equalTo(view).offset(0)
+                make.top.equalTo(typeButton.snp_bottom)
+                make.height.equalTo(0.5)
             }
         }
         

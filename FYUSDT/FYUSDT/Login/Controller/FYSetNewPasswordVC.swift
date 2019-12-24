@@ -37,7 +37,7 @@ class FYSetNewPasswordVC: UIViewController {
         self.view.addSubview(self.backButton)
         self.backButton.snp.makeConstraints { (make) in
             make.left.equalTo(self.view).offset(30)
-            make.width.equalTo(30)
+            make.width.equalTo(28.5)
             make.top.equalTo(self.view).offset(navigationHeight)
             make.height.equalTo(20)
         }
@@ -133,6 +133,7 @@ class FYSetNewPasswordVC: UIViewController {
         if self.type == 1 {
             //登录进来
             let manager = FYRequestManager.shared
+            manager.clearparameter()
             manager.addparameter(key: "email", value: self.email as AnyObject)
             manager.addparameter(key: "ecode", value: self.code as AnyObject)
             manager.addparameter(key: "password", value: self.passWordTextfield.text as AnyObject)
@@ -153,6 +154,7 @@ class FYSetNewPasswordVC: UIViewController {
         }else {
             //安全中心进来
             let manager = FYRequestManager.shared
+            manager.clearparameter()
             manager.addparameter(key: "email", value: self.email as AnyObject)
             manager.addparameter(key: "ecode", value: self.code as AnyObject)
             manager.addparameter(key: "password", value: self.oldPasswordTextfield.text as AnyObject)
@@ -206,7 +208,7 @@ class FYSetNewPasswordVC: UIViewController {
     //返回按钮
     lazy var backButton:UIButton = {
         let button = UIButton.init()
-        button.setImage(UIImage(named: "Back"), for: .normal)
+        button.setImage(UIImage(named: "arrow_left"), for: .normal)
         button.tag = 100
         button.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
         return button
@@ -216,7 +218,7 @@ class FYSetNewPasswordVC: UIViewController {
     lazy var setLabel:UILabel = {
         let label = UILabel.init()
         label.text = LanguageHelper.getString(key: "Set new password")
-        label.textColor = UIColor.white
+        label.textColor = FYColor.goldColor()
         label.font = UIFont.systemFont(ofSize: 30)
         return label
     }()

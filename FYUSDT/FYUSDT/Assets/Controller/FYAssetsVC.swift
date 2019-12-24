@@ -124,6 +124,7 @@ class FYAssetsVC: UIViewController {
     //获取资产
     func getAssets() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.request(type: .post, url: String(format: Wallet_Assets, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
             self.scrollView.mj_header?.endRefreshing()
             if dict["code"]?.intValue == 200 {
@@ -141,6 +142,7 @@ class FYAssetsVC: UIViewController {
     //获取滚动信息
     func infoList() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.request(type: .post, url: Assets_InfoList, successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
                 self.infoArray = JSONDeserializer<FYInfoModel>.deserializeModelArrayFrom(array: dict["data"] as? NSArray) as? [FYInfoModel]

@@ -25,19 +25,12 @@ class FYBillCell: UITableViewCell {
         return label
     }()
     
-    //等待到账
-    lazy var waitImageView:UIImageView = {
-        let imageView = UIImageView.init()
-        imageView.image = UIImage(named: "wait")
-        return imageView
-    }()
-    
-    lazy var waitLabel:UILabel = {
+    //提现状态
+    lazy var statusLabel:UILabel = {
         let label = UILabel.init()
-        label.text = LanguageHelper.getString(key: "Waiting for arrival")
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.textAlignment = .center
+        label.textColor = UIColor.gray
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.isHidden = true
         return label
     }()
     
@@ -86,15 +79,23 @@ class FYBillCell: UITableViewCell {
         self.backGroundView.addSubview(self.YKLabel)
         self.YKLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.backGroundView).offset(15)
-            make.right.equalTo(self.backGroundView).offset(0)
+            make.width.equalTo((FYScreenWidth - 30) / 2)
             make.top.equalTo(self.backGroundView).offset(20)
             make.height.equalTo(11)
+        }
+        
+        self.backGroundView.addSubview(self.statusLabel)
+        self.statusLabel.snp.makeConstraints { (make) in
+            make.right.equalTo(self.backGroundView).offset(-15)
+            make.width.equalTo(self.YKLabel.snp_width)
+            make.top.equalTo(self.YKLabel.snp_top)
+            make.height.equalTo(self.YKLabel.snp_height)
         }
         
         self.backGroundView.addSubview(self.typeLabel)
         self.typeLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.YKLabel.snp_left)
-            make.width.equalTo((FYScreenWidth - 30) / 2)
+            make.width.equalTo(self.YKLabel.snp_width)
             make.top.equalTo(self.YKLabel.snp_bottom).offset(15)
             make.height.equalTo(13)
         }
@@ -117,6 +118,11 @@ class FYBillCell: UITableViewCell {
             self.YKLabel.text = String(format: "+%.f USDT", model.amount ?? 0)
         }else {
             self.YKLabel.text = String(format: "%.f USDT", model.amount ?? 0)
+        }
+        if model.type == 2 {
+            self.statusLabel.isHidden = false
+        }else {
+            self.statusLabel.isHidden = true
         }
         self.timeLabel.text = model.createTime
         if model.type == 1 {

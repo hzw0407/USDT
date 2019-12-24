@@ -70,6 +70,7 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     //获取订单列表
     @objc func getOrderList() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.request(type: .post, url: String(format: orderList, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
             self.tableView.mj_header?.endRefreshing()
             if dict["code"]?.intValue == 200 {

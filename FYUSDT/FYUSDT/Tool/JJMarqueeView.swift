@@ -92,7 +92,7 @@ class JJMarqueeView: UIView {
         
         if let _ = delegate {
             
-            delegate!.mqrqueeView!(self, didSelectCellAt: curtIdx)
+//            delegate!.mqrqueeView!(self, didSelectCellAt: curtIdx)
         }
     }
 }

@@ -20,23 +20,25 @@ class FYRequestManager: NSObject {
     static let shared = FYRequestManager()
     
     //0测试环境 1正式环境
-    let InterfaceBaseDebug = 0
+    let InterfaceBaseDebug = 1
     var baseUrl = ""
     //参数字典
     var parametersDic:[String : AnyObject] = [:]
     
     private func judgeNetwork() {
         if InterfaceBaseDebug == 0 {
-            baseUrl = "http://154.206.61.138:8088"
+            baseUrl = "http://192.168.0.112:8088"
         }else {
             baseUrl = "http://154.206.61.138:8088"
         }
     }
     
+    //添加参数
     func addparameter(key:String,value:AnyObject) {
         self.parametersDic[key] = value as AnyObject
     }
     
+    //清空参数
     func clearparameter() {
         self.parametersDic.removeAll()
     }
@@ -117,30 +119,6 @@ class FYRequestManager: NSObject {
                     }
                 }
             }
-//            Alamofire.request(tempUrl, method: .post, parameters: self.parametersDic, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
-//                if response.result.isSuccess {
-//                    if let jsonString = response.result.value {
-//                        let enMessage = (jsonString as! [String : AnyObject])["enMessage"] as! NSString
-//                        let message = (jsonString as! [String : AnyObject])["message"] as! NSString
-//                        if UserDefaults.standard.value(forKey: "languageStr") == nil {
-//                            if FYTool.getLanguageType() == "en-CN" {
-//                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
-//                            }else {
-//                                successCompletion(jsonString as! [String : AnyObject],message as String)
-//                            }
-//                        }else {
-//                            if UserDefaults.standard.value(forKey: "languageStr") as! String == "en" {
-//                                successCompletion(jsonString as! [String : AnyObject],enMessage as String)
-//                            }else {
-//                                successCompletion(jsonString as! [String : AnyObject],message as String)
-//                            }
-//                        }
-//                    }
-//                }else {
-//                    failureCompletion(LanguageHelper.getString(key: "Access failed"))
-//                }
-//            }
-//        }
     }
     
 }

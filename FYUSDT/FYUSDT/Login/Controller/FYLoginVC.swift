@@ -121,6 +121,7 @@ class FYLoginVC: UIViewController {
     //登录
     func login() {
         let manager = FYRequestManager.shared
+        manager.clearparameter()
         manager.addparameter(key: "name", value: self.emailTextfield.text as AnyObject)
         manager.addparameter(key: "password", value: self.passwordTextfield.text as AnyObject)
         manager.request(type: .post, url: Login, successCompletion: { (dict, message) in
@@ -217,9 +218,9 @@ class FYLoginVC: UIViewController {
         textfield.font = UIFont.systemFont(ofSize: 14)
         textfield.textColor = UIColor.white
         textfield.clearButtonMode = .always
-        //修改清除按钮的背景颜色 不然看不到
+        //修改清除按钮的背景图片 不然看不到
         let clearButton = textfield.value(forKey: "_clearButton") as! UIButton
-        clearButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        clearButton.setImage(UIImage(named: "delete"), for: .normal)
         return textfield;
     }()
     

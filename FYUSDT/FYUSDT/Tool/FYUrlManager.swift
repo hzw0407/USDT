@@ -37,6 +37,8 @@ let withdrawApplication = "/user/odtaWallet/permission/transfer?token=%@"
 let getAddress = "/wallet/walletInfo/getAddress?token=%@"
 //账单
 let bill = "/user/exchange/list?token=%@"
+//查询充值提现记录
+let queryRecord = "/wallet/withdraw/getCapital?token=%@"
 //抢单广场列表
 let rushOrderList = "/financial/product/getProduct?token=%@"
 //下单

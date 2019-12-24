@@ -170,17 +170,6 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
         let balanceLabel = bottomView.viewWithTag(301) as! UILabel
         balanceLabel.text = String(format: "%.2f", self.model?.availableBalance ?? 0)
         
-        let profitLabel = bottomView.viewWithTag(305) as! YYLabel
-        let profitStr = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Expected return"), "\((self.model?.userGetAmount ?? 0) * (self.model?.rewardRate ?? 0))"))
-        profitStr.yy_font = UIFont.systemFont(ofSize: 15)
-        if FYTool.getLanguageType() == "en-CN" {
-            profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 15))
-            profitStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 15, length: profitStr.length - 15))
-        }else {
-            profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
-            profitStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: profitStr.length - 4))
-        }
-        profitLabel.attributedText = profitStr
     }
     
     //倒计时
@@ -242,9 +231,49 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
     }
 
     //pragma mark - SystemDelegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField.tag == 304 {
+            let currentText = textField.text ?? ""
+            let newText = (currentText as NSString).replacingCharacters(in: range, with: string) as NSString
+            if newText.hasPrefix("0") {
+                //不能以0开头
+                textField.text = ""
+                return false
+            }else if newText.hasPrefix(".") {
+                //不能以小数点开头
+                textField.text = ""
+                return false
+            }else if string == "." {
+                //不能包含小数点
+                let tempstr = String(newText)
+                textField.text = String(tempstr.prefix(range.location))
+                return false
+            }else if FYTool.checkInput(inputStr: string) == false {
+                //不能包含除数字和小数点以外的字符
+                let tempstr = String(newText)
+                textField.text = String(tempstr.prefix(range.location))
+                return false
+            }
+            return true
+        }
+        return true
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 304 {
             self.inputInt = Int((textField.text! as NSString).intValue)
+            let bottomView = self.scrollView.viewWithTag(300)!
+            let profitLabel = bottomView.viewWithTag(305) as! YYLabel
+            let profitStr = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Expected return"), "\(Double(self.inputInt) * (self.model?.rewardRate ?? 0))"))
+            profitStr.yy_font = UIFont.systemFont(ofSize: 15)
+            if FYTool.getLanguageType() == "en-CN" {
+                profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 15))
+                profitStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 15, length: profitStr.length - 15))
+            }else {
+                profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 4))
+                profitStr.yy_setColor(FYColor.goldColor(), range: NSRange(location: 4, length: profitStr.length - 4))
+            }
+            profitLabel.attributedText = profitStr
         }
     }
 
@@ -314,7 +343,6 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
         
         //需求金额
         let amountLable = UILabel.init()
-//        amountLable.text = "10000.00"
         amountLable.textColor = UIColor.white
         amountLable.font = UIFont.boldSystemFont(ofSize: 45)
         amountLable.tag = 201

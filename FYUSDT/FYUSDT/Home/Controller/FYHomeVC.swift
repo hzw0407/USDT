@@ -147,8 +147,15 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
 
     //pragma mark - ClickMethod
     @objc func btnClick(btn:UIButton) {
-        if btn.tag == 100 {
-            //抢单
+        if UserDefaults.standard.string(forKey: FYToken) != nil {
+            //已登录
+            if btn.tag == 100 {
+                //抢单
+                let AppDelegate = UIApplication.shared.delegate as! AppDelegate
+                AppDelegate.window?.rootViewController = FYTabbarVC()
+            }
+        }else {
+            //未登录
             let vc = FYLoginVC()
             self.navigationController?.pushViewController(vc, animated: true)
         }

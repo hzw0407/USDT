@@ -86,6 +86,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         manager.request(type: .post, url: String(format: withdrawApplication, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "Successful application"))
+                self.getInfo()
             }else {
                 MBProgressHUD.showInfo(message)
             }
@@ -294,7 +295,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         addressTextfield.layer.borderWidth = 1.0
         addressTextfield.layer.borderColor = FYTool.hexStringToUIColor(hexString: "#E2E2E2").cgColor
         addressTextfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "USDT withdrawal address"), attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15)])
-        addressTextfield.font = UIFont.systemFont(ofSize: 15)
+        addressTextfield.font = UIFont.systemFont(ofSize: 13)
         //设置右边扫描按钮
         let rightButton = UIButton(type: .custom)
         rightButton.setImage(UIImage(named: "code"), for: .normal)
@@ -303,7 +304,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         addressTextfield.rightView = rightButton
         addressTextfield.rightViewMode = .always
         //设置光标初始位置
-        addressTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
+//        addressTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
         addressTextfield.tag = 201
         view.addSubview(addressTextfield)
         addressTextfield.snp.makeConstraints { (make) in
@@ -342,7 +343,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         withdrawTextfield.rightView = withdrawRightButton
         withdrawTextfield.rightViewMode = .always
         //设置光标初始位置
-        withdrawTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
+//        withdrawTextfield.setValue(NSNumber.init(value: 14), forKey: "paddingLeft")
         withdrawTextfield.tag = 202
         withdrawTextfield.delegate = self
         view.addSubview(withdrawTextfield)

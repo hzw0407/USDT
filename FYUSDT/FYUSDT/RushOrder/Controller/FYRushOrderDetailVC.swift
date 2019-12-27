@@ -209,6 +209,9 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
             }else if self.inputInt % 100 != 0 {
                 //下单金额不是100的整数
                 MBProgressHUD.showInfo(LanguageHelper.getString(key: "integer"))
+            }else if self.inputInt > Int(self.model!.availableBalance!) {
+                //下单金额大于可用余额
+                MBProgressHUD.showInfo(LanguageHelper.getString(key: "Insufficient available balance"))
             }else if self.inputInt > Int(self.model!.surplusAmount!) {
                 //下单金额大于剩余余额
                 self.getDetailInfo(isShowAlertController: true)
@@ -264,7 +267,7 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
             self.inputInt = Int((textField.text! as NSString).intValue)
             let bottomView = self.scrollView.viewWithTag(300)!
             let profitLabel = bottomView.viewWithTag(305) as! YYLabel
-            let profitStr = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Expected return"), "\(Double(self.inputInt) * (self.model?.rewardRate ?? 0))"))
+            let profitStr = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Expected return"), String(format: "%.2f", Double(self.inputInt) * (self.model?.rewardRate ?? 0))))
             profitStr.yy_font = UIFont.systemFont(ofSize: 15)
             if FYTool.getLanguageType() == "en-CN" {
                 profitStr.yy_setColor(UIColor.gray, range: NSRange(location: 0, length: 15))

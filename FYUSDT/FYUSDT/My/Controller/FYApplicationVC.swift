@@ -11,6 +11,8 @@ import HandyJSON
 
 class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    //下拉刷新
+    let header = MJRefreshNormalHeader()
     //申请记录数组
     var recordArray:[FYApplicationRecordModel] = []
     
@@ -22,7 +24,15 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
         self.creatUI()
         
-        self.getNewCode()
+        header.setRefreshingTarget(self, refreshingAction: #selector(headerRefresh))
+        header.setTitle(LanguageHelper.getString(key: "headRefresh1"), for: .idle)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh2"), for: .pulling)
+        header.setTitle(LanguageHelper.getString(key: "headRefresh3"), for: .refreshing)
+        header.lastUpdatedTimeLabel?.isHidden = true
+        self.scrollView.mj_header = header
+        header.beginRefreshing()
+        
+//        self.getNewCode()
         self.getApplicationList()
     }
     
@@ -67,11 +77,17 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }
     }
     
+    //下拉刷新
+    @objc func headerRefresh() {
+        self.getNewCode()
+    }
+    
     //获取最新的邀请码
     func getNewCode() {
         let manager = FYRequestManager.shared
         manager.clearparameter()
         manager.request(type: .post, url: String(format: queryNewCode, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
+            self.scrollView.mj_header?.endRefreshing()
             if dict["code"]?.intValue == 200 {
                 let codeStr = dict["data"]
                 let middleImageView = self.scrollView.viewWithTag(300) as! UIImageView
@@ -81,6 +97,7 @@ class FYApplicationVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 MBProgressHUD.showInfo(message)
             }
         }) { (errMessage) in
+            self.scrollView.mj_header?.endRefreshing()
             MBProgressHUD.showInfo(errMessage)
         }
     }

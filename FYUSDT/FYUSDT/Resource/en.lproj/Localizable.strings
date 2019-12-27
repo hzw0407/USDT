@@ -88,9 +88,9 @@
 "WithdrawTip" = "Please fill in the address of usdt (Omni) accurately. Once the withdrawal is confirmed, the system will automatically transfer out and cannot withdraw. Be sure to fill in the correct address of usdt (Omni).";
 "Amount of withdrawable currency" = "Amount of withdrawable currency";
 "Money withdrawal address" = "Money withdrawal address";
-"USDT withdrawal address" = "   USDT withdrawal address";
+"USDT withdrawal address" = "USDT withdrawal address";
 "Amount of money raised" = "Amount of money raised";
-"Withdraw Placeholder" = "   Most can be mentioned %.f USDT";
+"Withdraw Placeholder" = "Most can be mentioned %.f USDT";
 "Miner cost" = "Miner cost %.f USDT";
 "Confirmation of withdrawals" = "Confirmation of withdrawals";
 "Grab details" = "Grab details";
@@ -137,6 +137,7 @@
 "placeOrderTip" = "   Investment amount";
 "Less100" = "Investment amount cannot be less than 100";
 "integer" = "The investment amount needs to be an integer of 100";
+"Insufficient available balance" = "Insufficient available balance";
 "PlaceOrder Success" = "PlaceOrder Success";
 "No more data yet" = "No more data yet";
 "Reminder" = "Reminder";

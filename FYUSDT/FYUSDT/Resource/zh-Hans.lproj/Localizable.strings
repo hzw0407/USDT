@@ -89,9 +89,9 @@
 "WithdrawTip" = "請準確填寫USDT（OMNI）地址，一旦確認提幣，系統將自動轉出無法撤回，務必填寫USDT（OMNI）正確地址。";
 "Amount of withdrawable currency" = "可提幣數量";
 "Money withdrawal address" = "提幣地址";
-"USDT withdrawal address" = "   USDT 提幣地址";
+"USDT withdrawal address" = "USDT 提幣地址";
 "Amount of money raised" = "提幣數量";
-"Withdraw Placeholder" = "   最多可提 %.f USDT";
+"Withdraw Placeholder" = "最多可提 %.f USDT";
 "Miner cost" = "礦工費用 %.f USDT";
 "Confirmation of withdrawals" = "確認提幣";
 "Grab details" = "搶單詳情";
@@ -138,6 +138,7 @@
 "placeOrderTip" = "   投資金額";
 "Less100" = "投資金額不能小於100";
 "integer" = "投資金額需要為100的整數";
+"Insufficient available balance" = "可用餘額不足";
 "PlaceOrder Success" = "下單成功";
 "No more data yet" = "暫無更多數據";
 "Reminder" = "溫馨提示";

@@ -106,8 +106,25 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYOr
         return view
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView.init()
+        
+        let lineView = UIView.init()
+        lineView.backgroundColor = FYColor.lineColor()
+        view.addSubview(lineView)
+        lineView.snp.makeConstraints { (make) in
+            make.left.equalTo(view).offset(15)
+            make.right.top.bottom.equalTo(view).offset(0)
+        }
+        return view
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.01
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

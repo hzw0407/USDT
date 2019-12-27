@@ -9,7 +9,7 @@
 import UIKit
 import HandyJSON
 
-class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYOrderCellDelegate {
 
     //下拉刷新
     let header = MJRefreshNormalHeader()
@@ -95,6 +95,7 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! FYOrderCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.delegate = self
         let model = self.modelArray[indexPath.row]
         cell.refreshWithModel(model:model)
         return cell
@@ -114,6 +115,10 @@ class FYOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
 
     //pragma mark - CustomDelegate
+    //倒计时结束刷新列表
+    func countDownEnd() {
+        self.tableView.mj_header?.beginRefreshing()
+    }
 
     //pragma mark - GetterAndSetter
     lazy var titleLabel:UILabel = {

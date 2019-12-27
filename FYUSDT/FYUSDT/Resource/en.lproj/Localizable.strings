@@ -89,7 +89,8 @@
 "Amount of withdrawable currency" = "Amount of withdrawable currency";
 "Money withdrawal address" = "Money withdrawal address";
 "USDT withdrawal address" = "   USDT withdrawal address";
-"Amount of money raised" = "   Amount of money raised";
+"Amount of money raised" = "Amount of money raised";
+"Withdraw Placeholder" = "   Most can be mentioned %.f USDT";
 "Miner cost" = "Miner cost %.f USDT";
 "Confirmation of withdrawals" = "Confirmation of withdrawals";
 "Grab details" = "Grab details";
@@ -152,6 +153,16 @@
 "Insufficient balance" = "Insufficient balance";
 "Rush Order Succeed" = "  Rush Order Succeed";
 "Balancetip" = "Whether to continue to rob the remaining %@ quota";
+"Application1" = "Application";
+"Confirmed" = "Confirmed";
+"Rejected" = "Rejected";
+"Profit Withdraw" = "Profit Withdraw";
+"Principal Withdraw" = "Principal Withdraw";
+"Profit Explain" = "The revenue will be received in real time after withdrawing currency. It will be received about 1 hour after applying for withdrawing currency。";
+"Principal Explain" = "Withdraw the principal and pay it in 5 natural days。";
+"Withdraw2" = "Cash withdrawals";
+"Withdraw3" = "Profit withdrawals";
+"Settling time" = "Settling time";
 
 "headRefresh1" = "down to refresh";
 "headRefresh2" = "Release to refresh";

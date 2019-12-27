@@ -23,7 +23,7 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                                            ["image" : "down","name" : LanguageHelper.getString(key: "Time")]]
     var buttonArray:[UIButton] = []
     //所有的类型数组
-    let allTypeArray:[String] = [LanguageHelper.getString(key: "All"),LanguageHelper.getString(key: "Recharge"),LanguageHelper.getString(key: "Withdraw"),LanguageHelper.getString(key: "Income from investment"),LanguageHelper.getString(key: "Recommended Award")]
+    let allTypeArray:[String] = [LanguageHelper.getString(key: "All"),LanguageHelper.getString(key: "Recharge"),LanguageHelper.getString(key: "Withdraw2"),LanguageHelper.getString(key: "Income from investment"),LanguageHelper.getString(key: "Recommended Award"),LanguageHelper.getString(key: "Withdraw3")]
     //金额排序方式 默认没选中
     var amountType:sortType = .nomal
     //时间排序方式 默认倒序
@@ -283,8 +283,11 @@ class FYBillVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                     //默认显示充值
                     button.setTitle(LanguageHelper.getString(key: "Recharge"), for: .normal)
                 }else if self.selectType == 2 {
-                    //默认显示提现
-                    button.setTitle(LanguageHelper.getString(key: "Withdraw"), for: .normal)
+                    //本金提现
+                    button.setTitle(LanguageHelper.getString(key: "Withdraw2"), for: .normal)
+                }else if self.selectType == 5 {
+                    //收益提现
+                    button.setTitle(LanguageHelper.getString(key: "Withdraw3"), for: .normal)
                 }else {
                     button.setTitle(dic["name"], for: .normal)
                 }

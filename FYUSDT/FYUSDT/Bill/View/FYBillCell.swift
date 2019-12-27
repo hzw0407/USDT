@@ -30,6 +30,7 @@ class FYBillCell: UITableViewCell {
         let label = UILabel.init()
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13)
+        label.textAlignment = .right
         label.isHidden = true
         return label
     }()
@@ -119,24 +120,45 @@ class FYBillCell: UITableViewCell {
         }else {
             self.YKLabel.text = String(format: "%.f USDT", model.amount ?? 0)
         }
-        if model.type == 2 {
+        if model.type == 2 || model.type == 5 {
             self.statusLabel.isHidden = false
+            if model.status == 1 {
+                //申请中
+                self.statusLabel.text = LanguageHelper.getString(key: "Application1")
+                self.statusLabel.textColor = FYColor.blueColor()
+            }else if model.status == 2 {
+                //已确认
+                self.statusLabel.text = LanguageHelper.getString(key: "Confirmed")
+                self.statusLabel.textColor = FYColor.greenColor()
+            }else if model.status == 3 {
+                //已拒绝
+                self.statusLabel.text = LanguageHelper.getString(key: "Rejected")
+                self.statusLabel.textColor = FYColor.redColor()
+            }
         }else {
             self.statusLabel.isHidden = true
         }
         self.timeLabel.text = model.createTime
         if model.type == 1 {
+            //充值
             self.typeLabel.text = LanguageHelper.getString(key: "Recharge")
             self.YKLabel.textColor = FYColor.greenColor()
         }else if model.type == 2 {
-            self.typeLabel.text =  LanguageHelper.getString(key: "Withdraw")
+            //本金提现
+            self.typeLabel.text =  LanguageHelper.getString(key: "Withdraw2")
             self.YKLabel.textColor = FYColor.redColor()
         }else if model.type == 3 {
+            //投资收益
             self.typeLabel.text = LanguageHelper.getString(key: "Income from investment")
             self.YKLabel.textColor = FYColor.blueColor()
-        }else {
+        }else if model.type == 4 {
+            //推荐奖励
             self.typeLabel.text = LanguageHelper.getString(key: "Recommended Award")
             self.YKLabel.textColor = UIColor.orange
+        }else {
+            //收益提现
+            self.typeLabel.text = LanguageHelper.getString(key: "Withdraw3")
+            self.YKLabel.textColor = FYColor.redColor()
         }
     }
 

@@ -119,6 +119,25 @@ class FYRushOrderCell: UITableViewCell {
         let label = UILabel.init()
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 13~)
+//        label.textAlignment = .right
+        return label
+    }()
+    
+    //结算时间标题
+    lazy var settlementTitleLabel:UILabel = {
+        let label = UILabel.init()
+        label.text = LanguageHelper.getString(key: "Settling time")
+        label.textColor = UIColor.gray
+        label.font = UIFont.systemFont(ofSize: 13~)
+        label.textAlignment = .right
+        return label
+    }()
+    
+    //结算时间
+    lazy var settlementLabel:UILabel = {
+        let label = UILabel.init()
+        label.textColor = UIColor.gray
+        label.font = UIFont.systemFont(ofSize: 13~)
         label.textAlignment = .right
         return label
     }()
@@ -201,7 +220,7 @@ class FYRushOrderCell: UITableViewCell {
         self.cirleView.snp.makeConstraints { (make) in
             make.left.equalTo(self.amountLabel.snp_left)
             make.width.equalTo(35~)
-            make.top.equalTo(self.amountLabel.snp_bottom).offset(20~)
+            make.top.equalTo(self.amountLabel.snp_bottom).offset(30~)
             make.height.equalTo(35~)
         }
         
@@ -210,7 +229,7 @@ class FYRushOrderCell: UITableViewCell {
         self.surplusTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.cirleView.snp_right).offset(10~)
             make.width.equalTo(surplusTitleWidth + 5~)
-            make.top.equalTo(self.cirleView.snp_top)
+            make.top.equalTo(self.cirleView.snp_top).offset(-10)
             make.height.equalTo(20~)
         }
         
@@ -230,12 +249,28 @@ class FYRushOrderCell: UITableViewCell {
             make.height.equalTo(self.surplusTitleLabel.snp_height)
         }
         
-        self.addSubview(self.timeLabel)
-        self.timeLabel.snp.makeConstraints { (make) in
+        self.addSubview(self.settlementTitleLabel)
+        self.settlementTitleLabel.snp.makeConstraints { (make) in
             make.left.equalTo(self.dayLabel.snp_left)
             make.right.equalTo(self.dayLabel.snp_right)
             make.bottom.equalTo(self.surplusLabel.snp_bottom)
             make.height.equalTo(self.dayLabel.snp_height)
+        }
+        
+        self.addSubview(self.timeLabel)
+        self.timeLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.surplusLabel.snp_left)
+            make.right.equalTo(self.settlementTitleLabel.snp_left).offset(20~)
+            make.top.equalTo(self.surplusLabel.snp_bottom)
+            make.height.equalTo(self.surplusLabel.snp_height)
+        }
+        
+        self.addSubview(self.settlementLabel)
+        self.settlementLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(self.timeLabel.snp_right)
+            make.right.equalTo(self.settlementTitleLabel.snp_right)
+            make.top.equalTo(self.timeLabel.snp_top)
+            make.height.equalTo(self.timeLabel.snp_height)
         }
         
     }
@@ -269,7 +304,7 @@ class FYRushOrderCell: UITableViewCell {
         amountStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: amountStr.length - 3, length: 3))
         self.amountLabel.attributedText = amountStr
         
-        let rateStr = NSMutableAttributedString(string: String(format: "%.1f%%", (model.rewardRate ?? 0) * Double(100)))
+        let rateStr = NSMutableAttributedString(string: String(format: "%.2f%%", (model.rewardRate ?? 0) * Double(100)))
         rateStr.addAttributes([NSAttributedString.Key.foregroundColor: FYColor.goldColor()], range: NSRange(location: 0, length: rateStr.length))
         rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 25~)], range: NSRange(location: 0, length: rateStr.length - 1))
         rateStr.addAttributes([NSAttributedString.Key.font:UIFont.systemFont(ofSize: 13~)], range: NSRange(location: rateStr.length - 1, length: 1))
@@ -289,6 +324,8 @@ class FYRushOrderCell: UITableViewCell {
                 RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.common)
             }
         }
+        
+        self.settlementLabel.text = model.useEndTime ?? ""
     }
 
 }

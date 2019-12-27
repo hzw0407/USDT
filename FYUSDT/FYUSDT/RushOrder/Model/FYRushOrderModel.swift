@@ -20,8 +20,8 @@ struct FYRushOrderModel:HandyJSON {
     var timeNum:Int?//倒计时秒数
     var fundraisingStartTime:String?//募资开始时间
     var fundraisingEndTime:String?//募资结束时间
-    var UseStartTime:String?//收益开始时间
-    var UseEndTime:String?//收益结束时间
+    var useStartTime:String?//收益开始时间
+    var useEndTime:String?//收益结束时间
     var useNum:Int?//使用天数
 }
 
@@ -33,8 +33,8 @@ struct FYRushOrderDetailModel:HandyJSON {
     var surplusAmount:Double?//剩余额度
     var fundraisingStartTime:String?//募资开始时间
     var fundraisingEndTime:String?//募资结束时间
-    var UseStartTime:String?//收益开始时间
-    var UseEndTime:String?//收益结束时间
+    var useStartTime:String?//收益开始时间
+    var useEndTime:String?//收益结束时间
     var timeNum:Int?//产品募资结束倒计时
     var useNum:Int?//使用天数
     var startAmount:Double?//起投金额

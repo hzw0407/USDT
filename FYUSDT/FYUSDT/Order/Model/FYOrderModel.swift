@@ -22,4 +22,5 @@ struct FYOrderModel:HandyJSON {
     var useNum:Int?//使用天数
     var pnum:Int?//参与人数
     var UseEndTime:String?//结算时间
+    var timeNum:Int?//倒计时秒数
 }

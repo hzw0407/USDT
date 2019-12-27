@@ -10,6 +10,11 @@ import UIKit
 import UICircularProgressRing
 import YYText
 
+public protocol FYOrderCellDelegate:class {
+    //倒计时结束
+    func countDownEnd()
+}
+
 class FYOrderCell: UITableViewCell {
 
     //线
@@ -136,6 +141,12 @@ class FYOrderCell: UITableViewCell {
         let label = YYLabel.init()
         return label
     }()
+    
+    //定时器
+    var timer:Timer?
+    //倒计时秒数
+    var countTime:Int?
+    public weak var delegate:FYOrderCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -277,6 +288,16 @@ class FYOrderCell: UITableViewCell {
         super.init(coder: coder)
     }
     
+    @objc func countDown() {
+        self.countTime! -= 1
+        self.closeLabel.text = FYTool.transToHourMinSec(time: self.countTime!)
+        if self.countTime! <= 0 {
+            self.timer?.invalidate()
+            self.timer = nil
+            self.delegate?.countDownEnd()
+        }
+    }
+    
     //刷新数据
     func refreshWithModel(model:FYOrderModel) {
         let amountStr = NSMutableAttributedString(string: String(format: "%.2f", model.useAmount ?? 0))
@@ -294,7 +315,16 @@ class FYOrderCell: UITableViewCell {
         self.dayLabel.text = "\(model.useNum ?? 0)"
         self.cirleView.startProgress(to: CGFloat(((model.surplusAmount ?? 0) / (model.demandAmount ?? 0)) * Double(100)), duration: 0.1)
         self.surplusLabel.text = String(format: "%.2f", model.surplusAmount ?? 0)
-        self.closeLabel.text = model.UseEndTime
+        
+//        self.closeLabel.text = model.UseEndTime
+        self.countTime = model.timeNum ?? 0
+        if model.timeNum ?? 0 > 0 {
+            if self.timer == nil {
+                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+                RunLoop.current.add(self.timer!, forMode: RunLoop.Mode.common)
+            }
+        }
+        
         self.timeLabel.text = String(format: LanguageHelper.getString(key: "Order time"), model.createTime ?? "")
         
         let tempStr:String = String(format: LanguageHelper.getString(key: "people have participated"), "\(model.pnum ?? 0)")

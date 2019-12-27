@@ -8,6 +8,7 @@
 
 import UIKit
 import HandyJSON
+import SwiftyFitsize
 
 class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYRushOrderCellDelegate {
 
@@ -132,7 +133,7 @@ class FYRushOrderVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 170~
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

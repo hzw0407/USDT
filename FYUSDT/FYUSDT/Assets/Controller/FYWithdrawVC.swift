@@ -11,6 +11,8 @@ import HandyJSON
 
 class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDelegate {
     
+    //1收益提币 2本金提币
+    var type:Int?
     //数据模型
     var model:FYWithdrawModel?
     
@@ -54,15 +56,17 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
     //pragma mark - CustomMethod
     //获取提币相关信息
     func getInfo() {
+        let typeStr = self.type == 1 ? "5" : "2"
         let manager = FYRequestManager.shared
         manager.clearparameter()
+        manager.addparameter(key: "type", value: typeStr as AnyObject)
         manager.request(type: .post, url: String(format: withdrawInfo, UserDefaults.standard.string(forKey: FYToken)!), successCompletion: { (dict, message) in
             if dict["code"]?.intValue == 200 {
                 self.model = JSONDeserializer<FYWithdrawModel>.deserializeFrom(dict: dict["data"] as? NSDictionary)
-                self.refreshInfo()
             }else {
                 MBProgressHUD.showInfo(message)
             }
+            self.refreshInfo()
         }) { (errMessage) in
             MBProgressHUD.showInfo(errMessage)
         }
@@ -70,10 +74,12 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
     
     //提币申请
     func application() {
+        let typeStr = self.type == 1 ? "5" : "2"
         let addressTextfield = self.bottomView.viewWithTag(201) as! UITextField
         let withdrawTextfield = self.bottomView.viewWithTag(202) as! UITextField
         let manager = FYRequestManager.shared
         manager.clearparameter()
+        manager.addparameter(key: "type", value: typeStr as AnyObject)
         manager.addparameter(key: "amount", value: "\(Double((withdrawTextfield.text! as NSString).doubleValue) - (self.model?.withdrawFee ?? 0))" as AnyObject)
         manager.addparameter(key: "fee", value: "\(self.model?.withdrawFee ?? 0)" as AnyObject)
         manager.addparameter(key: "desAddress", value: addressTextfield.text! as AnyObject)
@@ -92,6 +98,8 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
     func refreshInfo() {
         let numberLabel = self.bottomView.viewWithTag(200) as! UILabel
         numberLabel.text = String(format: "%.f USDT", self.model?.availableAmount ?? 0)
+        let withdrawTextfield = self.bottomView.viewWithTag(202) as! UITextField
+        withdrawTextfield.attributedPlaceholder = NSAttributedString.init(string: String(format: LanguageHelper.getString(key: "Withdraw Placeholder"), self.model?.availableAmount ?? 0), attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15)])
         let feeLabel = self.bottomView.viewWithTag(203) as! YYLabel
         let str = NSMutableAttributedString(string: String(format: LanguageHelper.getString(key: "Miner cost"), self.model?.withdrawFee ?? 0))
         str.yy_font = UIFont.systemFont(ofSize: 12)
@@ -113,7 +121,7 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         }else if btn.tag == 101 {
             //记录
             let vc = FYBillVC()
-            vc.selectType = 2
+            vc.selectType = self.type == 1 ? 5 : 2
             self.navigationController?.pushViewController(vc, animated: true)
         }else if btn.tag == 204 {
             //确认提币
@@ -197,19 +205,25 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
             make.top.equalTo(backButton.snp_bottom).offset(30)
             make.height.equalTo(35)
         }
-        //提示
-        let tipLabel = UILabel.init()
-        tipLabel.text = LanguageHelper.getString(key: "WithdrawTip")
-        tipLabel.textColor = UIColor.gray
-        tipLabel.font = UIFont.systemFont(ofSize: 13)
-        tipLabel.numberOfLines = 0
-        view.addSubview(tipLabel)
-        tipLabel.snp.makeConstraints { (make) in
+        
+        //说明
+        let explainLabel = UILabel.init()
+        if self.type == 1 {
+            explainLabel.text = LanguageHelper.getString(key: "Profit Explain")
+        }else {
+            explainLabel.text = LanguageHelper.getString(key: "Principal Explain")
+        }
+        explainLabel.textColor = UIColor.gray
+        explainLabel.font = UIFont.systemFont(ofSize: 13)
+        explainLabel.numberOfLines = 0
+        view.addSubview(explainLabel)
+        explainLabel.snp.makeConstraints { (make) in
             make.left.equalTo(titleLabel.snp_left)
             make.right.equalTo(titleLabel.snp_right)
             make.top.equalTo(titleLabel.snp_bottom).offset(5)
             make.height.equalTo(50)
         }
+        
         //记录
         let recordButton = UIButton.init()
         recordButton.setTitle(LanguageHelper.getString(key: "Record"), for: .normal)
@@ -316,7 +330,6 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
         withdrawTextfield.backgroundColor = FYColor.rgb(243, 244, 249, 1.0)
         withdrawTextfield.layer.borderWidth = 1.0
         withdrawTextfield.layer.borderColor = FYTool.hexStringToUIColor(hexString: "#E2E2E2").cgColor
-        withdrawTextfield.attributedPlaceholder = NSAttributedString.init(string: LanguageHelper.getString(key: "Amount of money raised"), attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray,NSAttributedString.Key.font:UIFont.systemFont(ofSize: 15)])
         withdrawTextfield.font = UIFont.systemFont(ofSize: 15)
         //设置右边全部按钮
         let rightButtonWidth = FYTool.getTexWidth(textStr: LanguageHelper.getString(key: "All"), font: UIFont.systemFont(ofSize: 12), height: 20)
@@ -367,6 +380,20 @@ class FYWithdrawVC: UIViewController,GQScanViewControllerDelegate,UITextFieldDel
             make.right.equalTo(withdrawTextfield.snp_right)
             make.top.equalTo(feeLabel.snp_bottom).offset(20)
             make.height.equalTo(50)
+        }
+        
+        //提示
+        let tipLabel = UILabel.init()
+        tipLabel.text = LanguageHelper.getString(key: "WithdrawTip")
+        tipLabel.textColor = UIColor.gray
+        tipLabel.font = UIFont.systemFont(ofSize: 13)
+        tipLabel.numberOfLines = 0
+        view.addSubview(tipLabel)
+        tipLabel.snp.makeConstraints { (make) in
+            make.left.equalTo(confirmButton.snp_left)
+            make.right.equalTo(confirmButton.snp_right)
+            make.top.equalTo(confirmButton.snp_bottom).offset(5)
+            make.height.equalTo(70)
         }
         
         return view

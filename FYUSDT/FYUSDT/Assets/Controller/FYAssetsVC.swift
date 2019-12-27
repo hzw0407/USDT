@@ -112,6 +112,7 @@ class FYAssetsVC: UIViewController {
         self.hourseView.delegate = self
         self.hourseView.dataSource = self
         self.scrollView.addSubview(self.hourseView)
+        
         self.scrollView.contentSize = CGSize(width: FYScreenWidth, height: (navigationHeight + 35 + 20 + 152 + 40 + 115 + 70 + 70 + 10) > FYScreenHeight ? (navigationHeight + 35 + 20 + 152 + 40 + 115 + 70 + 70 + 10) : FYScreenHeight)
     }
     
@@ -183,9 +184,26 @@ class FYAssetsVC: UIViewController {
     @objc func tapClick(tap:UITapGestureRecognizer) {
         if tap.view!.tag == 300 {
             //提币
-            let vc = FYWithdrawVC()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+            let actionOne = UIAlertAction.init(title: LanguageHelper.getString(key: "Profit Withdraw"), style: UIAlertAction.Style.default) { (action) in
+                //本金提币
+                let vc = FYWithdrawVC()
+                vc.type = 1
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            let actionTwo = UIAlertAction.init(title: LanguageHelper.getString(key: "Principal Withdraw"), style: UIAlertAction.Style.default) { (action) in
+                //收益提币
+                let vc = FYWithdrawVC()
+                vc.type = 2
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            let cancelAction = UIAlertAction.init(title: LanguageHelper.getString(key: "Cancel"), style: UIAlertAction.Style.cancel, handler: nil)
+            alertController.addAction(actionOne)
+            alertController.addAction(actionTwo)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
         }else if tap.view!.tag == 301 {
             //充币
             let vc = FYRechargeVC()

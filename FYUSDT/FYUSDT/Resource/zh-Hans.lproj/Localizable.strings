@@ -90,7 +90,8 @@
 "Amount of withdrawable currency" = "可提幣數量";
 "Money withdrawal address" = "提幣地址";
 "USDT withdrawal address" = "   USDT 提幣地址";
-"Amount of money raised" = "   提幣數量";
+"Amount of money raised" = "提幣數量";
+"Withdraw Placeholder" = "   最多可提 %.f USDT";
 "Miner cost" = "礦工費用 %.f USDT";
 "Confirmation of withdrawals" = "確認提幣";
 "Grab details" = "搶單詳情";
@@ -153,6 +154,16 @@
 "Insufficient balance" = "剩餘額度不足";
 "Rush Order Succeed" = "  搶單成功了";
 "Balancetip" = "是否继续抢剩余的%@额度";
+"Application1" = "申请中";
+"Confirmed" = "已确认";
+"Rejected" = "已拒绝";
+"Profit Withdraw" = "收益提幣";
+"Principal Withdraw" = "本金提幣";
+"Profit Explain" = "收益提幣實时到賬，申請提幣後1小時左右到賬。";
+"Principal Explain" = "本金提幣，5個自然日內到賬。";
+"Withdraw2" = "本金提現";
+"Withdraw3" = "收益提現";
+"Settling time" = "結算時間";
 
 "headRefresh1" = "下拉可以刷新";
 "headRefresh2" = "鬆開立即刷新";

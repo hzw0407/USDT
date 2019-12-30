@@ -120,7 +120,7 @@
 		7CE2CD0E23A4FEA8008EB9AB /* FYRushOrderDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYRushOrderDetailVC.swift; sourceTree = "<group>"; };
 		7CE2CD1023A51811008EB9AB /* FYApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYApplicationVC.swift; sourceTree = "<group>"; };
 		7CE2CD1223A5190D008EB9AB /* FYApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYApplicationCell.swift; sourceTree = "<group>"; };
-		7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FYUSDT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CF6E9F4239F31DF0077DB90 /* U&M.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "U&M.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FYUSDTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CF6EA0E239F31E10077DB90 /* FYUSDTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYUSDTTests.swift; sourceTree = "<group>"; };
 		7CF6EA10239F31E10077DB90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 		7CF6E9F5239F31DF0077DB90 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */,
+				7CF6E9F4239F31DF0077DB90 /* U&M.app */,
 				7CF6EA0A239F31E10077DB90 /* FYUSDTTests.xctest */,
 				7CF6EA15239F31E10077DB90 /* FYUSDTUITests.xctest */,
 			);
@@ -560,7 +560,7 @@
 			);
 			name = FYUSDT;
 			productName = FYUSDT;
-			productReference = 7CF6E9F4239F31DF0077DB90 /* FYUSDT.app */;
+			productReference = 7CF6E9F4239F31DF0077DB90 /* U&M.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7CF6EA09239F31E10077DB90 /* FYUSDTTests */ = {
@@ -1027,7 +1027,7 @@
 					"\"YYText\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "U&M";
 				PROVISIONING_PROFILE_SPECIFIER = USDT_Development;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1118,7 +1118,7 @@
 					"\"YYText\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.news.usdtwallet;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "U&M";
 				PROVISIONING_PROFILE_SPECIFIER = "USDT_Ad Hoc";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/Tool/FYUSDT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

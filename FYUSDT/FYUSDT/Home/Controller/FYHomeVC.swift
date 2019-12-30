@@ -151,6 +151,12 @@ class FYHomeVC: UIViewController,UITableViewDelegate,UITableViewDataSource,FYAdv
             //已登录
             if btn.tag == 100 {
                 //抢单
+                //可以使用上面的方法进行动画过度切换根控制器
+//                UIView.transition(with: UIApplication.shared.keyWindow!, duration: 0.5, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
+//
+//                }) { (finished) in
+//
+//                }
                 let AppDelegate = UIApplication.shared.delegate as! AppDelegate
                 AppDelegate.window?.rootViewController = FYTabbarVC()
             }

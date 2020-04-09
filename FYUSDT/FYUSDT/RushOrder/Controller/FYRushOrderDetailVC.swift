@@ -224,6 +224,11 @@ class FYRushOrderDetailVC: UIViewController,UITextFieldDelegate {
         }else if btn.tag == 401 {
             //再抢一笔
             self.successView.isHidden = true
+            let bottomView = self.scrollView.viewWithTag(300)!
+            let amountTextfield = bottomView.viewWithTag(304) as! UITextField
+            amountTextfield.text = ""
+            let profitLabel = bottomView.viewWithTag(305) as! YYLabel
+            profitLabel.text = ""
         }else if btn.tag == 402 {
             //查看订单
             self.navigationController?.popViewController(animated: true)

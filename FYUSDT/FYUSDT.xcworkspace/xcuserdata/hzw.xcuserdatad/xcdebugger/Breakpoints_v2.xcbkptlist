@@ -34,16 +34,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A19A34CF-893B-4A25-B7F3-E3959EBC91D1"
+            uuid = "60720779-5ACB-4245-9413-1573979DFD7D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "FYUSDT/Tool/FYRequestManager.swift"
+            filePath = "FYUSDT/Assets/Controller/FYAssetsVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "request(type:url:successCompletion:failureCompletion:)"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "getAssets()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
